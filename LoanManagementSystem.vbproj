@@ -161,6 +161,7 @@
     <Compile Include="DataSet\dtsPayment.vb">
       <DependentUpon>dtsPayment.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\exClearFields.vb" />
     <Compile Include="Forms\Area\frmArea.Designer.vb">
       <DependentUpon>frmArea.vb</DependentUpon>
     </Compile>

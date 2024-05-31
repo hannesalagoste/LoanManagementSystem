@@ -30,7 +30,7 @@
     End Sub
 
     Private Sub LoanReleaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoanReleaseToolStripMenuItem.Click
-        frmLoanReleaseReport.Show()
+        frmLoanReleaseReport.ShowDialog()
     End Sub
 
     Private Sub CollectionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CollectionToolStripMenuItem.Click
@@ -40,4 +40,5 @@
     Private Sub CashReportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CashReportToolStripMenuItem.Click
         frmCashReport.ShowDialog()
     End Sub
+
 End Class

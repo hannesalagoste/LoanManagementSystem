@@ -114,6 +114,8 @@ Public Class frmClientList
         Try
             frmCreateLoan.lblID.Text = lblID.Text
             frmCreateLoan.Show()
+            lblID.Text = ""
+            lblClientname.Text = ""
             frmCreateLoan.selectedClient()
             Me.Close()
 
@@ -124,7 +126,10 @@ Public Class frmClientList
 
     End Sub
 
+
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        lblID.Text = "ID"
+        lblClientname.Text = "Selected Client Name"
         Me.Close()
     End Sub
 

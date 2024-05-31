@@ -345,7 +345,7 @@ Public Class frmCreateLoan
             MsgBox(ex.Message, MsgBoxStyle.Exclamation)
         End Try
         frmLoanList.Show()
-        Me.Hide()
+        Me.Close()
 
     End Sub
 
