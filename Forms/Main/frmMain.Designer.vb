@@ -30,6 +30,10 @@ Partial Class frmMain
         Me.ClientListToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AreaSettingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RecieptToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LoanReleaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CollectionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CashReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.lblDate = New System.Windows.Forms.Label()
         Me.lblRole = New System.Windows.Forms.Label()
@@ -37,8 +41,6 @@ Partial Class frmMain
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.ReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LoanReleaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -96,6 +98,31 @@ Partial Class frmMain
         Me.RecieptToolStripMenuItem.Name = "RecieptToolStripMenuItem"
         Me.RecieptToolStripMenuItem.Size = New System.Drawing.Size(68, 21)
         Me.RecieptToolStripMenuItem.Text = "Reciept "
+        '
+        'ReportsToolStripMenuItem
+        '
+        Me.ReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoanReleaseToolStripMenuItem, Me.CollectionToolStripMenuItem, Me.CashReportToolStripMenuItem})
+        Me.ReportsToolStripMenuItem.Name = "ReportsToolStripMenuItem"
+        Me.ReportsToolStripMenuItem.Size = New System.Drawing.Size(67, 21)
+        Me.ReportsToolStripMenuItem.Text = "Reports"
+        '
+        'LoanReleaseToolStripMenuItem
+        '
+        Me.LoanReleaseToolStripMenuItem.Name = "LoanReleaseToolStripMenuItem"
+        Me.LoanReleaseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.LoanReleaseToolStripMenuItem.Text = "Loan Release"
+        '
+        'CollectionToolStripMenuItem
+        '
+        Me.CollectionToolStripMenuItem.Name = "CollectionToolStripMenuItem"
+        Me.CollectionToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CollectionToolStripMenuItem.Text = "Collection Report"
+        '
+        'CashReportToolStripMenuItem
+        '
+        Me.CashReportToolStripMenuItem.Name = "CashReportToolStripMenuItem"
+        Me.CashReportToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CashReportToolStripMenuItem.Text = "Cash Report"
         '
         'GroupBox1
         '
@@ -171,19 +198,6 @@ Partial Class frmMain
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "User :"
         '
-        'ReportsToolStripMenuItem
-        '
-        Me.ReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoanReleaseToolStripMenuItem})
-        Me.ReportsToolStripMenuItem.Name = "ReportsToolStripMenuItem"
-        Me.ReportsToolStripMenuItem.Size = New System.Drawing.Size(67, 21)
-        Me.ReportsToolStripMenuItem.Text = "Reports"
-        '
-        'LoanReleaseToolStripMenuItem
-        '
-        Me.LoanReleaseToolStripMenuItem.Name = "LoanReleaseToolStripMenuItem"
-        Me.LoanReleaseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.LoanReleaseToolStripMenuItem.Text = "Loan Release"
-        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 17.0!)
@@ -225,4 +239,6 @@ Partial Class frmMain
     Friend WithEvents RecieptToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReportsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LoanReleaseToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CollectionToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CashReportToolStripMenuItem As ToolStripMenuItem
 End Class
