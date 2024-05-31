@@ -42,5 +42,6 @@ Public Class frmLoanList
     Private Sub dtgvLoanList_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtgvLoanList.CellClick
         frmLoanDetails.txtLedgerNo.Text = dtgvLoanList(1, dtgvLoanList.CurrentRow.Index).Value
         frmLoanDetails.Show()
+        Me.Close()
     End Sub
 End Class

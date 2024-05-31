@@ -317,6 +317,7 @@ Partial Class frmCreateLoan
         Me.txtCash.Name = "txtCash"
         Me.txtCash.Size = New System.Drawing.Size(159, 27)
         Me.txtCash.TabIndex = 20
+        Me.txtCash.Text = "00.00"
         '
         'Label9
         '

@@ -139,6 +139,11 @@
     <Compile Include="Classes\Loan\Ledger\clsPaymentLedger.vb" />
     <Compile Include="Classes\Loan\Payment\clsLoanPayment.vb" />
     <Compile Include="Classes\User\clsUsersAccount.vb" />
+    <Compile Include="DataSet\dtsCollection.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsCollection.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSet\dtsLoanRelease.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -232,6 +237,30 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Reports\CashReport\frmCashReport.Designer.vb">
+      <DependentUpon>frmCashReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\CashReport\frmCashReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Collection\frmCollectionReport.Designer.vb">
+      <DependentUpon>frmCollectionReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Collection\frmCollectionReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Collection\rptCollection.vb">
+      <DependentUpon>rptCollection.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\LoanReceivable\frmLoanReceivableReport.Designer.vb">
+      <DependentUpon>frmLoanReceivableReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\LoanReceivable\frmLoanReceivableReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\LoanRelease\frmLoanReleaseReport.Designer.vb">
       <DependentUpon>frmLoanReleaseReport.vb</DependentUpon>
     </Compile>
@@ -300,6 +329,19 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\CashReport\frmCashReport.resx">
+      <DependentUpon>frmCashReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Collection\frmCollectionReport.resx">
+      <DependentUpon>frmCollectionReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Collection\rptCollection.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptCollection.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\LoanReceivable\frmLoanReceivableReport.resx">
+      <DependentUpon>frmLoanReceivableReport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\LoanRelease\frmLoanReleaseReport.resx">
       <DependentUpon>frmLoanReleaseReport.vb</DependentUpon>
     </EmbeddedResource>
@@ -319,6 +361,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="DataSet\dtsCollection.xsc">
+      <DependentUpon>dtsCollection.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet\dtsCollection.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsCollection.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataSet\dtsCollection.xss">
+      <DependentUpon>dtsCollection.xsd</DependentUpon>
+    </None>
     <None Include="DataSet\dtsLoanRelease.xsc">
       <DependentUpon>dtsLoanRelease.xsd</DependentUpon>
     </None>
@@ -360,7 +413,7 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBbackup\loan_system.sql" />
+    <Content Include="Database\loan_system%2823-05-24%29.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
