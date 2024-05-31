@@ -870,7 +870,7 @@ Partial Class frmCashReport
         Me.Label90.Name = "Label90"
         Me.Label90.Size = New System.Drawing.Size(64, 18)
         Me.Label90.TabIndex = 102
-        Me.Label90.Text = "00.00"
+        Me.Label90.Text = "0"
         Me.Label90.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label89
@@ -1010,7 +1010,7 @@ Partial Class frmCashReport
         Me.TextBox11.Name = "TextBox11"
         Me.TextBox11.Size = New System.Drawing.Size(64, 22)
         Me.TextBox11.TabIndex = 88
-        Me.TextBox11.Text = "00.00"
+        Me.TextBox11.Text = "0"
         Me.TextBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TextBox12
@@ -1020,7 +1020,7 @@ Partial Class frmCashReport
         Me.TextBox12.Name = "TextBox12"
         Me.TextBox12.Size = New System.Drawing.Size(64, 22)
         Me.TextBox12.TabIndex = 87
-        Me.TextBox12.Text = "00.00"
+        Me.TextBox12.Text = "0"
         Me.TextBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TextBox9
@@ -1030,7 +1030,7 @@ Partial Class frmCashReport
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.Size = New System.Drawing.Size(64, 22)
         Me.TextBox9.TabIndex = 86
-        Me.TextBox9.Text = "00.00"
+        Me.TextBox9.Text = "0"
         Me.TextBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TextBox10
@@ -1040,7 +1040,7 @@ Partial Class frmCashReport
         Me.TextBox10.Name = "TextBox10"
         Me.TextBox10.Size = New System.Drawing.Size(64, 22)
         Me.TextBox10.TabIndex = 85
-        Me.TextBox10.Text = "00.00"
+        Me.TextBox10.Text = "0"
         Me.TextBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TextBox7
@@ -1050,7 +1050,7 @@ Partial Class frmCashReport
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.Size = New System.Drawing.Size(64, 22)
         Me.TextBox7.TabIndex = 84
-        Me.TextBox7.Text = "00.00"
+        Me.TextBox7.Text = "0"
         Me.TextBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TextBox8
@@ -1060,7 +1060,7 @@ Partial Class frmCashReport
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.Size = New System.Drawing.Size(64, 22)
         Me.TextBox8.TabIndex = 83
-        Me.TextBox8.Text = "00.00"
+        Me.TextBox8.Text = "0"
         Me.TextBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TextBox5
@@ -1070,7 +1070,7 @@ Partial Class frmCashReport
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(64, 22)
         Me.TextBox5.TabIndex = 82
-        Me.TextBox5.Text = "00.00"
+        Me.TextBox5.Text = "0"
         Me.TextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TextBox6
@@ -1080,7 +1080,7 @@ Partial Class frmCashReport
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(64, 22)
         Me.TextBox6.TabIndex = 81
-        Me.TextBox6.Text = "00.00"
+        Me.TextBox6.Text = "0"
         Me.TextBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TextBox3
@@ -1090,7 +1090,7 @@ Partial Class frmCashReport
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(64, 22)
         Me.TextBox3.TabIndex = 80
-        Me.TextBox3.Text = "00.00"
+        Me.TextBox3.Text = "0"
         Me.TextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TextBox4
@@ -1100,7 +1100,7 @@ Partial Class frmCashReport
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(64, 22)
         Me.TextBox4.TabIndex = 79
-        Me.TextBox4.Text = "00.00"
+        Me.TextBox4.Text = "0"
         Me.TextBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TextBox2
@@ -1110,7 +1110,7 @@ Partial Class frmCashReport
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(64, 22)
         Me.TextBox2.TabIndex = 78
-        Me.TextBox2.Text = "00.00"
+        Me.TextBox2.Text = "0"
         Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TextBox1
@@ -1120,7 +1120,7 @@ Partial Class frmCashReport
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(64, 22)
         Me.TextBox1.TabIndex = 77
-        Me.TextBox1.Text = "00.00"
+        Me.TextBox1.Text = "0"
         Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label76
@@ -1332,7 +1332,9 @@ Partial Class frmCashReport
         Me.Controls.Add(Me.btnCreateLoan)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "frmCashReport"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Cash Report"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
