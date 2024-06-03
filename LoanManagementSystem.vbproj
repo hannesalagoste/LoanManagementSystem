@@ -144,6 +144,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dtsCollection.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSet\dtsCollection.vb">
+      <DependentUpon>dtsCollection.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSet\dtsLoanRelease.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

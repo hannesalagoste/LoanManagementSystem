@@ -57,7 +57,7 @@ Partial Class frmCashReport
         Me.Label30 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
-        Me.Label27 = New System.Windows.Forms.Label()
+        Me.lblCollection = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
@@ -170,7 +170,7 @@ Partial Class frmCashReport
         Me.GroupBox1.Controls.Add(Me.Label30)
         Me.GroupBox1.Controls.Add(Me.Label29)
         Me.GroupBox1.Controls.Add(Me.Label28)
-        Me.GroupBox1.Controls.Add(Me.Label27)
+        Me.GroupBox1.Controls.Add(Me.lblCollection)
         Me.GroupBox1.Controls.Add(Me.Label26)
         Me.GroupBox1.Controls.Add(Me.Label25)
         Me.GroupBox1.Controls.Add(Me.Label24)
@@ -542,15 +542,15 @@ Partial Class frmCashReport
         Me.Label28.Text = "00.00"
         Me.Label28.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'Label27
+        'lblCollection
         '
-        Me.Label27.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label27.Location = New System.Drawing.Point(357, 100)
-        Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(76, 15)
-        Me.Label27.TabIndex = 86
-        Me.Label27.Text = "00.00"
-        Me.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.lblCollection.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCollection.Location = New System.Drawing.Point(357, 100)
+        Me.lblCollection.Name = "lblCollection"
+        Me.lblCollection.Size = New System.Drawing.Size(76, 15)
+        Me.lblCollection.TabIndex = 86
+        Me.lblCollection.Text = "00.00"
+        Me.lblCollection.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label26
         '
@@ -1378,7 +1378,7 @@ Partial Class frmCashReport
     Friend WithEvents Label30 As Label
     Friend WithEvents Label29 As Label
     Friend WithEvents Label28 As Label
-    Friend WithEvents Label27 As Label
+    Friend WithEvents lblCollection As Label
     Friend WithEvents Label26 As Label
     Friend WithEvents Label25 As Label
     Friend WithEvents Label24 As Label

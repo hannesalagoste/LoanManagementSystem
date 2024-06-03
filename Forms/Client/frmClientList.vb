@@ -35,6 +35,7 @@ Public Class frmClientList
         End Try
     End Sub
 
+
     Private Sub txtSearchBox_TextChanged(sender As Object, e As EventArgs) Handles txtSearchBox.TextChanged
 
         Try

@@ -25,11 +25,9 @@ Option Explicit On
 Partial Public Class dtsCollection
     Inherits Global.System.Data.DataSet
     
-    Private tableclientaccount As clientaccountDataTable
-    
-    Private tableloanaccount As loanaccountDataTable
-    
     Private tablepaymentledger As paymentledgerDataTable
+    
+    Private tableclientaccount As clientaccountDataTable
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -60,14 +58,11 @@ Partial Public Class dtsCollection
         If (Me.DetermineSchemaSerializationMode(info, context) = Global.System.Data.SchemaSerializationMode.IncludeSchema) Then
             Dim ds As Global.System.Data.DataSet = New Global.System.Data.DataSet()
             ds.ReadXmlSchema(New Global.System.Xml.XmlTextReader(New Global.System.IO.StringReader(strSchema)))
-            If (Not (ds.Tables("clientaccount")) Is Nothing) Then
-                MyBase.Tables.Add(New clientaccountDataTable(ds.Tables("clientaccount")))
-            End If
-            If (Not (ds.Tables("loanaccount")) Is Nothing) Then
-                MyBase.Tables.Add(New loanaccountDataTable(ds.Tables("loanaccount")))
-            End If
             If (Not (ds.Tables("paymentledger")) Is Nothing) Then
                 MyBase.Tables.Add(New paymentledgerDataTable(ds.Tables("paymentledger")))
+            End If
+            If (Not (ds.Tables("clientaccount")) Is Nothing) Then
+                MyBase.Tables.Add(New clientaccountDataTable(ds.Tables("clientaccount")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -90,29 +85,19 @@ Partial Public Class dtsCollection
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property clientaccount() As clientaccountDataTable
-        Get
-            Return Me.tableclientaccount
-        End Get
-    End Property
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-     Global.System.ComponentModel.Browsable(false),  _
-     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property loanaccount() As loanaccountDataTable
-        Get
-            Return Me.tableloanaccount
-        End Get
-    End Property
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-     Global.System.ComponentModel.Browsable(false),  _
-     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
     Public ReadOnly Property paymentledger() As paymentledgerDataTable
         Get
             Return Me.tablepaymentledger
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property clientaccount() As clientaccountDataTable
+        Get
+            Return Me.tableclientaccount
         End Get
     End Property
     
@@ -183,14 +168,11 @@ Partial Public Class dtsCollection
             Me.Reset
             Dim ds As Global.System.Data.DataSet = New Global.System.Data.DataSet()
             ds.ReadXml(reader)
-            If (Not (ds.Tables("clientaccount")) Is Nothing) Then
-                MyBase.Tables.Add(New clientaccountDataTable(ds.Tables("clientaccount")))
-            End If
-            If (Not (ds.Tables("loanaccount")) Is Nothing) Then
-                MyBase.Tables.Add(New loanaccountDataTable(ds.Tables("loanaccount")))
-            End If
             If (Not (ds.Tables("paymentledger")) Is Nothing) Then
                 MyBase.Tables.Add(New paymentledgerDataTable(ds.Tables("paymentledger")))
+            End If
+            If (Not (ds.Tables("clientaccount")) Is Nothing) Then
+                MyBase.Tables.Add(New clientaccountDataTable(ds.Tables("clientaccount")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -224,22 +206,16 @@ Partial Public Class dtsCollection
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
     Friend Overloads Sub InitVars(ByVal initTable As Boolean)
-        Me.tableclientaccount = CType(MyBase.Tables("clientaccount"),clientaccountDataTable)
-        If (initTable = true) Then
-            If (Not (Me.tableclientaccount) Is Nothing) Then
-                Me.tableclientaccount.InitVars
-            End If
-        End If
-        Me.tableloanaccount = CType(MyBase.Tables("loanaccount"),loanaccountDataTable)
-        If (initTable = true) Then
-            If (Not (Me.tableloanaccount) Is Nothing) Then
-                Me.tableloanaccount.InitVars
-            End If
-        End If
         Me.tablepaymentledger = CType(MyBase.Tables("paymentledger"),paymentledgerDataTable)
         If (initTable = true) Then
             If (Not (Me.tablepaymentledger) Is Nothing) Then
                 Me.tablepaymentledger.InitVars
+            End If
+        End If
+        Me.tableclientaccount = CType(MyBase.Tables("clientaccount"),clientaccountDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableclientaccount) Is Nothing) Then
+                Me.tableclientaccount.InitVars
             End If
         End If
     End Sub
@@ -252,29 +228,21 @@ Partial Public Class dtsCollection
         Me.Namespace = "http://tempuri.org/dtsCollection.xsd"
         Me.EnforceConstraints = true
         Me.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
-        Me.tableclientaccount = New clientaccountDataTable()
-        MyBase.Tables.Add(Me.tableclientaccount)
-        Me.tableloanaccount = New loanaccountDataTable()
-        MyBase.Tables.Add(Me.tableloanaccount)
         Me.tablepaymentledger = New paymentledgerDataTable()
         MyBase.Tables.Add(Me.tablepaymentledger)
+        Me.tableclientaccount = New clientaccountDataTable()
+        MyBase.Tables.Add(Me.tableclientaccount)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-    Private Function ShouldSerializeclientaccount() As Boolean
-        Return false
-    End Function
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-    Private Function ShouldSerializeloanaccount() As Boolean
-        Return false
-    End Function
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
     Private Function ShouldSerializepaymentledger() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+    Private Function ShouldSerializeclientaccount() As Boolean
         Return false
     End Function
     
@@ -337,13 +305,530 @@ Partial Public Class dtsCollection
     End Function
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+    Public Delegate Sub paymentledgerRowChangeEventHandler(ByVal sender As Object, ByVal e As paymentledgerRowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
     Public Delegate Sub clientaccountRowChangeEventHandler(ByVal sender As Object, ByVal e As clientaccountRowChangeEvent)
     
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-    Public Delegate Sub loanaccountRowChangeEventHandler(ByVal sender As Object, ByVal e As loanaccountRowChangeEvent)
-    
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-    Public Delegate Sub paymentledgerRowChangeEventHandler(ByVal sender As Object, ByVal e As paymentledgerRowChangeEvent)
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class paymentledgerDataTable
+        Inherits Global.System.Data.TypedTableBase(Of paymentledgerRow)
+        
+        Private columnldgID As Global.System.Data.DataColumn
+        
+        Private columnProcessBy As Global.System.Data.DataColumn
+        
+        Private columnPaymode As Global.System.Data.DataColumn
+        
+        Private columnDepBank As Global.System.Data.DataColumn
+        
+        Private columnCHKNo As Global.System.Data.DataColumn
+        
+        Private columnCHKAmount As Global.System.Data.DataColumn
+        
+        Private columnRefund As Global.System.Data.DataColumn
+        
+        Private columnCustomerCode As Global.System.Data.DataColumn
+        
+        Private columnLGNo As Global.System.Data.DataColumn
+        
+        Private columnReceiptNo As Global.System.Data.DataColumn
+        
+        Private columnPayDate As Global.System.Data.DataColumn
+        
+        Private columnPrinAmount As Global.System.Data.DataColumn
+        
+        Private columnPrinPayment As Global.System.Data.DataColumn
+        
+        Private columnPrinBalance As Global.System.Data.DataColumn
+        
+        Private columnInterestAmount As Global.System.Data.DataColumn
+        
+        Private columnInterestPayment As Global.System.Data.DataColumn
+        
+        Private columnTotalPayable As Global.System.Data.DataColumn
+        
+        Private columnPenalty As Global.System.Data.DataColumn
+        
+        Private columnStatus As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "paymentledger"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property ldgIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnldgID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property ProcessByColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnProcessBy
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property PaymodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPaymode
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property DepBankColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDepBank
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property CHKNoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCHKNo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property CHKAmountColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCHKAmount
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property RefundColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRefund
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property CustomerCodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCustomerCode
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property LGNoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLGNo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property ReceiptNoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnReceiptNo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property PayDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPayDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property PrinAmountColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPrinAmount
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property PrinPaymentColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPrinPayment
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property PrinBalanceColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPrinBalance
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property InterestAmountColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnInterestAmount
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property InterestPaymentColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnInterestPayment
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property TotalPayableColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTotalPayable
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property PenaltyColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPenalty
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property StatusColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnStatus
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As paymentledgerRow
+            Get
+                Return CType(Me.Rows(index),paymentledgerRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Event paymentledgerRowChanging As paymentledgerRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Event paymentledgerRowChanged As paymentledgerRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Event paymentledgerRowDeleting As paymentledgerRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Event paymentledgerRowDeleted As paymentledgerRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Overloads Sub AddpaymentledgerRow(ByVal row As paymentledgerRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Overloads Function AddpaymentledgerRow( _
+                    ByVal ProcessBy As String,  _
+                    ByVal Paymode As String,  _
+                    ByVal DepBank As String,  _
+                    ByVal CHKNo As String,  _
+                    ByVal CHKAmount As Decimal,  _
+                    ByVal Refund As Decimal,  _
+                    ByVal CustomerCode As String,  _
+                    ByVal LGNo As String,  _
+                    ByVal ReceiptNo As String,  _
+                    ByVal PayDate As Date,  _
+                    ByVal PrinAmount As Decimal,  _
+                    ByVal PrinPayment As Decimal,  _
+                    ByVal PrinBalance As Decimal,  _
+                    ByVal InterestAmount As Decimal,  _
+                    ByVal InterestPayment As Decimal,  _
+                    ByVal TotalPayable As Decimal,  _
+                    ByVal Penalty As Decimal,  _
+                    ByVal Status As String) As paymentledgerRow
+            Dim rowpaymentledgerRow As paymentledgerRow = CType(Me.NewRow,paymentledgerRow)
+            Dim columnValuesArray() As Object = New Object() {Nothing, ProcessBy, Paymode, DepBank, CHKNo, CHKAmount, Refund, CustomerCode, LGNo, ReceiptNo, PayDate, PrinAmount, PrinPayment, PrinBalance, InterestAmount, InterestPayment, TotalPayable, Penalty, Status}
+            rowpaymentledgerRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowpaymentledgerRow)
+            Return rowpaymentledgerRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As paymentledgerDataTable = CType(MyBase.Clone,paymentledgerDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New paymentledgerDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnldgID = MyBase.Columns("ldgID")
+            Me.columnProcessBy = MyBase.Columns("ProcessBy")
+            Me.columnPaymode = MyBase.Columns("Paymode")
+            Me.columnDepBank = MyBase.Columns("DepBank")
+            Me.columnCHKNo = MyBase.Columns("CHKNo")
+            Me.columnCHKAmount = MyBase.Columns("CHKAmount")
+            Me.columnRefund = MyBase.Columns("Refund")
+            Me.columnCustomerCode = MyBase.Columns("CustomerCode")
+            Me.columnLGNo = MyBase.Columns("LGNo")
+            Me.columnReceiptNo = MyBase.Columns("ReceiptNo")
+            Me.columnPayDate = MyBase.Columns("PayDate")
+            Me.columnPrinAmount = MyBase.Columns("PrinAmount")
+            Me.columnPrinPayment = MyBase.Columns("PrinPayment")
+            Me.columnPrinBalance = MyBase.Columns("PrinBalance")
+            Me.columnInterestAmount = MyBase.Columns("InterestAmount")
+            Me.columnInterestPayment = MyBase.Columns("InterestPayment")
+            Me.columnTotalPayable = MyBase.Columns("TotalPayable")
+            Me.columnPenalty = MyBase.Columns("Penalty")
+            Me.columnStatus = MyBase.Columns("Status")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnldgID = New Global.System.Data.DataColumn("ldgID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnldgID)
+            Me.columnProcessBy = New Global.System.Data.DataColumn("ProcessBy", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnProcessBy)
+            Me.columnPaymode = New Global.System.Data.DataColumn("Paymode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPaymode)
+            Me.columnDepBank = New Global.System.Data.DataColumn("DepBank", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDepBank)
+            Me.columnCHKNo = New Global.System.Data.DataColumn("CHKNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCHKNo)
+            Me.columnCHKAmount = New Global.System.Data.DataColumn("CHKAmount", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCHKAmount)
+            Me.columnRefund = New Global.System.Data.DataColumn("Refund", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRefund)
+            Me.columnCustomerCode = New Global.System.Data.DataColumn("CustomerCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCustomerCode)
+            Me.columnLGNo = New Global.System.Data.DataColumn("LGNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLGNo)
+            Me.columnReceiptNo = New Global.System.Data.DataColumn("ReceiptNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnReceiptNo)
+            Me.columnPayDate = New Global.System.Data.DataColumn("PayDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPayDate)
+            Me.columnPrinAmount = New Global.System.Data.DataColumn("PrinAmount", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPrinAmount)
+            Me.columnPrinPayment = New Global.System.Data.DataColumn("PrinPayment", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPrinPayment)
+            Me.columnPrinBalance = New Global.System.Data.DataColumn("PrinBalance", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPrinBalance)
+            Me.columnInterestAmount = New Global.System.Data.DataColumn("InterestAmount", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnInterestAmount)
+            Me.columnInterestPayment = New Global.System.Data.DataColumn("InterestPayment", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnInterestPayment)
+            Me.columnTotalPayable = New Global.System.Data.DataColumn("TotalPayable", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTotalPayable)
+            Me.columnPenalty = New Global.System.Data.DataColumn("Penalty", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPenalty)
+            Me.columnStatus = New Global.System.Data.DataColumn("Status", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnStatus)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnldgID}, false))
+            Me.columnldgID.AutoIncrement = true
+            Me.columnldgID.AutoIncrementSeed = -1
+            Me.columnldgID.AutoIncrementStep = -1
+            Me.columnldgID.Unique = true
+            Me.columnProcessBy.AllowDBNull = false
+            Me.columnProcessBy.MaxLength = 400
+            Me.columnPaymode.MaxLength = 400
+            Me.columnDepBank.MaxLength = 400
+            Me.columnCHKNo.MaxLength = 400
+            Me.columnCustomerCode.AllowDBNull = false
+            Me.columnCustomerCode.MaxLength = 400
+            Me.columnLGNo.AllowDBNull = false
+            Me.columnLGNo.MaxLength = 400
+            Me.columnReceiptNo.MaxLength = 200
+            Me.columnStatus.MaxLength = 400
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function NewpaymentledgerRow() As paymentledgerRow
+            Return CType(Me.NewRow,paymentledgerRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New paymentledgerRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(paymentledgerRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.paymentledgerRowChangedEvent) Is Nothing) Then
+                RaiseEvent paymentledgerRowChanged(Me, New paymentledgerRowChangeEvent(CType(e.Row,paymentledgerRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.paymentledgerRowChangingEvent) Is Nothing) Then
+                RaiseEvent paymentledgerRowChanging(Me, New paymentledgerRowChangeEvent(CType(e.Row,paymentledgerRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.paymentledgerRowDeletedEvent) Is Nothing) Then
+                RaiseEvent paymentledgerRowDeleted(Me, New paymentledgerRowChangeEvent(CType(e.Row,paymentledgerRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.paymentledgerRowDeletingEvent) Is Nothing) Then
+                RaiseEvent paymentledgerRowDeleting(Me, New paymentledgerRowChangeEvent(CType(e.Row,paymentledgerRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub RemovepaymentledgerRow(ByVal row As paymentledgerRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As dtsCollection = New dtsCollection()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "paymentledgerDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -1067,1305 +1552,484 @@ Partial Public Class dtsCollection
     End Class
     
     '''<summary>
-    '''Represents the strongly named DataTable class.
+    '''Represents strongly named DataRow class.
     '''</summary>
-    <Global.System.Serializable(),  _
-     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class loanaccountDataTable
-        Inherits Global.System.Data.TypedTableBase(Of loanaccountRow)
+    Partial Public Class paymentledgerRow
+        Inherits Global.System.Data.DataRow
         
-        Private columnloanID As Global.System.Data.DataColumn
-        
-        Private columnCreatedDate As Global.System.Data.DataColumn
-        
-        Private columnCreatedBy As Global.System.Data.DataColumn
-        
-        Private columnCreatedRole As Global.System.Data.DataColumn
-        
-        Private columnClientCode As Global.System.Data.DataColumn
-        
-        Private columnLedgerNo As Global.System.Data.DataColumn
-        
-        Private columnLDSNo As Global.System.Data.DataColumn
-        
-        Private columnPrevLDSNo As Global.System.Data.DataColumn
-        
-        Private columnClientName As Global.System.Data.DataColumn
-        
-        Private columnCoMaker As Global.System.Data.DataColumn
-        
-        Private columnArea As Global.System.Data.DataColumn
-        
-        Private columnLoanType As Global.System.Data.DataColumn
-        
-        Private columnChecks As Global.System.Data.DataColumn
-        
-        Private columnChecksNo As Global.System.Data.DataColumn
-        
-        Private columnAcctNo As Global.System.Data.DataColumn
-        
-        Private columnCash As Global.System.Data.DataColumn
-        
-        Private columnLoanDate As Global.System.Data.DataColumn
-        
-        Private columnFirstDueDate As Global.System.Data.DataColumn
-        
-        Private columnMaturityDate As Global.System.Data.DataColumn
-        
-        Private columnOldBalanceAmount As Global.System.Data.DataColumn
-        
-        Private columnOldInterestAmount As Global.System.Data.DataColumn
-        
-        Private columnLoanTrans As Global.System.Data.DataColumn
-        
-        Private columnTermOfLoan As Global.System.Data.DataColumn
-        
-        Private columnLoanAmount As Global.System.Data.DataColumn
-        
-        Private columnInterestRate As Global.System.Data.DataColumn
-        
-        Private columnPrincipal As Global.System.Data.DataColumn
-        
-        Private columnInterest As Global.System.Data.DataColumn
-        
-        Private columnMonthlyAmort As Global.System.Data.DataColumn
-        
-        Private columnNotarialFee As Global.System.Data.DataColumn
-        
-        Private columnFinCharge As Global.System.Data.DataColumn
-        
-        Private columnAccomodation As Global.System.Data.DataColumn
-        
-        Private columnInspection As Global.System.Data.DataColumn
-        
-        Private columnLPPP As Global.System.Data.DataColumn
-        
-        Private columnNewBalance As Global.System.Data.DataColumn
-        
-        Private columnNetProceeds As Global.System.Data.DataColumn
+        Private tablepaymentledger As paymentledgerDataTable
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.TableName = "loanaccount"
-            Me.BeginInit
-            Me.InitClass
-            Me.EndInit
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tablepaymentledger = CType(Me.Table,paymentledgerDataTable)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Friend Sub New(ByVal table As Global.System.Data.DataTable)
-            MyBase.New
-            Me.TableName = table.TableName
-            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
-                Me.CaseSensitive = table.CaseSensitive
-            End If
-            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
-                Me.Locale = table.Locale
-            End If
-            If (table.Namespace <> table.DataSet.Namespace) Then
-                Me.Namespace = table.Namespace
-            End If
-            Me.Prefix = table.Prefix
-            Me.MinimumCapacity = table.MinimumCapacity
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
-            MyBase.New(info, context)
-            Me.InitVars
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property loanIDColumn() As Global.System.Data.DataColumn
+        Public Property ldgID() As Integer
             Get
-                Return Me.columnloanID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property CreatedDateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCreatedDate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property CreatedByColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCreatedBy
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property CreatedRoleColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCreatedRole
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property ClientCodeColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnClientCode
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property LedgerNoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLedgerNo
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property LDSNoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLDSNo
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property PrevLDSNoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPrevLDSNo
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property ClientNameColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnClientName
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property CoMakerColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCoMaker
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property AreaColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnArea
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property LoanTypeColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLoanType
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property ChecksColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnChecks
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property ChecksNoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnChecksNo
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property AcctNoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnAcctNo
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property CashColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCash
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property LoanDateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLoanDate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property FirstDueDateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnFirstDueDate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property MaturityDateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMaturityDate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property OldBalanceAmountColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOldBalanceAmount
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property OldInterestAmountColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOldInterestAmount
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property LoanTransColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLoanTrans
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property TermOfLoanColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnTermOfLoan
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property LoanAmountColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLoanAmount
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property InterestRateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnInterestRate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property PrincipalColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPrincipal
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property InterestColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnInterest
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property MonthlyAmortColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMonthlyAmort
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property NotarialFeeColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnNotarialFee
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property FinChargeColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnFinCharge
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property AccomodationColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnAccomodation
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property InspectionColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnInspection
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property LPPPColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLPPP
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property NewBalanceColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnNewBalance
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property NetProceedsColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnNetProceeds
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Browsable(false)>  _
-        Public ReadOnly Property Count() As Integer
-            Get
-                Return Me.Rows.Count
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As loanaccountRow
-            Get
-                Return CType(Me.Rows(index),loanaccountRow)
-            End Get
-        End Property
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event loanaccountRowChanging As loanaccountRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event loanaccountRowChanged As loanaccountRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event loanaccountRowDeleting As loanaccountRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event loanaccountRowDeleted As loanaccountRowChangeEventHandler
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Sub AddloanaccountRow(ByVal row As loanaccountRow)
-            Me.Rows.Add(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function AddloanaccountRow( _
-                    ByVal CreatedDate As Date,  _
-                    ByVal CreatedBy As String,  _
-                    ByVal CreatedRole As String,  _
-                    ByVal ClientCode As String,  _
-                    ByVal LedgerNo As String,  _
-                    ByVal LDSNo As String,  _
-                    ByVal PrevLDSNo As String,  _
-                    ByVal ClientName As String,  _
-                    ByVal CoMaker As String,  _
-                    ByVal Area As String,  _
-                    ByVal LoanType As String,  _
-                    ByVal Checks As String,  _
-                    ByVal ChecksNo As String,  _
-                    ByVal AcctNo As String,  _
-                    ByVal Cash As Decimal,  _
-                    ByVal LoanDate As Date,  _
-                    ByVal FirstDueDate As Date,  _
-                    ByVal MaturityDate As Date,  _
-                    ByVal OldBalanceAmount As Decimal,  _
-                    ByVal OldInterestAmount As Decimal,  _
-                    ByVal LoanTrans As String,  _
-                    ByVal TermOfLoan As String,  _
-                    ByVal LoanAmount As Decimal,  _
-                    ByVal InterestRate As Decimal,  _
-                    ByVal Principal As Decimal,  _
-                    ByVal Interest As Decimal,  _
-                    ByVal MonthlyAmort As Decimal,  _
-                    ByVal NotarialFee As Decimal,  _
-                    ByVal FinCharge As Decimal,  _
-                    ByVal Accomodation As Decimal,  _
-                    ByVal Inspection As Decimal,  _
-                    ByVal LPPP As Decimal,  _
-                    ByVal NewBalance As Decimal,  _
-                    ByVal NetProceeds As Decimal) As loanaccountRow
-            Dim rowloanaccountRow As loanaccountRow = CType(Me.NewRow,loanaccountRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, CreatedDate, CreatedBy, CreatedRole, ClientCode, LedgerNo, LDSNo, PrevLDSNo, ClientName, CoMaker, Area, LoanType, Checks, ChecksNo, AcctNo, Cash, LoanDate, FirstDueDate, MaturityDate, OldBalanceAmount, OldInterestAmount, LoanTrans, TermOfLoan, LoanAmount, InterestRate, Principal, Interest, MonthlyAmort, NotarialFee, FinCharge, Accomodation, Inspection, LPPP, NewBalance, NetProceeds}
-            rowloanaccountRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowloanaccountRow)
-            Return rowloanaccountRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As loanaccountDataTable = CType(MyBase.Clone,loanaccountDataTable)
-            cln.InitVars
-            Return cln
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New loanaccountDataTable()
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Friend Sub InitVars()
-            Me.columnloanID = MyBase.Columns("loanID")
-            Me.columnCreatedDate = MyBase.Columns("CreatedDate")
-            Me.columnCreatedBy = MyBase.Columns("CreatedBy")
-            Me.columnCreatedRole = MyBase.Columns("CreatedRole")
-            Me.columnClientCode = MyBase.Columns("ClientCode")
-            Me.columnLedgerNo = MyBase.Columns("LedgerNo")
-            Me.columnLDSNo = MyBase.Columns("LDSNo")
-            Me.columnPrevLDSNo = MyBase.Columns("PrevLDSNo")
-            Me.columnClientName = MyBase.Columns("ClientName")
-            Me.columnCoMaker = MyBase.Columns("CoMaker")
-            Me.columnArea = MyBase.Columns("Area")
-            Me.columnLoanType = MyBase.Columns("LoanType")
-            Me.columnChecks = MyBase.Columns("Checks")
-            Me.columnChecksNo = MyBase.Columns("ChecksNo")
-            Me.columnAcctNo = MyBase.Columns("AcctNo")
-            Me.columnCash = MyBase.Columns("Cash")
-            Me.columnLoanDate = MyBase.Columns("LoanDate")
-            Me.columnFirstDueDate = MyBase.Columns("FirstDueDate")
-            Me.columnMaturityDate = MyBase.Columns("MaturityDate")
-            Me.columnOldBalanceAmount = MyBase.Columns("OldBalanceAmount")
-            Me.columnOldInterestAmount = MyBase.Columns("OldInterestAmount")
-            Me.columnLoanTrans = MyBase.Columns("LoanTrans")
-            Me.columnTermOfLoan = MyBase.Columns("TermOfLoan")
-            Me.columnLoanAmount = MyBase.Columns("LoanAmount")
-            Me.columnInterestRate = MyBase.Columns("InterestRate")
-            Me.columnPrincipal = MyBase.Columns("Principal")
-            Me.columnInterest = MyBase.Columns("Interest")
-            Me.columnMonthlyAmort = MyBase.Columns("MonthlyAmort")
-            Me.columnNotarialFee = MyBase.Columns("NotarialFee")
-            Me.columnFinCharge = MyBase.Columns("FinCharge")
-            Me.columnAccomodation = MyBase.Columns("Accomodation")
-            Me.columnInspection = MyBase.Columns("Inspection")
-            Me.columnLPPP = MyBase.Columns("LPPP")
-            Me.columnNewBalance = MyBase.Columns("NewBalance")
-            Me.columnNetProceeds = MyBase.Columns("NetProceeds")
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Private Sub InitClass()
-            Me.columnloanID = New Global.System.Data.DataColumn("loanID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnloanID)
-            Me.columnCreatedDate = New Global.System.Data.DataColumn("CreatedDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCreatedDate)
-            Me.columnCreatedBy = New Global.System.Data.DataColumn("CreatedBy", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCreatedBy)
-            Me.columnCreatedRole = New Global.System.Data.DataColumn("CreatedRole", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCreatedRole)
-            Me.columnClientCode = New Global.System.Data.DataColumn("ClientCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnClientCode)
-            Me.columnLedgerNo = New Global.System.Data.DataColumn("LedgerNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLedgerNo)
-            Me.columnLDSNo = New Global.System.Data.DataColumn("LDSNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLDSNo)
-            Me.columnPrevLDSNo = New Global.System.Data.DataColumn("PrevLDSNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPrevLDSNo)
-            Me.columnClientName = New Global.System.Data.DataColumn("ClientName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnClientName)
-            Me.columnCoMaker = New Global.System.Data.DataColumn("CoMaker", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCoMaker)
-            Me.columnArea = New Global.System.Data.DataColumn("Area", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnArea)
-            Me.columnLoanType = New Global.System.Data.DataColumn("LoanType", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLoanType)
-            Me.columnChecks = New Global.System.Data.DataColumn("Checks", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnChecks)
-            Me.columnChecksNo = New Global.System.Data.DataColumn("ChecksNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnChecksNo)
-            Me.columnAcctNo = New Global.System.Data.DataColumn("AcctNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnAcctNo)
-            Me.columnCash = New Global.System.Data.DataColumn("Cash", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCash)
-            Me.columnLoanDate = New Global.System.Data.DataColumn("LoanDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLoanDate)
-            Me.columnFirstDueDate = New Global.System.Data.DataColumn("FirstDueDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnFirstDueDate)
-            Me.columnMaturityDate = New Global.System.Data.DataColumn("MaturityDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMaturityDate)
-            Me.columnOldBalanceAmount = New Global.System.Data.DataColumn("OldBalanceAmount", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOldBalanceAmount)
-            Me.columnOldInterestAmount = New Global.System.Data.DataColumn("OldInterestAmount", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOldInterestAmount)
-            Me.columnLoanTrans = New Global.System.Data.DataColumn("LoanTrans", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLoanTrans)
-            Me.columnTermOfLoan = New Global.System.Data.DataColumn("TermOfLoan", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnTermOfLoan)
-            Me.columnLoanAmount = New Global.System.Data.DataColumn("LoanAmount", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLoanAmount)
-            Me.columnInterestRate = New Global.System.Data.DataColumn("InterestRate", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnInterestRate)
-            Me.columnPrincipal = New Global.System.Data.DataColumn("Principal", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPrincipal)
-            Me.columnInterest = New Global.System.Data.DataColumn("Interest", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnInterest)
-            Me.columnMonthlyAmort = New Global.System.Data.DataColumn("MonthlyAmort", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMonthlyAmort)
-            Me.columnNotarialFee = New Global.System.Data.DataColumn("NotarialFee", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnNotarialFee)
-            Me.columnFinCharge = New Global.System.Data.DataColumn("FinCharge", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnFinCharge)
-            Me.columnAccomodation = New Global.System.Data.DataColumn("Accomodation", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnAccomodation)
-            Me.columnInspection = New Global.System.Data.DataColumn("Inspection", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnInspection)
-            Me.columnLPPP = New Global.System.Data.DataColumn("LPPP", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLPPP)
-            Me.columnNewBalance = New Global.System.Data.DataColumn("NewBalance", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnNewBalance)
-            Me.columnNetProceeds = New Global.System.Data.DataColumn("NetProceeds", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnNetProceeds)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnloanID}, false))
-            Me.columnloanID.AutoIncrement = true
-            Me.columnloanID.AutoIncrementSeed = -1
-            Me.columnloanID.AutoIncrementStep = -1
-            Me.columnloanID.Unique = true
-            Me.columnCreatedDate.AllowDBNull = false
-            Me.columnCreatedBy.AllowDBNull = false
-            Me.columnCreatedBy.MaxLength = 400
-            Me.columnCreatedRole.AllowDBNull = false
-            Me.columnCreatedRole.MaxLength = 400
-            Me.columnClientCode.AllowDBNull = false
-            Me.columnClientCode.MaxLength = 400
-            Me.columnLedgerNo.AllowDBNull = false
-            Me.columnLedgerNo.MaxLength = 400
-            Me.columnLDSNo.AllowDBNull = false
-            Me.columnLDSNo.MaxLength = 400
-            Me.columnPrevLDSNo.AllowDBNull = false
-            Me.columnPrevLDSNo.MaxLength = 400
-            Me.columnClientName.AllowDBNull = false
-            Me.columnClientName.MaxLength = 400
-            Me.columnCoMaker.AllowDBNull = false
-            Me.columnCoMaker.MaxLength = 400
-            Me.columnArea.AllowDBNull = false
-            Me.columnArea.MaxLength = 400
-            Me.columnLoanType.AllowDBNull = false
-            Me.columnLoanType.MaxLength = 200
-            Me.columnChecks.AllowDBNull = false
-            Me.columnChecks.MaxLength = 400
-            Me.columnChecksNo.AllowDBNull = false
-            Me.columnChecksNo.MaxLength = 400
-            Me.columnAcctNo.AllowDBNull = false
-            Me.columnAcctNo.MaxLength = 400
-            Me.columnCash.AllowDBNull = false
-            Me.columnLoanDate.AllowDBNull = false
-            Me.columnFirstDueDate.AllowDBNull = false
-            Me.columnMaturityDate.AllowDBNull = false
-            Me.columnOldBalanceAmount.AllowDBNull = false
-            Me.columnOldInterestAmount.AllowDBNull = false
-            Me.columnLoanTrans.AllowDBNull = false
-            Me.columnLoanTrans.MaxLength = 400
-            Me.columnTermOfLoan.AllowDBNull = false
-            Me.columnTermOfLoan.MaxLength = 400
-            Me.columnLoanAmount.AllowDBNull = false
-            Me.columnInterestRate.AllowDBNull = false
-            Me.columnPrincipal.AllowDBNull = false
-            Me.columnInterest.AllowDBNull = false
-            Me.columnMonthlyAmort.AllowDBNull = false
-            Me.columnNotarialFee.AllowDBNull = false
-            Me.columnFinCharge.AllowDBNull = false
-            Me.columnAccomodation.AllowDBNull = false
-            Me.columnInspection.AllowDBNull = false
-            Me.columnLPPP.AllowDBNull = false
-            Me.columnNewBalance.AllowDBNull = false
-            Me.columnNetProceeds.AllowDBNull = false
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function NewloanaccountRow() As loanaccountRow
-            Return CType(Me.NewRow,loanaccountRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New loanaccountRow(builder)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(loanaccountRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanged(e)
-            If (Not (Me.loanaccountRowChangedEvent) Is Nothing) Then
-                RaiseEvent loanaccountRowChanged(Me, New loanaccountRowChangeEvent(CType(e.Row,loanaccountRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanging(e)
-            If (Not (Me.loanaccountRowChangingEvent) Is Nothing) Then
-                RaiseEvent loanaccountRowChanging(Me, New loanaccountRowChangeEvent(CType(e.Row,loanaccountRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleted(e)
-            If (Not (Me.loanaccountRowDeletedEvent) Is Nothing) Then
-                RaiseEvent loanaccountRowDeleted(Me, New loanaccountRowChangeEvent(CType(e.Row,loanaccountRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleting(e)
-            If (Not (Me.loanaccountRowDeletingEvent) Is Nothing) Then
-                RaiseEvent loanaccountRowDeleting(Me, New loanaccountRowChangeEvent(CType(e.Row,loanaccountRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub RemoveloanaccountRow(ByVal row As loanaccountRow)
-            Me.Rows.Remove(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
-            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As dtsCollection = New dtsCollection()
-            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
-            any1.MinOccurs = New Decimal(0)
-            any1.MaxOccurs = Decimal.MaxValue
-            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any1)
-            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
-            any2.MinOccurs = New Decimal(1)
-            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any2)
-            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute1.Name = "namespace"
-            attribute1.FixedValue = ds.Namespace
-            type.Attributes.Add(attribute1)
-            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "loanaccountDataTable"
-            type.Attributes.Add(attribute2)
-            type.Particle = sequence
-            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
-            If xs.Contains(dsSchema.TargetNamespace) Then
-                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
                 Try 
-                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
-                    dsSchema.Write(s1)
-                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
-                    Do While schemas.MoveNext
-                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
-                        s2.SetLength(0)
-                        schema.Write(s2)
-                        If (s1.Length = s2.Length) Then
-                            s1.Position = 0
-                            s2.Position = 0
-                            
-                            Do While ((s1.Position <> s1.Length)  _
-                                        AndAlso (s1.ReadByte = s2.ReadByte))
-                                
-                                
-                            Loop
-                            If (s1.Position = s1.Length) Then
-                                Return type
-                            End If
-                        End If
-                        
-                    Loop
-                Finally
-                    If (Not (s1) Is Nothing) Then
-                        s1.Close
-                    End If
-                    If (Not (s2) Is Nothing) Then
-                        s2.Close
-                    End If
+                    Return CType(Me(Me.tablepaymentledger.ldgIDColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ldgID' in table 'paymentledger' is DBNull.", e)
                 End Try
-            End If
-            xs.Add(dsSchema)
-            Return type
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the strongly named DataTable class.
-    '''</summary>
-    <Global.System.Serializable(),  _
-     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class paymentledgerDataTable
-        Inherits Global.System.Data.TypedTableBase(Of paymentledgerRow)
-        
-        Private columnldgID As Global.System.Data.DataColumn
-        
-        Private columnProcessBy As Global.System.Data.DataColumn
-        
-        Private columnPaymode As Global.System.Data.DataColumn
-        
-        Private columnDepBank As Global.System.Data.DataColumn
-        
-        Private columnCHKNo As Global.System.Data.DataColumn
-        
-        Private columnCHKAmount As Global.System.Data.DataColumn
-        
-        Private columnRefund As Global.System.Data.DataColumn
-        
-        Private columnCustomerCode As Global.System.Data.DataColumn
-        
-        Private columnLGNo As Global.System.Data.DataColumn
-        
-        Private columnReceiptNo As Global.System.Data.DataColumn
-        
-        Private columnPayDate As Global.System.Data.DataColumn
-        
-        Private columnPrinAmount As Global.System.Data.DataColumn
-        
-        Private columnPrinPayment As Global.System.Data.DataColumn
-        
-        Private columnPrinBalance As Global.System.Data.DataColumn
-        
-        Private columnInterestAmount As Global.System.Data.DataColumn
-        
-        Private columnInterestPayment As Global.System.Data.DataColumn
-        
-        Private columnTotalPayable As Global.System.Data.DataColumn
-        
-        Private columnPenalty As Global.System.Data.DataColumn
-        
-        Private columnStatus As Global.System.Data.DataColumn
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.TableName = "paymentledger"
-            Me.BeginInit
-            Me.InitClass
-            Me.EndInit
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Friend Sub New(ByVal table As Global.System.Data.DataTable)
-            MyBase.New
-            Me.TableName = table.TableName
-            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
-                Me.CaseSensitive = table.CaseSensitive
-            End If
-            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
-                Me.Locale = table.Locale
-            End If
-            If (table.Namespace <> table.DataSet.Namespace) Then
-                Me.Namespace = table.Namespace
-            End If
-            Me.Prefix = table.Prefix
-            Me.MinimumCapacity = table.MinimumCapacity
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
-            MyBase.New(info, context)
-            Me.InitVars
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property ldgIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnldgID
             End Get
+            Set
+                Me(Me.tablepaymentledger.ldgIDColumn) = value
+            End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property ProcessByColumn() As Global.System.Data.DataColumn
+        Public Property ProcessBy() As String
             Get
-                Return Me.columnProcessBy
+                Return CType(Me(Me.tablepaymentledger.ProcessByColumn),String)
             End Get
+            Set
+                Me(Me.tablepaymentledger.ProcessByColumn) = value
+            End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property PaymodeColumn() As Global.System.Data.DataColumn
+        Public Property Paymode() As String
             Get
-                Return Me.columnPaymode
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property DepBankColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDepBank
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property CHKNoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCHKNo
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property CHKAmountColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCHKAmount
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property RefundColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnRefund
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property CustomerCodeColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCustomerCode
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property LGNoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLGNo
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property ReceiptNoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnReceiptNo
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property PayDateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPayDate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property PrinAmountColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPrinAmount
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property PrinPaymentColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPrinPayment
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property PrinBalanceColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPrinBalance
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property InterestAmountColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnInterestAmount
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property InterestPaymentColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnInterestPayment
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property TotalPayableColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnTotalPayable
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property PenaltyColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPenalty
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property StatusColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnStatus
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Browsable(false)>  _
-        Public ReadOnly Property Count() As Integer
-            Get
-                Return Me.Rows.Count
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As paymentledgerRow
-            Get
-                Return CType(Me.Rows(index),paymentledgerRow)
-            End Get
-        End Property
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event paymentledgerRowChanging As paymentledgerRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event paymentledgerRowChanged As paymentledgerRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event paymentledgerRowDeleting As paymentledgerRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event paymentledgerRowDeleted As paymentledgerRowChangeEventHandler
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Sub AddpaymentledgerRow(ByVal row As paymentledgerRow)
-            Me.Rows.Add(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function AddpaymentledgerRow( _
-                    ByVal ProcessBy As String,  _
-                    ByVal Paymode As String,  _
-                    ByVal DepBank As String,  _
-                    ByVal CHKNo As String,  _
-                    ByVal CHKAmount As Decimal,  _
-                    ByVal Refund As Decimal,  _
-                    ByVal CustomerCode As String,  _
-                    ByVal LGNo As String,  _
-                    ByVal ReceiptNo As String,  _
-                    ByVal PayDate As Date,  _
-                    ByVal PrinAmount As Decimal,  _
-                    ByVal PrinPayment As Decimal,  _
-                    ByVal PrinBalance As Decimal,  _
-                    ByVal InterestAmount As Decimal,  _
-                    ByVal InterestPayment As Decimal,  _
-                    ByVal TotalPayable As Decimal,  _
-                    ByVal Penalty As Decimal,  _
-                    ByVal Status As String) As paymentledgerRow
-            Dim rowpaymentledgerRow As paymentledgerRow = CType(Me.NewRow,paymentledgerRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, ProcessBy, Paymode, DepBank, CHKNo, CHKAmount, Refund, CustomerCode, LGNo, ReceiptNo, PayDate, PrinAmount, PrinPayment, PrinBalance, InterestAmount, InterestPayment, TotalPayable, Penalty, Status}
-            rowpaymentledgerRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowpaymentledgerRow)
-            Return rowpaymentledgerRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As paymentledgerDataTable = CType(MyBase.Clone,paymentledgerDataTable)
-            cln.InitVars
-            Return cln
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New paymentledgerDataTable()
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Friend Sub InitVars()
-            Me.columnldgID = MyBase.Columns("ldgID")
-            Me.columnProcessBy = MyBase.Columns("ProcessBy")
-            Me.columnPaymode = MyBase.Columns("Paymode")
-            Me.columnDepBank = MyBase.Columns("DepBank")
-            Me.columnCHKNo = MyBase.Columns("CHKNo")
-            Me.columnCHKAmount = MyBase.Columns("CHKAmount")
-            Me.columnRefund = MyBase.Columns("Refund")
-            Me.columnCustomerCode = MyBase.Columns("CustomerCode")
-            Me.columnLGNo = MyBase.Columns("LGNo")
-            Me.columnReceiptNo = MyBase.Columns("ReceiptNo")
-            Me.columnPayDate = MyBase.Columns("PayDate")
-            Me.columnPrinAmount = MyBase.Columns("PrinAmount")
-            Me.columnPrinPayment = MyBase.Columns("PrinPayment")
-            Me.columnPrinBalance = MyBase.Columns("PrinBalance")
-            Me.columnInterestAmount = MyBase.Columns("InterestAmount")
-            Me.columnInterestPayment = MyBase.Columns("InterestPayment")
-            Me.columnTotalPayable = MyBase.Columns("TotalPayable")
-            Me.columnPenalty = MyBase.Columns("Penalty")
-            Me.columnStatus = MyBase.Columns("Status")
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Private Sub InitClass()
-            Me.columnldgID = New Global.System.Data.DataColumn("ldgID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnldgID)
-            Me.columnProcessBy = New Global.System.Data.DataColumn("ProcessBy", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnProcessBy)
-            Me.columnPaymode = New Global.System.Data.DataColumn("Paymode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPaymode)
-            Me.columnDepBank = New Global.System.Data.DataColumn("DepBank", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDepBank)
-            Me.columnCHKNo = New Global.System.Data.DataColumn("CHKNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCHKNo)
-            Me.columnCHKAmount = New Global.System.Data.DataColumn("CHKAmount", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCHKAmount)
-            Me.columnRefund = New Global.System.Data.DataColumn("Refund", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnRefund)
-            Me.columnCustomerCode = New Global.System.Data.DataColumn("CustomerCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCustomerCode)
-            Me.columnLGNo = New Global.System.Data.DataColumn("LGNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLGNo)
-            Me.columnReceiptNo = New Global.System.Data.DataColumn("ReceiptNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnReceiptNo)
-            Me.columnPayDate = New Global.System.Data.DataColumn("PayDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPayDate)
-            Me.columnPrinAmount = New Global.System.Data.DataColumn("PrinAmount", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPrinAmount)
-            Me.columnPrinPayment = New Global.System.Data.DataColumn("PrinPayment", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPrinPayment)
-            Me.columnPrinBalance = New Global.System.Data.DataColumn("PrinBalance", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPrinBalance)
-            Me.columnInterestAmount = New Global.System.Data.DataColumn("InterestAmount", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnInterestAmount)
-            Me.columnInterestPayment = New Global.System.Data.DataColumn("InterestPayment", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnInterestPayment)
-            Me.columnTotalPayable = New Global.System.Data.DataColumn("TotalPayable", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnTotalPayable)
-            Me.columnPenalty = New Global.System.Data.DataColumn("Penalty", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPenalty)
-            Me.columnStatus = New Global.System.Data.DataColumn("Status", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnStatus)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnldgID}, false))
-            Me.columnldgID.AutoIncrement = true
-            Me.columnldgID.AutoIncrementSeed = -1
-            Me.columnldgID.AutoIncrementStep = -1
-            Me.columnldgID.Unique = true
-            Me.columnProcessBy.AllowDBNull = false
-            Me.columnProcessBy.MaxLength = 400
-            Me.columnPaymode.MaxLength = 400
-            Me.columnDepBank.MaxLength = 400
-            Me.columnCHKNo.MaxLength = 400
-            Me.columnCustomerCode.AllowDBNull = false
-            Me.columnCustomerCode.MaxLength = 400
-            Me.columnLGNo.AllowDBNull = false
-            Me.columnLGNo.MaxLength = 400
-            Me.columnReceiptNo.MaxLength = 200
-            Me.columnStatus.MaxLength = 400
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function NewpaymentledgerRow() As paymentledgerRow
-            Return CType(Me.NewRow,paymentledgerRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New paymentledgerRow(builder)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(paymentledgerRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanged(e)
-            If (Not (Me.paymentledgerRowChangedEvent) Is Nothing) Then
-                RaiseEvent paymentledgerRowChanged(Me, New paymentledgerRowChangeEvent(CType(e.Row,paymentledgerRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanging(e)
-            If (Not (Me.paymentledgerRowChangingEvent) Is Nothing) Then
-                RaiseEvent paymentledgerRowChanging(Me, New paymentledgerRowChangeEvent(CType(e.Row,paymentledgerRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleted(e)
-            If (Not (Me.paymentledgerRowDeletedEvent) Is Nothing) Then
-                RaiseEvent paymentledgerRowDeleted(Me, New paymentledgerRowChangeEvent(CType(e.Row,paymentledgerRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleting(e)
-            If (Not (Me.paymentledgerRowDeletingEvent) Is Nothing) Then
-                RaiseEvent paymentledgerRowDeleting(Me, New paymentledgerRowChangeEvent(CType(e.Row,paymentledgerRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub RemovepaymentledgerRow(ByVal row As paymentledgerRow)
-            Me.Rows.Remove(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
-            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As dtsCollection = New dtsCollection()
-            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
-            any1.MinOccurs = New Decimal(0)
-            any1.MaxOccurs = Decimal.MaxValue
-            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any1)
-            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
-            any2.MinOccurs = New Decimal(1)
-            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any2)
-            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute1.Name = "namespace"
-            attribute1.FixedValue = ds.Namespace
-            type.Attributes.Add(attribute1)
-            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "paymentledgerDataTable"
-            type.Attributes.Add(attribute2)
-            type.Particle = sequence
-            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
-            If xs.Contains(dsSchema.TargetNamespace) Then
-                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
                 Try 
-                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
-                    dsSchema.Write(s1)
-                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
-                    Do While schemas.MoveNext
-                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
-                        s2.SetLength(0)
-                        schema.Write(s2)
-                        If (s1.Length = s2.Length) Then
-                            s1.Position = 0
-                            s2.Position = 0
-                            
-                            Do While ((s1.Position <> s1.Length)  _
-                                        AndAlso (s1.ReadByte = s2.ReadByte))
-                                
-                                
-                            Loop
-                            If (s1.Position = s1.Length) Then
-                                Return type
-                            End If
-                        End If
-                        
-                    Loop
-                Finally
-                    If (Not (s1) Is Nothing) Then
-                        s1.Close
-                    End If
-                    If (Not (s2) Is Nothing) Then
-                        s2.Close
-                    End If
+                    Return CType(Me(Me.tablepaymentledger.PaymodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Paymode' in table 'paymentledger' is DBNull.", e)
                 End Try
-            End If
-            xs.Add(dsSchema)
-            Return type
+            End Get
+            Set
+                Me(Me.tablepaymentledger.PaymodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property DepBank() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablepaymentledger.DepBankColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DepBank' in table 'paymentledger' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepaymentledger.DepBankColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property CHKNo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablepaymentledger.CHKNoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'CHKNo' in table 'paymentledger' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepaymentledger.CHKNoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property CHKAmount() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablepaymentledger.CHKAmountColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'CHKAmount' in table 'paymentledger' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepaymentledger.CHKAmountColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Refund() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablepaymentledger.RefundColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Refund' in table 'paymentledger' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepaymentledger.RefundColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property CustomerCode() As String
+            Get
+                Return CType(Me(Me.tablepaymentledger.CustomerCodeColumn),String)
+            End Get
+            Set
+                Me(Me.tablepaymentledger.CustomerCodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property LGNo() As String
+            Get
+                Return CType(Me(Me.tablepaymentledger.LGNoColumn),String)
+            End Get
+            Set
+                Me(Me.tablepaymentledger.LGNoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property ReceiptNo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablepaymentledger.ReceiptNoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ReceiptNo' in table 'paymentledger' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepaymentledger.ReceiptNoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property PayDate() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablepaymentledger.PayDateColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PayDate' in table 'paymentledger' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepaymentledger.PayDateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property PrinAmount() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablepaymentledger.PrinAmountColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PrinAmount' in table 'paymentledger' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepaymentledger.PrinAmountColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property PrinPayment() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablepaymentledger.PrinPaymentColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PrinPayment' in table 'paymentledger' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepaymentledger.PrinPaymentColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property PrinBalance() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablepaymentledger.PrinBalanceColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PrinBalance' in table 'paymentledger' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepaymentledger.PrinBalanceColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property InterestAmount() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablepaymentledger.InterestAmountColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'InterestAmount' in table 'paymentledger' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepaymentledger.InterestAmountColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property InterestPayment() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablepaymentledger.InterestPaymentColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'InterestPayment' in table 'paymentledger' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepaymentledger.InterestPaymentColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property TotalPayable() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablepaymentledger.TotalPayableColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TotalPayable' in table 'paymentledger' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepaymentledger.TotalPayableColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Penalty() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablepaymentledger.PenaltyColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Penalty' in table 'paymentledger' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepaymentledger.PenaltyColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Status() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablepaymentledger.StatusColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Status' in table 'paymentledger' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepaymentledger.StatusColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsldgIDNull() As Boolean
+            Return Me.IsNull(Me.tablepaymentledger.ldgIDColumn)
         End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetldgIDNull()
+            Me(Me.tablepaymentledger.ldgIDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsPaymodeNull() As Boolean
+            Return Me.IsNull(Me.tablepaymentledger.PaymodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetPaymodeNull()
+            Me(Me.tablepaymentledger.PaymodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsDepBankNull() As Boolean
+            Return Me.IsNull(Me.tablepaymentledger.DepBankColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetDepBankNull()
+            Me(Me.tablepaymentledger.DepBankColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsCHKNoNull() As Boolean
+            Return Me.IsNull(Me.tablepaymentledger.CHKNoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetCHKNoNull()
+            Me(Me.tablepaymentledger.CHKNoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsCHKAmountNull() As Boolean
+            Return Me.IsNull(Me.tablepaymentledger.CHKAmountColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetCHKAmountNull()
+            Me(Me.tablepaymentledger.CHKAmountColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsRefundNull() As Boolean
+            Return Me.IsNull(Me.tablepaymentledger.RefundColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetRefundNull()
+            Me(Me.tablepaymentledger.RefundColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsReceiptNoNull() As Boolean
+            Return Me.IsNull(Me.tablepaymentledger.ReceiptNoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetReceiptNoNull()
+            Me(Me.tablepaymentledger.ReceiptNoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsPayDateNull() As Boolean
+            Return Me.IsNull(Me.tablepaymentledger.PayDateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetPayDateNull()
+            Me(Me.tablepaymentledger.PayDateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsPrinAmountNull() As Boolean
+            Return Me.IsNull(Me.tablepaymentledger.PrinAmountColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetPrinAmountNull()
+            Me(Me.tablepaymentledger.PrinAmountColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsPrinPaymentNull() As Boolean
+            Return Me.IsNull(Me.tablepaymentledger.PrinPaymentColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetPrinPaymentNull()
+            Me(Me.tablepaymentledger.PrinPaymentColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsPrinBalanceNull() As Boolean
+            Return Me.IsNull(Me.tablepaymentledger.PrinBalanceColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetPrinBalanceNull()
+            Me(Me.tablepaymentledger.PrinBalanceColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsInterestAmountNull() As Boolean
+            Return Me.IsNull(Me.tablepaymentledger.InterestAmountColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetInterestAmountNull()
+            Me(Me.tablepaymentledger.InterestAmountColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsInterestPaymentNull() As Boolean
+            Return Me.IsNull(Me.tablepaymentledger.InterestPaymentColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetInterestPaymentNull()
+            Me(Me.tablepaymentledger.InterestPaymentColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsTotalPayableNull() As Boolean
+            Return Me.IsNull(Me.tablepaymentledger.TotalPayableColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetTotalPayableNull()
+            Me(Me.tablepaymentledger.TotalPayableColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsPenaltyNull() As Boolean
+            Return Me.IsNull(Me.tablepaymentledger.PenaltyColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetPenaltyNull()
+            Me(Me.tablepaymentledger.PenaltyColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsStatusNull() As Boolean
+            Return Me.IsNull(Me.tablepaymentledger.StatusColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetStatusNull()
+            Me(Me.tablepaymentledger.StatusColumn) = Global.System.Convert.DBNull
+        End Sub
     End Class
     
     '''<summary>
@@ -3201,901 +2865,39 @@ Partial Public Class dtsCollection
     End Class
     
     '''<summary>
-    '''Represents strongly named DataRow class.
+    '''Row event argument class
     '''</summary>
-    Partial Public Class loanaccountRow
-        Inherits Global.System.Data.DataRow
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+    Public Class paymentledgerRowChangeEvent
+        Inherits Global.System.EventArgs
         
-        Private tableloanaccount As loanaccountDataTable
+        Private eventRow As paymentledgerRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
-            MyBase.New(rb)
-            Me.tableloanaccount = CType(Me.Table,loanaccountDataTable)
+        Public Sub New(ByVal row As paymentledgerRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property loanID() As Integer
+        Public ReadOnly Property Row() As paymentledgerRow
             Get
-                Try 
-                    Return CType(Me(Me.tableloanaccount.loanIDColumn),Integer)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'loanID' in table 'loanaccount' is DBNull.", e)
-                End Try
+                Return Me.eventRow
             End Get
-            Set
-                Me(Me.tableloanaccount.loanIDColumn) = value
-            End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property CreatedDate() As Date
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
             Get
-                Return CType(Me(Me.tableloanaccount.CreatedDateColumn),Date)
+                Return Me.eventAction
             End Get
-            Set
-                Me(Me.tableloanaccount.CreatedDateColumn) = value
-            End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property CreatedBy() As String
-            Get
-                Return CType(Me(Me.tableloanaccount.CreatedByColumn),String)
-            End Get
-            Set
-                Me(Me.tableloanaccount.CreatedByColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property CreatedRole() As String
-            Get
-                Return CType(Me(Me.tableloanaccount.CreatedRoleColumn),String)
-            End Get
-            Set
-                Me(Me.tableloanaccount.CreatedRoleColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property ClientCode() As String
-            Get
-                Return CType(Me(Me.tableloanaccount.ClientCodeColumn),String)
-            End Get
-            Set
-                Me(Me.tableloanaccount.ClientCodeColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property LedgerNo() As String
-            Get
-                Return CType(Me(Me.tableloanaccount.LedgerNoColumn),String)
-            End Get
-            Set
-                Me(Me.tableloanaccount.LedgerNoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property LDSNo() As String
-            Get
-                Return CType(Me(Me.tableloanaccount.LDSNoColumn),String)
-            End Get
-            Set
-                Me(Me.tableloanaccount.LDSNoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property PrevLDSNo() As String
-            Get
-                Return CType(Me(Me.tableloanaccount.PrevLDSNoColumn),String)
-            End Get
-            Set
-                Me(Me.tableloanaccount.PrevLDSNoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property ClientName() As String
-            Get
-                Return CType(Me(Me.tableloanaccount.ClientNameColumn),String)
-            End Get
-            Set
-                Me(Me.tableloanaccount.ClientNameColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property CoMaker() As String
-            Get
-                Return CType(Me(Me.tableloanaccount.CoMakerColumn),String)
-            End Get
-            Set
-                Me(Me.tableloanaccount.CoMakerColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property Area() As String
-            Get
-                Return CType(Me(Me.tableloanaccount.AreaColumn),String)
-            End Get
-            Set
-                Me(Me.tableloanaccount.AreaColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property LoanType() As String
-            Get
-                Return CType(Me(Me.tableloanaccount.LoanTypeColumn),String)
-            End Get
-            Set
-                Me(Me.tableloanaccount.LoanTypeColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property Checks() As String
-            Get
-                Return CType(Me(Me.tableloanaccount.ChecksColumn),String)
-            End Get
-            Set
-                Me(Me.tableloanaccount.ChecksColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property ChecksNo() As String
-            Get
-                Return CType(Me(Me.tableloanaccount.ChecksNoColumn),String)
-            End Get
-            Set
-                Me(Me.tableloanaccount.ChecksNoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property AcctNo() As String
-            Get
-                Return CType(Me(Me.tableloanaccount.AcctNoColumn),String)
-            End Get
-            Set
-                Me(Me.tableloanaccount.AcctNoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property Cash() As Decimal
-            Get
-                Return CType(Me(Me.tableloanaccount.CashColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tableloanaccount.CashColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property LoanDate() As Date
-            Get
-                Return CType(Me(Me.tableloanaccount.LoanDateColumn),Date)
-            End Get
-            Set
-                Me(Me.tableloanaccount.LoanDateColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property FirstDueDate() As Date
-            Get
-                Return CType(Me(Me.tableloanaccount.FirstDueDateColumn),Date)
-            End Get
-            Set
-                Me(Me.tableloanaccount.FirstDueDateColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property MaturityDate() As Date
-            Get
-                Return CType(Me(Me.tableloanaccount.MaturityDateColumn),Date)
-            End Get
-            Set
-                Me(Me.tableloanaccount.MaturityDateColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property OldBalanceAmount() As Decimal
-            Get
-                Return CType(Me(Me.tableloanaccount.OldBalanceAmountColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tableloanaccount.OldBalanceAmountColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property OldInterestAmount() As Decimal
-            Get
-                Return CType(Me(Me.tableloanaccount.OldInterestAmountColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tableloanaccount.OldInterestAmountColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property LoanTrans() As String
-            Get
-                Return CType(Me(Me.tableloanaccount.LoanTransColumn),String)
-            End Get
-            Set
-                Me(Me.tableloanaccount.LoanTransColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property TermOfLoan() As String
-            Get
-                Return CType(Me(Me.tableloanaccount.TermOfLoanColumn),String)
-            End Get
-            Set
-                Me(Me.tableloanaccount.TermOfLoanColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property LoanAmount() As Decimal
-            Get
-                Return CType(Me(Me.tableloanaccount.LoanAmountColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tableloanaccount.LoanAmountColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property InterestRate() As Decimal
-            Get
-                Return CType(Me(Me.tableloanaccount.InterestRateColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tableloanaccount.InterestRateColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property Principal() As Decimal
-            Get
-                Return CType(Me(Me.tableloanaccount.PrincipalColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tableloanaccount.PrincipalColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property Interest() As Decimal
-            Get
-                Return CType(Me(Me.tableloanaccount.InterestColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tableloanaccount.InterestColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property MonthlyAmort() As Decimal
-            Get
-                Return CType(Me(Me.tableloanaccount.MonthlyAmortColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tableloanaccount.MonthlyAmortColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property NotarialFee() As Decimal
-            Get
-                Return CType(Me(Me.tableloanaccount.NotarialFeeColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tableloanaccount.NotarialFeeColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property FinCharge() As Decimal
-            Get
-                Return CType(Me(Me.tableloanaccount.FinChargeColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tableloanaccount.FinChargeColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property Accomodation() As Decimal
-            Get
-                Return CType(Me(Me.tableloanaccount.AccomodationColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tableloanaccount.AccomodationColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property Inspection() As Decimal
-            Get
-                Return CType(Me(Me.tableloanaccount.InspectionColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tableloanaccount.InspectionColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property LPPP() As Decimal
-            Get
-                Return CType(Me(Me.tableloanaccount.LPPPColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tableloanaccount.LPPPColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property NewBalance() As Decimal
-            Get
-                Return CType(Me(Me.tableloanaccount.NewBalanceColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tableloanaccount.NewBalanceColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property NetProceeds() As Decimal
-            Get
-                Return CType(Me(Me.tableloanaccount.NetProceedsColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tableloanaccount.NetProceedsColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsloanIDNull() As Boolean
-            Return Me.IsNull(Me.tableloanaccount.loanIDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetloanIDNull()
-            Me(Me.tableloanaccount.loanIDColumn) = Global.System.Convert.DBNull
-        End Sub
-    End Class
-    
-    '''<summary>
-    '''Represents strongly named DataRow class.
-    '''</summary>
-    Partial Public Class paymentledgerRow
-        Inherits Global.System.Data.DataRow
-        
-        Private tablepaymentledger As paymentledgerDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
-            MyBase.New(rb)
-            Me.tablepaymentledger = CType(Me.Table,paymentledgerDataTable)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property ldgID() As Integer
-            Get
-                Try 
-                    Return CType(Me(Me.tablepaymentledger.ldgIDColumn),Integer)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'ldgID' in table 'paymentledger' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablepaymentledger.ldgIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property ProcessBy() As String
-            Get
-                Return CType(Me(Me.tablepaymentledger.ProcessByColumn),String)
-            End Get
-            Set
-                Me(Me.tablepaymentledger.ProcessByColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property Paymode() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablepaymentledger.PaymodeColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Paymode' in table 'paymentledger' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablepaymentledger.PaymodeColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property DepBank() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablepaymentledger.DepBankColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DepBank' in table 'paymentledger' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablepaymentledger.DepBankColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property CHKNo() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablepaymentledger.CHKNoColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'CHKNo' in table 'paymentledger' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablepaymentledger.CHKNoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property CHKAmount() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tablepaymentledger.CHKAmountColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'CHKAmount' in table 'paymentledger' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablepaymentledger.CHKAmountColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property Refund() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tablepaymentledger.RefundColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Refund' in table 'paymentledger' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablepaymentledger.RefundColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property CustomerCode() As String
-            Get
-                Return CType(Me(Me.tablepaymentledger.CustomerCodeColumn),String)
-            End Get
-            Set
-                Me(Me.tablepaymentledger.CustomerCodeColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property LGNo() As String
-            Get
-                Return CType(Me(Me.tablepaymentledger.LGNoColumn),String)
-            End Get
-            Set
-                Me(Me.tablepaymentledger.LGNoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property ReceiptNo() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablepaymentledger.ReceiptNoColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'ReceiptNo' in table 'paymentledger' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablepaymentledger.ReceiptNoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property PayDate() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tablepaymentledger.PayDateColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'PayDate' in table 'paymentledger' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablepaymentledger.PayDateColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property PrinAmount() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tablepaymentledger.PrinAmountColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'PrinAmount' in table 'paymentledger' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablepaymentledger.PrinAmountColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property PrinPayment() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tablepaymentledger.PrinPaymentColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'PrinPayment' in table 'paymentledger' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablepaymentledger.PrinPaymentColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property PrinBalance() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tablepaymentledger.PrinBalanceColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'PrinBalance' in table 'paymentledger' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablepaymentledger.PrinBalanceColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property InterestAmount() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tablepaymentledger.InterestAmountColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'InterestAmount' in table 'paymentledger' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablepaymentledger.InterestAmountColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property InterestPayment() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tablepaymentledger.InterestPaymentColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'InterestPayment' in table 'paymentledger' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablepaymentledger.InterestPaymentColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property TotalPayable() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tablepaymentledger.TotalPayableColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'TotalPayable' in table 'paymentledger' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablepaymentledger.TotalPayableColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property Penalty() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tablepaymentledger.PenaltyColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Penalty' in table 'paymentledger' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablepaymentledger.PenaltyColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property Status() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tablepaymentledger.StatusColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Status' in table 'paymentledger' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablepaymentledger.StatusColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsldgIDNull() As Boolean
-            Return Me.IsNull(Me.tablepaymentledger.ldgIDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetldgIDNull()
-            Me(Me.tablepaymentledger.ldgIDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsPaymodeNull() As Boolean
-            Return Me.IsNull(Me.tablepaymentledger.PaymodeColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetPaymodeNull()
-            Me(Me.tablepaymentledger.PaymodeColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsDepBankNull() As Boolean
-            Return Me.IsNull(Me.tablepaymentledger.DepBankColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetDepBankNull()
-            Me(Me.tablepaymentledger.DepBankColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsCHKNoNull() As Boolean
-            Return Me.IsNull(Me.tablepaymentledger.CHKNoColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetCHKNoNull()
-            Me(Me.tablepaymentledger.CHKNoColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsCHKAmountNull() As Boolean
-            Return Me.IsNull(Me.tablepaymentledger.CHKAmountColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetCHKAmountNull()
-            Me(Me.tablepaymentledger.CHKAmountColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsRefundNull() As Boolean
-            Return Me.IsNull(Me.tablepaymentledger.RefundColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetRefundNull()
-            Me(Me.tablepaymentledger.RefundColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsReceiptNoNull() As Boolean
-            Return Me.IsNull(Me.tablepaymentledger.ReceiptNoColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetReceiptNoNull()
-            Me(Me.tablepaymentledger.ReceiptNoColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsPayDateNull() As Boolean
-            Return Me.IsNull(Me.tablepaymentledger.PayDateColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetPayDateNull()
-            Me(Me.tablepaymentledger.PayDateColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsPrinAmountNull() As Boolean
-            Return Me.IsNull(Me.tablepaymentledger.PrinAmountColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetPrinAmountNull()
-            Me(Me.tablepaymentledger.PrinAmountColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsPrinPaymentNull() As Boolean
-            Return Me.IsNull(Me.tablepaymentledger.PrinPaymentColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetPrinPaymentNull()
-            Me(Me.tablepaymentledger.PrinPaymentColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsPrinBalanceNull() As Boolean
-            Return Me.IsNull(Me.tablepaymentledger.PrinBalanceColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetPrinBalanceNull()
-            Me(Me.tablepaymentledger.PrinBalanceColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsInterestAmountNull() As Boolean
-            Return Me.IsNull(Me.tablepaymentledger.InterestAmountColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetInterestAmountNull()
-            Me(Me.tablepaymentledger.InterestAmountColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsInterestPaymentNull() As Boolean
-            Return Me.IsNull(Me.tablepaymentledger.InterestPaymentColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetInterestPaymentNull()
-            Me(Me.tablepaymentledger.InterestPaymentColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsTotalPayableNull() As Boolean
-            Return Me.IsNull(Me.tablepaymentledger.TotalPayableColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetTotalPayableNull()
-            Me(Me.tablepaymentledger.TotalPayableColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsPenaltyNull() As Boolean
-            Return Me.IsNull(Me.tablepaymentledger.PenaltyColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetPenaltyNull()
-            Me(Me.tablepaymentledger.PenaltyColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsStatusNull() As Boolean
-            Return Me.IsNull(Me.tablepaymentledger.StatusColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetStatusNull()
-            Me(Me.tablepaymentledger.StatusColumn) = Global.System.Convert.DBNull
-        End Sub
     End Class
     
     '''<summary>
@@ -4133,81 +2935,749 @@ Partial Public Class dtsCollection
             End Get
         End Property
     End Class
-    
-    '''<summary>
-    '''Row event argument class
-    '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-    Public Class loanaccountRowChangeEvent
-        Inherits Global.System.EventArgs
-        
-        Private eventRow As loanaccountRow
-        
-        Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub New(ByVal row As loanaccountRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
-            Me.eventRow = row
-            Me.eventAction = action
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property Row() As loanaccountRow
-            Get
-                Return Me.eventRow
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
-            Get
-                Return Me.eventAction
-            End Get
-        End Property
-    End Class
-    
-    '''<summary>
-    '''Row event argument class
-    '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-    Public Class paymentledgerRowChangeEvent
-        Inherits Global.System.EventArgs
-        
-        Private eventRow As paymentledgerRow
-        
-        Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub New(ByVal row As paymentledgerRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
-            Me.eventRow = row
-            Me.eventAction = action
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property Row() As paymentledgerRow
-            Get
-                Return Me.eventRow
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
-            Get
-                Return Me.eventAction
-            End Get
-        End Property
-    End Class
 End Class
 
 Namespace dtsCollectionTableAdapters
+    
+    '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class paymentledgerTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.System.Data.Odbc.OdbcDataAdapter
+        
+        Private _connection As Global.System.Data.Odbc.OdbcConnection
+        
+        Private _transaction As Global.System.Data.Odbc.OdbcTransaction
+        
+        Private _commandCollection() As Global.System.Data.Odbc.OdbcCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.Odbc.OdbcDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Friend Property Connection() As Global.System.Data.Odbc.OdbcConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.System.Data.Odbc.OdbcCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Friend Property Transaction() As Global.System.Data.Odbc.OdbcTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.Odbc.OdbcCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.System.Data.Odbc.OdbcDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "paymentledger"
+            tableMapping.ColumnMappings.Add("ldgID", "ldgID")
+            tableMapping.ColumnMappings.Add("ProcessBy", "ProcessBy")
+            tableMapping.ColumnMappings.Add("Paymode", "Paymode")
+            tableMapping.ColumnMappings.Add("DepBank", "DepBank")
+            tableMapping.ColumnMappings.Add("CHKNo", "CHKNo")
+            tableMapping.ColumnMappings.Add("CHKAmount", "CHKAmount")
+            tableMapping.ColumnMappings.Add("Refund", "Refund")
+            tableMapping.ColumnMappings.Add("CustomerCode", "CustomerCode")
+            tableMapping.ColumnMappings.Add("LGNo", "LGNo")
+            tableMapping.ColumnMappings.Add("ReceiptNo", "ReceiptNo")
+            tableMapping.ColumnMappings.Add("PayDate", "PayDate")
+            tableMapping.ColumnMappings.Add("PrinAmount", "PrinAmount")
+            tableMapping.ColumnMappings.Add("PrinPayment", "PrinPayment")
+            tableMapping.ColumnMappings.Add("PrinBalance", "PrinBalance")
+            tableMapping.ColumnMappings.Add("InterestAmount", "InterestAmount")
+            tableMapping.ColumnMappings.Add("InterestPayment", "InterestPayment")
+            tableMapping.ColumnMappings.Add("TotalPayable", "TotalPayable")
+            tableMapping.ColumnMappings.Add("Penalty", "Penalty")
+            tableMapping.ColumnMappings.Add("Status", "Status")
+            Me._adapter.TableMappings.Add(tableMapping)
+            Me._adapter.DeleteCommand = New Global.System.Data.Odbc.OdbcCommand()
+            Me._adapter.DeleteCommand.Connection = Me.Connection
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `paymentledger` WHERE (((? = 1 AND `ldgID` IS NULL) OR (`ldgID` = ?))"& _ 
+                " AND (`ProcessBy` = ?) AND ((? = 1 AND `Paymode` IS NULL) OR (`Paymode` = ?)) AN"& _ 
+                "D ((? = 1 AND `DepBank` IS NULL) OR (`DepBank` = ?)) AND ((? = 1 AND `CHKNo` IS "& _ 
+                "NULL) OR (`CHKNo` = ?)) AND ((? = 1 AND `CHKAmount` IS NULL) OR (`CHKAmount` = ?"& _ 
+                ")) AND ((? = 1 AND `Refund` IS NULL) OR (`Refund` = ?)) AND (`CustomerCode` = ?)"& _ 
+                " AND (`LGNo` = ?) AND ((? = 1 AND `ReceiptNo` IS NULL) OR (`ReceiptNo` = ?)) AND"& _ 
+                " ((? = 1 AND `PayDate` IS NULL) OR (`PayDate` = ?)) AND ((? = 1 AND `PrinAmount`"& _ 
+                " IS NULL) OR (`PrinAmount` = ?)) AND ((? = 1 AND `PrinPayment` IS NULL) OR (`Pri"& _ 
+                "nPayment` = ?)) AND ((? = 1 AND `PrinBalance` IS NULL) OR (`PrinBalance` = ?)) A"& _ 
+                "ND ((? = 1 AND `InterestAmount` IS NULL) OR (`InterestAmount` = ?)) AND ((? = 1 "& _ 
+                "AND `InterestPayment` IS NULL) OR (`InterestPayment` = ?)) AND ((? = 1 AND `Tota"& _ 
+                "lPayable` IS NULL) OR (`TotalPayable` = ?)) AND ((? = 1 AND `Penalty` IS NULL) O"& _ 
+                "R (`Penalty` = ?)) AND ((? = 1 AND `Status` IS NULL) OR (`Status` = ?)))"
+            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_ldgID", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ldgID", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_ldgID", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ldgID", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_ProcessBy", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ProcessBy", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_Paymode", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Paymode", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Paymode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Paymode", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_DepBank", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "DepBank", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_DepBank", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "DepBank", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_CHKNo", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CHKNo", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CHKNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CHKNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_CHKAmount", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CHKAmount", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CHKAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "CHKAmount", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_Refund", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Refund", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Refund", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Refund", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CustomerCode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CustomerCode", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_LGNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LGNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_ReceiptNo", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ReceiptNo", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_ReceiptNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ReceiptNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_PayDate", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PayDate", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_PayDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PayDate", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_PrinAmount", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PrinAmount", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_PrinAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinAmount", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_PrinPayment", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PrinPayment", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_PrinPayment", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinPayment", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_PrinBalance", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PrinBalance", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_PrinBalance", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinBalance", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_InterestAmount", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "InterestAmount", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_InterestAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestAmount", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_InterestPayment", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "InterestPayment", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_InterestPayment", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestPayment", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_TotalPayable", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "TotalPayable", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_TotalPayable", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "TotalPayable", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_Penalty", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Penalty", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Penalty", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Penalty", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_Status", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Status", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Status", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Status", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.InsertCommand = New Global.System.Data.Odbc.OdbcCommand()
+            Me._adapter.InsertCommand.Connection = Me.Connection
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO `paymentledger` (`ProcessBy`, `Paymode`, `DepBank`, `CHKNo`, `CHKAmou"& _ 
+                "nt`, `Refund`, `CustomerCode`, `LGNo`, `ReceiptNo`, `PayDate`, `PrinAmount`, `Pr"& _ 
+                "inPayment`, `PrinBalance`, `InterestAmount`, `InterestPayment`, `TotalPayable`, "& _ 
+                "`Penalty`, `Status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "& _ 
+                "?)"
+            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("ProcessBy", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ProcessBy", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Paymode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Paymode", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("DepBank", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "DepBank", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CHKNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CHKNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CHKAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "CHKAmount", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Refund", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Refund", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CustomerCode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CustomerCode", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("LGNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LGNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("ReceiptNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ReceiptNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("PayDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PayDate", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("PrinAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinAmount", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("PrinPayment", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinPayment", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("PrinBalance", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinBalance", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("InterestAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestAmount", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("InterestPayment", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestPayment", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("TotalPayable", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "TotalPayable", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Penalty", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Penalty", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Status", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Status", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand = New Global.System.Data.Odbc.OdbcCommand()
+            Me._adapter.UpdateCommand.Connection = Me.Connection
+            Me._adapter.UpdateCommand.CommandText = "UPDATE `paymentledger` SET `ProcessBy` = ?, `Paymode` = ?, `DepBank` = ?, `CHKNo`"& _ 
+                " = ?, `CHKAmount` = ?, `Refund` = ?, `CustomerCode` = ?, `LGNo` = ?, `ReceiptNo`"& _ 
+                " = ?, `PayDate` = ?, `PrinAmount` = ?, `PrinPayment` = ?, `PrinBalance` = ?, `In"& _ 
+                "terestAmount` = ?, `InterestPayment` = ?, `TotalPayable` = ?, `Penalty` = ?, `St"& _ 
+                "atus` = ? WHERE (((? = 1 AND `ldgID` IS NULL) OR (`ldgID` = ?)) AND (`ProcessBy`"& _ 
+                " = ?) AND ((? = 1 AND `Paymode` IS NULL) OR (`Paymode` = ?)) AND ((? = 1 AND `De"& _ 
+                "pBank` IS NULL) OR (`DepBank` = ?)) AND ((? = 1 AND `CHKNo` IS NULL) OR (`CHKNo`"& _ 
+                " = ?)) AND ((? = 1 AND `CHKAmount` IS NULL) OR (`CHKAmount` = ?)) AND ((? = 1 AN"& _ 
+                "D `Refund` IS NULL) OR (`Refund` = ?)) AND (`CustomerCode` = ?) AND (`LGNo` = ?)"& _ 
+                " AND ((? = 1 AND `ReceiptNo` IS NULL) OR (`ReceiptNo` = ?)) AND ((? = 1 AND `Pay"& _ 
+                "Date` IS NULL) OR (`PayDate` = ?)) AND ((? = 1 AND `PrinAmount` IS NULL) OR (`Pr"& _ 
+                "inAmount` = ?)) AND ((? = 1 AND `PrinPayment` IS NULL) OR (`PrinPayment` = ?)) A"& _ 
+                "ND ((? = 1 AND `PrinBalance` IS NULL) OR (`PrinBalance` = ?)) AND ((? = 1 AND `I"& _ 
+                "nterestAmount` IS NULL) OR (`InterestAmount` = ?)) AND ((? = 1 AND `InterestPaym"& _ 
+                "ent` IS NULL) OR (`InterestPayment` = ?)) AND ((? = 1 AND `TotalPayable` IS NULL"& _ 
+                ") OR (`TotalPayable` = ?)) AND ((? = 1 AND `Penalty` IS NULL) OR (`Penalty` = ?)"& _ 
+                ") AND ((? = 1 AND `Status` IS NULL) OR (`Status` = ?)))"
+            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("ProcessBy", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ProcessBy", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Paymode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Paymode", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("DepBank", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "DepBank", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CHKNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CHKNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CHKAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "CHKAmount", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Refund", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Refund", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CustomerCode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CustomerCode", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("LGNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LGNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("ReceiptNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ReceiptNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("PayDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PayDate", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("PrinAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinAmount", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("PrinPayment", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinPayment", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("PrinBalance", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinBalance", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("InterestAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestAmount", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("InterestPayment", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestPayment", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("TotalPayable", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "TotalPayable", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Penalty", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Penalty", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Status", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Status", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_ldgID", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ldgID", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_ldgID", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ldgID", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_ProcessBy", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ProcessBy", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_Paymode", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Paymode", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Paymode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Paymode", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_DepBank", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "DepBank", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_DepBank", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "DepBank", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_CHKNo", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CHKNo", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CHKNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CHKNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_CHKAmount", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CHKAmount", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CHKAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "CHKAmount", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_Refund", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Refund", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Refund", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Refund", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CustomerCode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CustomerCode", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_LGNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LGNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_ReceiptNo", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ReceiptNo", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_ReceiptNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ReceiptNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_PayDate", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PayDate", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_PayDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PayDate", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_PrinAmount", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PrinAmount", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_PrinAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinAmount", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_PrinPayment", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PrinPayment", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_PrinPayment", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinPayment", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_PrinBalance", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PrinBalance", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_PrinBalance", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinBalance", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_InterestAmount", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "InterestAmount", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_InterestAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestAmount", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_InterestPayment", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "InterestPayment", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_InterestPayment", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestPayment", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_TotalPayable", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "TotalPayable", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_TotalPayable", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "TotalPayable", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_Penalty", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Penalty", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Penalty", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Penalty", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_Status", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Status", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Status", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Status", Global.System.Data.DataRowVersion.Original, false, Nothing))
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.System.Data.Odbc.OdbcConnection()
+            Me._connection.ConnectionString = Global.LoanManagementSystem.My.MySettings.Default.ConnectionString
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.Odbc.OdbcCommand(0) {}
+            Me._commandCollection(0) = New Global.System.Data.Odbc.OdbcCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT `ldgID`, `ProcessBy`, `Paymode`, `DepBank`, `CHKNo`, `CHKAmount`, `Refund`"& _ 
+                ", `CustomerCode`, `LGNo`, `ReceiptNo`, `PayDate`, `PrinAmount`, `PrinPayment`, `"& _ 
+                "PrinBalance`, `InterestAmount`, `InterestPayment`, `TotalPayable`, `Penalty`, `S"& _ 
+                "tatus` FROM `paymentledger`"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As dtsCollection.paymentledgerDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData() As dtsCollection.paymentledgerDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As dtsCollection.paymentledgerDataTable = New dtsCollection.paymentledgerDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataTable As dtsCollection.paymentledgerDataTable) As Integer
+            Return Me.Adapter.Update(dataTable)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataSet As dtsCollection) As Integer
+            Return Me.Adapter.Update(dataSet, "paymentledger")
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(dataRows)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
+        Public Overloads Overridable Function Delete( _
+                    ByVal Original_ldgID As Integer,  _
+                    ByVal Original_ProcessBy As String,  _
+                    ByVal Original_Paymode As String,  _
+                    ByVal Original_DepBank As String,  _
+                    ByVal Original_CHKNo As String,  _
+                    ByVal Original_CHKAmount As Decimal,  _
+                    ByVal Original_Refund As Decimal,  _
+                    ByVal Original_CustomerCode As String,  _
+                    ByVal Original_LGNo As String,  _
+                    ByVal Original_ReceiptNo As String,  _
+                    ByVal Original_PayDate As Date,  _
+                    ByVal Original_PrinAmount As Decimal,  _
+                    ByVal Original_PrinPayment As Decimal,  _
+                    ByVal Original_PrinBalance As Decimal,  _
+                    ByVal Original_InterestAmount As Decimal,  _
+                    ByVal Original_InterestPayment As Decimal,  _
+                    ByVal Original_TotalPayable As Decimal,  _
+                    ByVal Original_Penalty As Decimal,  _
+                    ByVal Original_Status As String) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(0,Object)
+            Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_ldgID,Integer)
+            If (Original_ProcessBy Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_ProcessBy")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_ProcessBy,String)
+            End If
+            If (Original_Paymode Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_Paymode")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_Paymode,String)
+            End If
+            If (Original_DepBank Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_DepBank")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_DepBank,String)
+            End If
+            If (Original_CHKNo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_CHKNo")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_CHKNo,String)
+            End If
+            Me.Adapter.DeleteCommand.Parameters(9).Value = CType(0,Object)
+            Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_CHKAmount,Decimal)
+            Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0,Object)
+            Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_Refund,Decimal)
+            If (Original_CustomerCode Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_CustomerCode")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(Original_CustomerCode,String)
+            End If
+            If (Original_LGNo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_LGNo")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_LGNo,String)
+            End If
+            If (Original_ReceiptNo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_ReceiptNo")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_ReceiptNo,String)
+            End If
+            Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0,Object)
+            Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_PayDate,Date)
+            Me.Adapter.DeleteCommand.Parameters(19).Value = CType(0,Object)
+            Me.Adapter.DeleteCommand.Parameters(20).Value = CType(Original_PrinAmount,Decimal)
+            Me.Adapter.DeleteCommand.Parameters(21).Value = CType(0,Object)
+            Me.Adapter.DeleteCommand.Parameters(22).Value = CType(Original_PrinPayment,Decimal)
+            Me.Adapter.DeleteCommand.Parameters(23).Value = CType(0,Object)
+            Me.Adapter.DeleteCommand.Parameters(24).Value = CType(Original_PrinBalance,Decimal)
+            Me.Adapter.DeleteCommand.Parameters(25).Value = CType(0,Object)
+            Me.Adapter.DeleteCommand.Parameters(26).Value = CType(Original_InterestAmount,Decimal)
+            Me.Adapter.DeleteCommand.Parameters(27).Value = CType(0,Object)
+            Me.Adapter.DeleteCommand.Parameters(28).Value = CType(Original_InterestPayment,Decimal)
+            Me.Adapter.DeleteCommand.Parameters(29).Value = CType(0,Object)
+            Me.Adapter.DeleteCommand.Parameters(30).Value = CType(Original_TotalPayable,Decimal)
+            Me.Adapter.DeleteCommand.Parameters(31).Value = CType(0,Object)
+            Me.Adapter.DeleteCommand.Parameters(32).Value = CType(Original_Penalty,Decimal)
+            If (Original_Status Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_Status")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(33).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(34).Value = CType(Original_Status,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.DeleteCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.DeleteCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
+        Public Overloads Overridable Function Insert( _
+                    ByVal ProcessBy As String,  _
+                    ByVal Paymode As String,  _
+                    ByVal DepBank As String,  _
+                    ByVal CHKNo As String,  _
+                    ByVal CHKAmount As Decimal,  _
+                    ByVal Refund As Decimal,  _
+                    ByVal CustomerCode As String,  _
+                    ByVal LGNo As String,  _
+                    ByVal ReceiptNo As String,  _
+                    ByVal PayDate As Date,  _
+                    ByVal PrinAmount As Decimal,  _
+                    ByVal PrinPayment As Decimal,  _
+                    ByVal PrinBalance As Decimal,  _
+                    ByVal InterestAmount As Decimal,  _
+                    ByVal InterestPayment As Decimal,  _
+                    ByVal TotalPayable As Decimal,  _
+                    ByVal Penalty As Decimal,  _
+                    ByVal Status As String) As Integer
+            If (ProcessBy Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("ProcessBy")
+            Else
+                Me.Adapter.InsertCommand.Parameters(0).Value = CType(ProcessBy,String)
+            End If
+            If (Paymode Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Paymode")
+            Else
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(Paymode,String)
+            End If
+            If (DepBank Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("DepBank")
+            Else
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(DepBank,String)
+            End If
+            If (CHKNo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("CHKNo")
+            Else
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(CHKNo,String)
+            End If
+            Me.Adapter.InsertCommand.Parameters(4).Value = CType(CHKAmount,Decimal)
+            Me.Adapter.InsertCommand.Parameters(5).Value = CType(Refund,Decimal)
+            If (CustomerCode Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("CustomerCode")
+            Else
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(CustomerCode,String)
+            End If
+            If (LGNo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("LGNo")
+            Else
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(LGNo,String)
+            End If
+            If (ReceiptNo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("ReceiptNo")
+            Else
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(ReceiptNo,String)
+            End If
+            Me.Adapter.InsertCommand.Parameters(9).Value = CType(PayDate,Date)
+            Me.Adapter.InsertCommand.Parameters(10).Value = CType(PrinAmount,Decimal)
+            Me.Adapter.InsertCommand.Parameters(11).Value = CType(PrinPayment,Decimal)
+            Me.Adapter.InsertCommand.Parameters(12).Value = CType(PrinBalance,Decimal)
+            Me.Adapter.InsertCommand.Parameters(13).Value = CType(InterestAmount,Decimal)
+            Me.Adapter.InsertCommand.Parameters(14).Value = CType(InterestPayment,Decimal)
+            Me.Adapter.InsertCommand.Parameters(15).Value = CType(TotalPayable,Decimal)
+            Me.Adapter.InsertCommand.Parameters(16).Value = CType(Penalty,Decimal)
+            If (Status Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Status")
+            Else
+                Me.Adapter.InsertCommand.Parameters(17).Value = CType(Status,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
+            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.InsertCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.InsertCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update( _
+                    ByVal ProcessBy As String,  _
+                    ByVal Paymode As String,  _
+                    ByVal DepBank As String,  _
+                    ByVal CHKNo As String,  _
+                    ByVal CHKAmount As Decimal,  _
+                    ByVal Refund As Decimal,  _
+                    ByVal CustomerCode As String,  _
+                    ByVal LGNo As String,  _
+                    ByVal ReceiptNo As String,  _
+                    ByVal PayDate As Date,  _
+                    ByVal PrinAmount As Decimal,  _
+                    ByVal PrinPayment As Decimal,  _
+                    ByVal PrinBalance As Decimal,  _
+                    ByVal InterestAmount As Decimal,  _
+                    ByVal InterestPayment As Decimal,  _
+                    ByVal TotalPayable As Decimal,  _
+                    ByVal Penalty As Decimal,  _
+                    ByVal Status As String,  _
+                    ByVal Original_ldgID As Integer,  _
+                    ByVal Original_ProcessBy As String,  _
+                    ByVal Original_Paymode As String,  _
+                    ByVal Original_DepBank As String,  _
+                    ByVal Original_CHKNo As String,  _
+                    ByVal Original_CHKAmount As Decimal,  _
+                    ByVal Original_Refund As Decimal,  _
+                    ByVal Original_CustomerCode As String,  _
+                    ByVal Original_LGNo As String,  _
+                    ByVal Original_ReceiptNo As String,  _
+                    ByVal Original_PayDate As Date,  _
+                    ByVal Original_PrinAmount As Decimal,  _
+                    ByVal Original_PrinPayment As Decimal,  _
+                    ByVal Original_PrinBalance As Decimal,  _
+                    ByVal Original_InterestAmount As Decimal,  _
+                    ByVal Original_InterestPayment As Decimal,  _
+                    ByVal Original_TotalPayable As Decimal,  _
+                    ByVal Original_Penalty As Decimal,  _
+                    ByVal Original_Status As String) As Integer
+            If (ProcessBy Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("ProcessBy")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(ProcessBy,String)
+            End If
+            If (Paymode Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Paymode")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Paymode,String)
+            End If
+            If (DepBank Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("DepBank")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(DepBank,String)
+            End If
+            If (CHKNo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("CHKNo")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(CHKNo,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(4).Value = CType(CHKAmount,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Refund,Decimal)
+            If (CustomerCode Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("CustomerCode")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(CustomerCode,String)
+            End If
+            If (LGNo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("LGNo")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(LGNo,String)
+            End If
+            If (ReceiptNo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("ReceiptNo")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(ReceiptNo,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(PayDate,Date)
+            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(PrinAmount,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(PrinPayment,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(12).Value = CType(PrinBalance,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(InterestAmount,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(14).Value = CType(InterestPayment,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(15).Value = CType(TotalPayable,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Penalty,Decimal)
+            If (Status Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Status")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Status,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
+            Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_ldgID,Integer)
+            If (Original_ProcessBy Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_ProcessBy")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_ProcessBy,String)
+            End If
+            If (Original_Paymode Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_Paymode")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_Paymode,String)
+            End If
+            If (Original_DepBank Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_DepBank")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_DepBank,String)
+            End If
+            If (Original_CHKNo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_CHKNo")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_CHKNo,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0,Object)
+            Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_CHKAmount,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0,Object)
+            Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_Refund,Decimal)
+            If (Original_CustomerCode Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_CustomerCode")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(Original_CustomerCode,String)
+            End If
+            If (Original_LGNo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_LGNo")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(Original_LGNo,String)
+            End If
+            If (Original_ReceiptNo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_ReceiptNo")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(Original_ReceiptNo,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(35).Value = CType(0,Object)
+            Me.Adapter.UpdateCommand.Parameters(36).Value = CType(Original_PayDate,Date)
+            Me.Adapter.UpdateCommand.Parameters(37).Value = CType(0,Object)
+            Me.Adapter.UpdateCommand.Parameters(38).Value = CType(Original_PrinAmount,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(39).Value = CType(0,Object)
+            Me.Adapter.UpdateCommand.Parameters(40).Value = CType(Original_PrinPayment,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(41).Value = CType(0,Object)
+            Me.Adapter.UpdateCommand.Parameters(42).Value = CType(Original_PrinBalance,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(43).Value = CType(0,Object)
+            Me.Adapter.UpdateCommand.Parameters(44).Value = CType(Original_InterestAmount,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(45).Value = CType(0,Object)
+            Me.Adapter.UpdateCommand.Parameters(46).Value = CType(Original_InterestPayment,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(47).Value = CType(0,Object)
+            Me.Adapter.UpdateCommand.Parameters(48).Value = CType(Original_TotalPayable,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(49).Value = CType(0,Object)
+            Me.Adapter.UpdateCommand.Parameters(50).Value = CType(Original_Penalty,Decimal)
+            If (Original_Status Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_Status")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(51).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(52).Value = CType(Original_Status,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.UpdateCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.UpdateCommand.Connection.Close
+                End If
+            End Try
+        End Function
+    End Class
     
     '''<summary>
     '''Represents the connection and commands used to retrieve and save data.
@@ -5500,1751 +4970,6 @@ Namespace dtsCollectionTableAdapters
     End Class
     
     '''<summary>
-    '''Represents the connection and commands used to retrieve and save data.
-    '''</summary>
-    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     Global.System.ComponentModel.ToolboxItem(true),  _
-     Global.System.ComponentModel.DataObjectAttribute(true),  _
-     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
-     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class loanaccountTableAdapter
-        Inherits Global.System.ComponentModel.Component
-        
-        Private WithEvents _adapter As Global.System.Data.Odbc.OdbcDataAdapter
-        
-        Private _connection As Global.System.Data.Odbc.OdbcConnection
-        
-        Private _transaction As Global.System.Data.Odbc.OdbcTransaction
-        
-        Private _commandCollection() As Global.System.Data.Odbc.OdbcCommand
-        
-        Private _clearBeforeFill As Boolean
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.ClearBeforeFill = true
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected Friend ReadOnly Property Adapter() As Global.System.Data.Odbc.OdbcDataAdapter
-            Get
-                If (Me._adapter Is Nothing) Then
-                    Me.InitAdapter
-                End If
-                Return Me._adapter
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.Odbc.OdbcConnection
-            Get
-                If (Me._connection Is Nothing) Then
-                    Me.InitConnection
-                End If
-                Return Me._connection
-            End Get
-            Set
-                Me._connection = value
-                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
-                    Me.Adapter.InsertCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
-                    Me.Adapter.DeleteCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
-                    Me.Adapter.UpdateCommand.Connection = value
-                End If
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.System.Data.Odbc.OdbcCommand).Connection = value
-                    End If
-                    i = (i + 1)
-                Loop
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Friend Property Transaction() As Global.System.Data.Odbc.OdbcTransaction
-            Get
-                Return Me._transaction
-            End Get
-            Set
-                Me._transaction = value
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    Me.CommandCollection(i).Transaction = Me._transaction
-                    i = (i + 1)
-                Loop
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
-                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
-                    Me.Adapter.InsertCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
-                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
-                End If
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected ReadOnly Property CommandCollection() As Global.System.Data.Odbc.OdbcCommand()
-            Get
-                If (Me._commandCollection Is Nothing) Then
-                    Me.InitCommandCollection
-                End If
-                Return Me._commandCollection
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property ClearBeforeFill() As Boolean
-            Get
-                Return Me._clearBeforeFill
-            End Get
-            Set
-                Me._clearBeforeFill = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Private Sub InitAdapter()
-            Me._adapter = New Global.System.Data.Odbc.OdbcDataAdapter()
-            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
-            tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "loanaccount"
-            tableMapping.ColumnMappings.Add("loanID", "loanID")
-            tableMapping.ColumnMappings.Add("CreatedDate", "CreatedDate")
-            tableMapping.ColumnMappings.Add("CreatedBy", "CreatedBy")
-            tableMapping.ColumnMappings.Add("CreatedRole", "CreatedRole")
-            tableMapping.ColumnMappings.Add("ClientCode", "ClientCode")
-            tableMapping.ColumnMappings.Add("LedgerNo", "LedgerNo")
-            tableMapping.ColumnMappings.Add("LDSNo", "LDSNo")
-            tableMapping.ColumnMappings.Add("PrevLDSNo", "PrevLDSNo")
-            tableMapping.ColumnMappings.Add("ClientName", "ClientName")
-            tableMapping.ColumnMappings.Add("CoMaker", "CoMaker")
-            tableMapping.ColumnMappings.Add("Area", "Area")
-            tableMapping.ColumnMappings.Add("LoanType", "LoanType")
-            tableMapping.ColumnMappings.Add("Checks", "Checks")
-            tableMapping.ColumnMappings.Add("ChecksNo", "ChecksNo")
-            tableMapping.ColumnMappings.Add("AcctNo", "AcctNo")
-            tableMapping.ColumnMappings.Add("Cash", "Cash")
-            tableMapping.ColumnMappings.Add("LoanDate", "LoanDate")
-            tableMapping.ColumnMappings.Add("FirstDueDate", "FirstDueDate")
-            tableMapping.ColumnMappings.Add("MaturityDate", "MaturityDate")
-            tableMapping.ColumnMappings.Add("OldBalanceAmount", "OldBalanceAmount")
-            tableMapping.ColumnMappings.Add("OldInterestAmount", "OldInterestAmount")
-            tableMapping.ColumnMappings.Add("LoanTrans", "LoanTrans")
-            tableMapping.ColumnMappings.Add("TermOfLoan", "TermOfLoan")
-            tableMapping.ColumnMappings.Add("LoanAmount", "LoanAmount")
-            tableMapping.ColumnMappings.Add("InterestRate", "InterestRate")
-            tableMapping.ColumnMappings.Add("Principal", "Principal")
-            tableMapping.ColumnMappings.Add("Interest", "Interest")
-            tableMapping.ColumnMappings.Add("MonthlyAmort", "MonthlyAmort")
-            tableMapping.ColumnMappings.Add("NotarialFee", "NotarialFee")
-            tableMapping.ColumnMappings.Add("FinCharge", "FinCharge")
-            tableMapping.ColumnMappings.Add("Accomodation", "Accomodation")
-            tableMapping.ColumnMappings.Add("Inspection", "Inspection")
-            tableMapping.ColumnMappings.Add("LPPP", "LPPP")
-            tableMapping.ColumnMappings.Add("NewBalance", "NewBalance")
-            tableMapping.ColumnMappings.Add("NetProceeds", "NetProceeds")
-            Me._adapter.TableMappings.Add(tableMapping)
-            Me._adapter.DeleteCommand = New Global.System.Data.Odbc.OdbcCommand()
-            Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `loanaccount` WHERE (((? = 1 AND `loanID` IS NULL) OR (`loanID` = ?))"& _ 
-                " AND (`CreatedDate` = ?) AND (`CreatedBy` = ?) AND (`CreatedRole` = ?) AND (`Cli"& _ 
-                "entCode` = ?) AND (`LedgerNo` = ?) AND (`LDSNo` = ?) AND (`PrevLDSNo` = ?) AND ("& _ 
-                "`ClientName` = ?) AND (`CoMaker` = ?) AND (`Area` = ?) AND (`LoanType` = ?) AND "& _ 
-                "(`Checks` = ?) AND (`ChecksNo` = ?) AND (`AcctNo` = ?) AND (`Cash` = ?) AND (`Lo"& _ 
-                "anDate` = ?) AND (`FirstDueDate` = ?) AND (`MaturityDate` = ?) AND (`OldBalanceA"& _ 
-                "mount` = ?) AND (`OldInterestAmount` = ?) AND (`LoanTrans` = ?) AND (`TermOfLoan"& _ 
-                "` = ?) AND (`LoanAmount` = ?) AND (`InterestRate` = ?) AND (`Principal` = ?) AND"& _ 
-                " (`Interest` = ?) AND (`MonthlyAmort` = ?) AND (`NotarialFee` = ?) AND (`FinChar"& _ 
-                "ge` = ?) AND (`Accomodation` = ?) AND (`Inspection` = ?) AND (`LPPP` = ?) AND (`"& _ 
-                "NewBalance` = ?) AND (`NetProceeds` = ?))"
-            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_loanID", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "loanID", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_loanID", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "loanID", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CreatedDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CreatedDate", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CreatedBy", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CreatedBy", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CreatedRole", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CreatedRole", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_ClientCode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ClientCode", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_LedgerNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LedgerNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_LDSNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LDSNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_PrevLDSNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PrevLDSNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_ClientName", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ClientName", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CoMaker", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CoMaker", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Area", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Area", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_LoanType", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LoanType", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Checks", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Checks", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_ChecksNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ChecksNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_AcctNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "AcctNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Cash", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Cash", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_LoanDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LoanDate", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_FirstDueDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "FirstDueDate", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_MaturityDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "MaturityDate", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_OldBalanceAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "OldBalanceAmount", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_OldInterestAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "OldInterestAmount", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_LoanTrans", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LoanTrans", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_TermOfLoan", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "TermOfLoan", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_LoanAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "LoanAmount", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_InterestRate", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestRate", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Principal", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Principal", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Interest", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Interest", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_MonthlyAmort", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "MonthlyAmort", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_NotarialFee", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "NotarialFee", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_FinCharge", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "FinCharge", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Accomodation", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Accomodation", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Inspection", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Inspection", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_LPPP", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "LPPP", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_NewBalance", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "NewBalance", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_NetProceeds", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "NetProceeds", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.InsertCommand = New Global.System.Data.Odbc.OdbcCommand()
-            Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO `loanaccount` (`CreatedDate`, `CreatedBy`, `CreatedRole`, `ClientCode"& _ 
-                "`, `LedgerNo`, `LDSNo`, `PrevLDSNo`, `ClientName`, `CoMaker`, `Area`, `LoanType`"& _ 
-                ", `Checks`, `ChecksNo`, `AcctNo`, `Cash`, `LoanDate`, `FirstDueDate`, `MaturityD"& _ 
-                "ate`, `OldBalanceAmount`, `OldInterestAmount`, `LoanTrans`, `TermOfLoan`, `LoanA"& _ 
-                "mount`, `InterestRate`, `Principal`, `Interest`, `MonthlyAmort`, `NotarialFee`, "& _ 
-                "`FinCharge`, `Accomodation`, `Inspection`, `LPPP`, `NewBalance`, `NetProceeds`) "& _ 
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "& _ 
-                "?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CreatedDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CreatedDate", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CreatedBy", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CreatedBy", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CreatedRole", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CreatedRole", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("ClientCode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ClientCode", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("LedgerNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LedgerNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("LDSNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LDSNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("PrevLDSNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PrevLDSNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("ClientName", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ClientName", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CoMaker", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CoMaker", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Area", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Area", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("LoanType", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LoanType", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Checks", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Checks", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("ChecksNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ChecksNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("AcctNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "AcctNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Cash", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Cash", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("LoanDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LoanDate", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("FirstDueDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "FirstDueDate", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("MaturityDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "MaturityDate", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("OldBalanceAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "OldBalanceAmount", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("OldInterestAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "OldInterestAmount", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("LoanTrans", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LoanTrans", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("TermOfLoan", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "TermOfLoan", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("LoanAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "LoanAmount", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("InterestRate", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestRate", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Principal", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Principal", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Interest", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Interest", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("MonthlyAmort", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "MonthlyAmort", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("NotarialFee", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "NotarialFee", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("FinCharge", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "FinCharge", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Accomodation", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Accomodation", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Inspection", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Inspection", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("LPPP", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "LPPP", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("NewBalance", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "NewBalance", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("NetProceeds", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "NetProceeds", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand = New Global.System.Data.Odbc.OdbcCommand()
-            Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE `loanaccount` SET `CreatedDate` = ?, `CreatedBy` = ?, `CreatedRole` = ?, `"& _ 
-                "ClientCode` = ?, `LedgerNo` = ?, `LDSNo` = ?, `PrevLDSNo` = ?, `ClientName` = ?,"& _ 
-                " `CoMaker` = ?, `Area` = ?, `LoanType` = ?, `Checks` = ?, `ChecksNo` = ?, `AcctN"& _ 
-                "o` = ?, `Cash` = ?, `LoanDate` = ?, `FirstDueDate` = ?, `MaturityDate` = ?, `Old"& _ 
-                "BalanceAmount` = ?, `OldInterestAmount` = ?, `LoanTrans` = ?, `TermOfLoan` = ?, "& _ 
-                "`LoanAmount` = ?, `InterestRate` = ?, `Principal` = ?, `Interest` = ?, `MonthlyA"& _ 
-                "mort` = ?, `NotarialFee` = ?, `FinCharge` = ?, `Accomodation` = ?, `Inspection` "& _ 
-                "= ?, `LPPP` = ?, `NewBalance` = ?, `NetProceeds` = ? WHERE (((? = 1 AND `loanID`"& _ 
-                " IS NULL) OR (`loanID` = ?)) AND (`CreatedDate` = ?) AND (`CreatedBy` = ?) AND ("& _ 
-                "`CreatedRole` = ?) AND (`ClientCode` = ?) AND (`LedgerNo` = ?) AND (`LDSNo` = ?)"& _ 
-                " AND (`PrevLDSNo` = ?) AND (`ClientName` = ?) AND (`CoMaker` = ?) AND (`Area` = "& _ 
-                "?) AND (`LoanType` = ?) AND (`Checks` = ?) AND (`ChecksNo` = ?) AND (`AcctNo` = "& _ 
-                "?) AND (`Cash` = ?) AND (`LoanDate` = ?) AND (`FirstDueDate` = ?) AND (`Maturity"& _ 
-                "Date` = ?) AND (`OldBalanceAmount` = ?) AND (`OldInterestAmount` = ?) AND (`Loan"& _ 
-                "Trans` = ?) AND (`TermOfLoan` = ?) AND (`LoanAmount` = ?) AND (`InterestRate` = "& _ 
-                "?) AND (`Principal` = ?) AND (`Interest` = ?) AND (`MonthlyAmort` = ?) AND (`Not"& _ 
-                "arialFee` = ?) AND (`FinCharge` = ?) AND (`Accomodation` = ?) AND (`Inspection` "& _ 
-                "= ?) AND (`LPPP` = ?) AND (`NewBalance` = ?) AND (`NetProceeds` = ?))"
-            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CreatedDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CreatedDate", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CreatedBy", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CreatedBy", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CreatedRole", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CreatedRole", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("ClientCode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ClientCode", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("LedgerNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LedgerNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("LDSNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LDSNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("PrevLDSNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PrevLDSNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("ClientName", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ClientName", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CoMaker", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CoMaker", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Area", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Area", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("LoanType", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LoanType", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Checks", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Checks", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("ChecksNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ChecksNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("AcctNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "AcctNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Cash", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Cash", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("LoanDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LoanDate", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("FirstDueDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "FirstDueDate", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("MaturityDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "MaturityDate", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("OldBalanceAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "OldBalanceAmount", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("OldInterestAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "OldInterestAmount", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("LoanTrans", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LoanTrans", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("TermOfLoan", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "TermOfLoan", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("LoanAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "LoanAmount", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("InterestRate", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestRate", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Principal", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Principal", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Interest", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Interest", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("MonthlyAmort", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "MonthlyAmort", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("NotarialFee", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "NotarialFee", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("FinCharge", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "FinCharge", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Accomodation", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Accomodation", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Inspection", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Inspection", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("LPPP", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "LPPP", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("NewBalance", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "NewBalance", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("NetProceeds", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "NetProceeds", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_loanID", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "loanID", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_loanID", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "loanID", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CreatedDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CreatedDate", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CreatedBy", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CreatedBy", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CreatedRole", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CreatedRole", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_ClientCode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ClientCode", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_LedgerNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LedgerNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_LDSNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LDSNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_PrevLDSNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PrevLDSNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_ClientName", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ClientName", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CoMaker", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CoMaker", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Area", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Area", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_LoanType", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LoanType", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Checks", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Checks", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_ChecksNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ChecksNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_AcctNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "AcctNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Cash", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Cash", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_LoanDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LoanDate", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_FirstDueDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "FirstDueDate", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_MaturityDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "MaturityDate", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_OldBalanceAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "OldBalanceAmount", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_OldInterestAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "OldInterestAmount", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_LoanTrans", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LoanTrans", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_TermOfLoan", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "TermOfLoan", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_LoanAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "LoanAmount", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_InterestRate", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestRate", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Principal", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Principal", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Interest", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Interest", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_MonthlyAmort", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "MonthlyAmort", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_NotarialFee", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "NotarialFee", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_FinCharge", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "FinCharge", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Accomodation", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Accomodation", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Inspection", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Inspection", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_LPPP", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "LPPP", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_NewBalance", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "NewBalance", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_NetProceeds", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "NetProceeds", Global.System.Data.DataRowVersion.Original, false, Nothing))
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Private Sub InitConnection()
-            Me._connection = New Global.System.Data.Odbc.OdbcConnection()
-            Me._connection.ConnectionString = Global.LoanManagementSystem.My.MySettings.Default.ConnectionString
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.Odbc.OdbcCommand(0) {}
-            Me._commandCollection(0) = New Global.System.Data.Odbc.OdbcCommand()
-            Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT `loanID`, `CreatedDate`, `CreatedBy`, `CreatedRole`, `ClientCode`, `Ledger"& _ 
-                "No`, `LDSNo`, `PrevLDSNo`, `ClientName`, `CoMaker`, `Area`, `LoanType`, `Checks`"& _ 
-                ", `ChecksNo`, `AcctNo`, `Cash`, `LoanDate`, `FirstDueDate`, `MaturityDate`, `Old"& _ 
-                "BalanceAmount`, `OldInterestAmount`, `LoanTrans`, `TermOfLoan`, `LoanAmount`, `I"& _ 
-                "nterestRate`, `Principal`, `Interest`, `MonthlyAmort`, `NotarialFee`, `FinCharge"& _ 
-                "`, `Accomodation`, `Inspection`, `LPPP`, `NewBalance`, `NetProceeds` FROM `loana"& _ 
-                "ccount`"
-            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As dtsCollection.loanaccountDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As dtsCollection.loanaccountDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As dtsCollection.loanaccountDataTable = New dtsCollection.loanaccountDataTable()
-            Me.Adapter.Fill(dataTable)
-            Return dataTable
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As dtsCollection.loanaccountDataTable) As Integer
-            Return Me.Adapter.Update(dataTable)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As dtsCollection) As Integer
-            Return Me.Adapter.Update(dataSet, "loanaccount")
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(dataRows)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete( _
-                    ByVal Original_loanID As Integer,  _
-                    ByVal Original_CreatedDate As Date,  _
-                    ByVal Original_CreatedBy As String,  _
-                    ByVal Original_CreatedRole As String,  _
-                    ByVal Original_ClientCode As String,  _
-                    ByVal Original_LedgerNo As String,  _
-                    ByVal Original_LDSNo As String,  _
-                    ByVal Original_PrevLDSNo As String,  _
-                    ByVal Original_ClientName As String,  _
-                    ByVal Original_CoMaker As String,  _
-                    ByVal Original_Area As String,  _
-                    ByVal Original_LoanType As String,  _
-                    ByVal Original_Checks As String,  _
-                    ByVal Original_ChecksNo As String,  _
-                    ByVal Original_AcctNo As String,  _
-                    ByVal Original_Cash As Decimal,  _
-                    ByVal Original_LoanDate As Date,  _
-                    ByVal Original_FirstDueDate As Date,  _
-                    ByVal Original_MaturityDate As Date,  _
-                    ByVal Original_OldBalanceAmount As Decimal,  _
-                    ByVal Original_OldInterestAmount As Decimal,  _
-                    ByVal Original_LoanTrans As String,  _
-                    ByVal Original_TermOfLoan As String,  _
-                    ByVal Original_LoanAmount As Decimal,  _
-                    ByVal Original_InterestRate As Decimal,  _
-                    ByVal Original_Principal As Decimal,  _
-                    ByVal Original_Interest As Decimal,  _
-                    ByVal Original_MonthlyAmort As Decimal,  _
-                    ByVal Original_NotarialFee As Decimal,  _
-                    ByVal Original_FinCharge As Decimal,  _
-                    ByVal Original_Accomodation As Decimal,  _
-                    ByVal Original_Inspection As Decimal,  _
-                    ByVal Original_LPPP As Decimal,  _
-                    ByVal Original_NewBalance As Decimal,  _
-                    ByVal Original_NetProceeds As Decimal) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(0,Object)
-            Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_loanID,Integer)
-            Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_CreatedDate,Date)
-            If (Original_CreatedBy Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_CreatedBy")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_CreatedBy,String)
-            End If
-            If (Original_CreatedRole Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_CreatedRole")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_CreatedRole,String)
-            End If
-            If (Original_ClientCode Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_ClientCode")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_ClientCode,String)
-            End If
-            If (Original_LedgerNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_LedgerNo")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_LedgerNo,String)
-            End If
-            If (Original_LDSNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_LDSNo")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(Original_LDSNo,String)
-            End If
-            If (Original_PrevLDSNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_PrevLDSNo")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_PrevLDSNo,String)
-            End If
-            If (Original_ClientName Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_ClientName")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_ClientName,String)
-            End If
-            If (Original_CoMaker Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_CoMaker")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_CoMaker,String)
-            End If
-            If (Original_Area Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_Area")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(Original_Area,String)
-            End If
-            If (Original_LoanType Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_LoanType")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_LoanType,String)
-            End If
-            If (Original_Checks Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_Checks")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(Original_Checks,String)
-            End If
-            If (Original_ChecksNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_ChecksNo")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_ChecksNo,String)
-            End If
-            If (Original_AcctNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_AcctNo")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(Original_AcctNo,String)
-            End If
-            Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_Cash,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(17).Value = CType(Original_LoanDate,Date)
-            Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_FirstDueDate,Date)
-            Me.Adapter.DeleteCommand.Parameters(19).Value = CType(Original_MaturityDate,Date)
-            Me.Adapter.DeleteCommand.Parameters(20).Value = CType(Original_OldBalanceAmount,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(21).Value = CType(Original_OldInterestAmount,Decimal)
-            If (Original_LoanTrans Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_LoanTrans")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(Original_LoanTrans,String)
-            End If
-            If (Original_TermOfLoan Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_TermOfLoan")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(Original_TermOfLoan,String)
-            End If
-            Me.Adapter.DeleteCommand.Parameters(24).Value = CType(Original_LoanAmount,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(25).Value = CType(Original_InterestRate,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(26).Value = CType(Original_Principal,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(27).Value = CType(Original_Interest,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(28).Value = CType(Original_MonthlyAmort,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(29).Value = CType(Original_NotarialFee,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(30).Value = CType(Original_FinCharge,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(31).Value = CType(Original_Accomodation,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(32).Value = CType(Original_Inspection,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(33).Value = CType(Original_LPPP,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(34).Value = CType(Original_NewBalance,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(35).Value = CType(Original_NetProceeds,Decimal)
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert( _
-                    ByVal CreatedDate As Date,  _
-                    ByVal CreatedBy As String,  _
-                    ByVal CreatedRole As String,  _
-                    ByVal ClientCode As String,  _
-                    ByVal LedgerNo As String,  _
-                    ByVal LDSNo As String,  _
-                    ByVal PrevLDSNo As String,  _
-                    ByVal ClientName As String,  _
-                    ByVal CoMaker As String,  _
-                    ByVal Area As String,  _
-                    ByVal LoanType As String,  _
-                    ByVal Checks As String,  _
-                    ByVal ChecksNo As String,  _
-                    ByVal AcctNo As String,  _
-                    ByVal Cash As Decimal,  _
-                    ByVal LoanDate As Date,  _
-                    ByVal FirstDueDate As Date,  _
-                    ByVal MaturityDate As Date,  _
-                    ByVal OldBalanceAmount As Decimal,  _
-                    ByVal OldInterestAmount As Decimal,  _
-                    ByVal LoanTrans As String,  _
-                    ByVal TermOfLoan As String,  _
-                    ByVal LoanAmount As Decimal,  _
-                    ByVal InterestRate As Decimal,  _
-                    ByVal Principal As Decimal,  _
-                    ByVal Interest As Decimal,  _
-                    ByVal MonthlyAmort As Decimal,  _
-                    ByVal NotarialFee As Decimal,  _
-                    ByVal FinCharge As Decimal,  _
-                    ByVal Accomodation As Decimal,  _
-                    ByVal Inspection As Decimal,  _
-                    ByVal LPPP As Decimal,  _
-                    ByVal NewBalance As Decimal,  _
-                    ByVal NetProceeds As Decimal) As Integer
-            Me.Adapter.InsertCommand.Parameters(0).Value = CType(CreatedDate,Date)
-            If (CreatedBy Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("CreatedBy")
-            Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(CreatedBy,String)
-            End If
-            If (CreatedRole Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("CreatedRole")
-            Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(CreatedRole,String)
-            End If
-            If (ClientCode Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("ClientCode")
-            Else
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(ClientCode,String)
-            End If
-            If (LedgerNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("LedgerNo")
-            Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(LedgerNo,String)
-            End If
-            If (LDSNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("LDSNo")
-            Else
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(LDSNo,String)
-            End If
-            If (PrevLDSNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("PrevLDSNo")
-            Else
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(PrevLDSNo,String)
-            End If
-            If (ClientName Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("ClientName")
-            Else
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(ClientName,String)
-            End If
-            If (CoMaker Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("CoMaker")
-            Else
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(CoMaker,String)
-            End If
-            If (Area Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Area")
-            Else
-                Me.Adapter.InsertCommand.Parameters(9).Value = CType(Area,String)
-            End If
-            If (LoanType Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("LoanType")
-            Else
-                Me.Adapter.InsertCommand.Parameters(10).Value = CType(LoanType,String)
-            End If
-            If (Checks Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Checks")
-            Else
-                Me.Adapter.InsertCommand.Parameters(11).Value = CType(Checks,String)
-            End If
-            If (ChecksNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("ChecksNo")
-            Else
-                Me.Adapter.InsertCommand.Parameters(12).Value = CType(ChecksNo,String)
-            End If
-            If (AcctNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("AcctNo")
-            Else
-                Me.Adapter.InsertCommand.Parameters(13).Value = CType(AcctNo,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(14).Value = CType(Cash,Decimal)
-            Me.Adapter.InsertCommand.Parameters(15).Value = CType(LoanDate,Date)
-            Me.Adapter.InsertCommand.Parameters(16).Value = CType(FirstDueDate,Date)
-            Me.Adapter.InsertCommand.Parameters(17).Value = CType(MaturityDate,Date)
-            Me.Adapter.InsertCommand.Parameters(18).Value = CType(OldBalanceAmount,Decimal)
-            Me.Adapter.InsertCommand.Parameters(19).Value = CType(OldInterestAmount,Decimal)
-            If (LoanTrans Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("LoanTrans")
-            Else
-                Me.Adapter.InsertCommand.Parameters(20).Value = CType(LoanTrans,String)
-            End If
-            If (TermOfLoan Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("TermOfLoan")
-            Else
-                Me.Adapter.InsertCommand.Parameters(21).Value = CType(TermOfLoan,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(22).Value = CType(LoanAmount,Decimal)
-            Me.Adapter.InsertCommand.Parameters(23).Value = CType(InterestRate,Decimal)
-            Me.Adapter.InsertCommand.Parameters(24).Value = CType(Principal,Decimal)
-            Me.Adapter.InsertCommand.Parameters(25).Value = CType(Interest,Decimal)
-            Me.Adapter.InsertCommand.Parameters(26).Value = CType(MonthlyAmort,Decimal)
-            Me.Adapter.InsertCommand.Parameters(27).Value = CType(NotarialFee,Decimal)
-            Me.Adapter.InsertCommand.Parameters(28).Value = CType(FinCharge,Decimal)
-            Me.Adapter.InsertCommand.Parameters(29).Value = CType(Accomodation,Decimal)
-            Me.Adapter.InsertCommand.Parameters(30).Value = CType(Inspection,Decimal)
-            Me.Adapter.InsertCommand.Parameters(31).Value = CType(LPPP,Decimal)
-            Me.Adapter.InsertCommand.Parameters(32).Value = CType(NewBalance,Decimal)
-            Me.Adapter.InsertCommand.Parameters(33).Value = CType(NetProceeds,Decimal)
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal CreatedDate As Date,  _
-                    ByVal CreatedBy As String,  _
-                    ByVal CreatedRole As String,  _
-                    ByVal ClientCode As String,  _
-                    ByVal LedgerNo As String,  _
-                    ByVal LDSNo As String,  _
-                    ByVal PrevLDSNo As String,  _
-                    ByVal ClientName As String,  _
-                    ByVal CoMaker As String,  _
-                    ByVal Area As String,  _
-                    ByVal LoanType As String,  _
-                    ByVal Checks As String,  _
-                    ByVal ChecksNo As String,  _
-                    ByVal AcctNo As String,  _
-                    ByVal Cash As Decimal,  _
-                    ByVal LoanDate As Date,  _
-                    ByVal FirstDueDate As Date,  _
-                    ByVal MaturityDate As Date,  _
-                    ByVal OldBalanceAmount As Decimal,  _
-                    ByVal OldInterestAmount As Decimal,  _
-                    ByVal LoanTrans As String,  _
-                    ByVal TermOfLoan As String,  _
-                    ByVal LoanAmount As Decimal,  _
-                    ByVal InterestRate As Decimal,  _
-                    ByVal Principal As Decimal,  _
-                    ByVal Interest As Decimal,  _
-                    ByVal MonthlyAmort As Decimal,  _
-                    ByVal NotarialFee As Decimal,  _
-                    ByVal FinCharge As Decimal,  _
-                    ByVal Accomodation As Decimal,  _
-                    ByVal Inspection As Decimal,  _
-                    ByVal LPPP As Decimal,  _
-                    ByVal NewBalance As Decimal,  _
-                    ByVal NetProceeds As Decimal,  _
-                    ByVal Original_loanID As Integer,  _
-                    ByVal Original_CreatedDate As Date,  _
-                    ByVal Original_CreatedBy As String,  _
-                    ByVal Original_CreatedRole As String,  _
-                    ByVal Original_ClientCode As String,  _
-                    ByVal Original_LedgerNo As String,  _
-                    ByVal Original_LDSNo As String,  _
-                    ByVal Original_PrevLDSNo As String,  _
-                    ByVal Original_ClientName As String,  _
-                    ByVal Original_CoMaker As String,  _
-                    ByVal Original_Area As String,  _
-                    ByVal Original_LoanType As String,  _
-                    ByVal Original_Checks As String,  _
-                    ByVal Original_ChecksNo As String,  _
-                    ByVal Original_AcctNo As String,  _
-                    ByVal Original_Cash As Decimal,  _
-                    ByVal Original_LoanDate As Date,  _
-                    ByVal Original_FirstDueDate As Date,  _
-                    ByVal Original_MaturityDate As Date,  _
-                    ByVal Original_OldBalanceAmount As Decimal,  _
-                    ByVal Original_OldInterestAmount As Decimal,  _
-                    ByVal Original_LoanTrans As String,  _
-                    ByVal Original_TermOfLoan As String,  _
-                    ByVal Original_LoanAmount As Decimal,  _
-                    ByVal Original_InterestRate As Decimal,  _
-                    ByVal Original_Principal As Decimal,  _
-                    ByVal Original_Interest As Decimal,  _
-                    ByVal Original_MonthlyAmort As Decimal,  _
-                    ByVal Original_NotarialFee As Decimal,  _
-                    ByVal Original_FinCharge As Decimal,  _
-                    ByVal Original_Accomodation As Decimal,  _
-                    ByVal Original_Inspection As Decimal,  _
-                    ByVal Original_LPPP As Decimal,  _
-                    ByVal Original_NewBalance As Decimal,  _
-                    ByVal Original_NetProceeds As Decimal) As Integer
-            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(CreatedDate,Date)
-            If (CreatedBy Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("CreatedBy")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(CreatedBy,String)
-            End If
-            If (CreatedRole Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("CreatedRole")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(CreatedRole,String)
-            End If
-            If (ClientCode Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("ClientCode")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(ClientCode,String)
-            End If
-            If (LedgerNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("LedgerNo")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(LedgerNo,String)
-            End If
-            If (LDSNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("LDSNo")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(LDSNo,String)
-            End If
-            If (PrevLDSNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("PrevLDSNo")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(PrevLDSNo,String)
-            End If
-            If (ClientName Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("ClientName")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(ClientName,String)
-            End If
-            If (CoMaker Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("CoMaker")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(CoMaker,String)
-            End If
-            If (Area Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Area")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Area,String)
-            End If
-            If (LoanType Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("LoanType")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(LoanType,String)
-            End If
-            If (Checks Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Checks")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Checks,String)
-            End If
-            If (ChecksNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("ChecksNo")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(ChecksNo,String)
-            End If
-            If (AcctNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("AcctNo")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(AcctNo,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Cash,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(15).Value = CType(LoanDate,Date)
-            Me.Adapter.UpdateCommand.Parameters(16).Value = CType(FirstDueDate,Date)
-            Me.Adapter.UpdateCommand.Parameters(17).Value = CType(MaturityDate,Date)
-            Me.Adapter.UpdateCommand.Parameters(18).Value = CType(OldBalanceAmount,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(19).Value = CType(OldInterestAmount,Decimal)
-            If (LoanTrans Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("LoanTrans")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(LoanTrans,String)
-            End If
-            If (TermOfLoan Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("TermOfLoan")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(TermOfLoan,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(22).Value = CType(LoanAmount,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(23).Value = CType(InterestRate,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Principal,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Interest,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(26).Value = CType(MonthlyAmort,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(27).Value = CType(NotarialFee,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(28).Value = CType(FinCharge,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(29).Value = CType(Accomodation,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Inspection,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(31).Value = CType(LPPP,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(32).Value = CType(NewBalance,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(33).Value = CType(NetProceeds,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(34).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(35).Value = CType(Original_loanID,Integer)
-            Me.Adapter.UpdateCommand.Parameters(36).Value = CType(Original_CreatedDate,Date)
-            If (Original_CreatedBy Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_CreatedBy")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(Original_CreatedBy,String)
-            End If
-            If (Original_CreatedRole Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_CreatedRole")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(Original_CreatedRole,String)
-            End If
-            If (Original_ClientCode Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_ClientCode")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(Original_ClientCode,String)
-            End If
-            If (Original_LedgerNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_LedgerNo")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(Original_LedgerNo,String)
-            End If
-            If (Original_LDSNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_LDSNo")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(Original_LDSNo,String)
-            End If
-            If (Original_PrevLDSNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_PrevLDSNo")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(Original_PrevLDSNo,String)
-            End If
-            If (Original_ClientName Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_ClientName")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(Original_ClientName,String)
-            End If
-            If (Original_CoMaker Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_CoMaker")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(Original_CoMaker,String)
-            End If
-            If (Original_Area Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_Area")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(Original_Area,String)
-            End If
-            If (Original_LoanType Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_LoanType")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(Original_LoanType,String)
-            End If
-            If (Original_Checks Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_Checks")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(47).Value = CType(Original_Checks,String)
-            End If
-            If (Original_ChecksNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_ChecksNo")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(48).Value = CType(Original_ChecksNo,String)
-            End If
-            If (Original_AcctNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_AcctNo")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(49).Value = CType(Original_AcctNo,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(50).Value = CType(Original_Cash,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(51).Value = CType(Original_LoanDate,Date)
-            Me.Adapter.UpdateCommand.Parameters(52).Value = CType(Original_FirstDueDate,Date)
-            Me.Adapter.UpdateCommand.Parameters(53).Value = CType(Original_MaturityDate,Date)
-            Me.Adapter.UpdateCommand.Parameters(54).Value = CType(Original_OldBalanceAmount,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(55).Value = CType(Original_OldInterestAmount,Decimal)
-            If (Original_LoanTrans Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_LoanTrans")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(56).Value = CType(Original_LoanTrans,String)
-            End If
-            If (Original_TermOfLoan Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_TermOfLoan")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(57).Value = CType(Original_TermOfLoan,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(58).Value = CType(Original_LoanAmount,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(59).Value = CType(Original_InterestRate,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(60).Value = CType(Original_Principal,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(61).Value = CType(Original_Interest,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(62).Value = CType(Original_MonthlyAmort,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(63).Value = CType(Original_NotarialFee,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(64).Value = CType(Original_FinCharge,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(65).Value = CType(Original_Accomodation,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(66).Value = CType(Original_Inspection,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(67).Value = CType(Original_LPPP,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(68).Value = CType(Original_NewBalance,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(69).Value = CType(Original_NetProceeds,Decimal)
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
-                End If
-            End Try
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the connection and commands used to retrieve and save data.
-    '''</summary>
-    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     Global.System.ComponentModel.ToolboxItem(true),  _
-     Global.System.ComponentModel.DataObjectAttribute(true),  _
-     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
-     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class paymentledgerTableAdapter
-        Inherits Global.System.ComponentModel.Component
-        
-        Private WithEvents _adapter As Global.System.Data.Odbc.OdbcDataAdapter
-        
-        Private _connection As Global.System.Data.Odbc.OdbcConnection
-        
-        Private _transaction As Global.System.Data.Odbc.OdbcTransaction
-        
-        Private _commandCollection() As Global.System.Data.Odbc.OdbcCommand
-        
-        Private _clearBeforeFill As Boolean
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.ClearBeforeFill = true
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected Friend ReadOnly Property Adapter() As Global.System.Data.Odbc.OdbcDataAdapter
-            Get
-                If (Me._adapter Is Nothing) Then
-                    Me.InitAdapter
-                End If
-                Return Me._adapter
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.Odbc.OdbcConnection
-            Get
-                If (Me._connection Is Nothing) Then
-                    Me.InitConnection
-                End If
-                Return Me._connection
-            End Get
-            Set
-                Me._connection = value
-                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
-                    Me.Adapter.InsertCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
-                    Me.Adapter.DeleteCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
-                    Me.Adapter.UpdateCommand.Connection = value
-                End If
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.System.Data.Odbc.OdbcCommand).Connection = value
-                    End If
-                    i = (i + 1)
-                Loop
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Friend Property Transaction() As Global.System.Data.Odbc.OdbcTransaction
-            Get
-                Return Me._transaction
-            End Get
-            Set
-                Me._transaction = value
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    Me.CommandCollection(i).Transaction = Me._transaction
-                    i = (i + 1)
-                Loop
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
-                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
-                    Me.Adapter.InsertCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
-                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
-                End If
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Protected ReadOnly Property CommandCollection() As Global.System.Data.Odbc.OdbcCommand()
-            Get
-                If (Me._commandCollection Is Nothing) Then
-                    Me.InitCommandCollection
-                End If
-                Return Me._commandCollection
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property ClearBeforeFill() As Boolean
-            Get
-                Return Me._clearBeforeFill
-            End Get
-            Set
-                Me._clearBeforeFill = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Private Sub InitAdapter()
-            Me._adapter = New Global.System.Data.Odbc.OdbcDataAdapter()
-            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
-            tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "paymentledger"
-            tableMapping.ColumnMappings.Add("ldgID", "ldgID")
-            tableMapping.ColumnMappings.Add("ProcessBy", "ProcessBy")
-            tableMapping.ColumnMappings.Add("Paymode", "Paymode")
-            tableMapping.ColumnMappings.Add("DepBank", "DepBank")
-            tableMapping.ColumnMappings.Add("CHKNo", "CHKNo")
-            tableMapping.ColumnMappings.Add("CHKAmount", "CHKAmount")
-            tableMapping.ColumnMappings.Add("Refund", "Refund")
-            tableMapping.ColumnMappings.Add("CustomerCode", "CustomerCode")
-            tableMapping.ColumnMappings.Add("LGNo", "LGNo")
-            tableMapping.ColumnMappings.Add("ReceiptNo", "ReceiptNo")
-            tableMapping.ColumnMappings.Add("PayDate", "PayDate")
-            tableMapping.ColumnMappings.Add("PrinAmount", "PrinAmount")
-            tableMapping.ColumnMappings.Add("PrinPayment", "PrinPayment")
-            tableMapping.ColumnMappings.Add("PrinBalance", "PrinBalance")
-            tableMapping.ColumnMappings.Add("InterestAmount", "InterestAmount")
-            tableMapping.ColumnMappings.Add("InterestPayment", "InterestPayment")
-            tableMapping.ColumnMappings.Add("TotalPayable", "TotalPayable")
-            tableMapping.ColumnMappings.Add("Penalty", "Penalty")
-            tableMapping.ColumnMappings.Add("Status", "Status")
-            Me._adapter.TableMappings.Add(tableMapping)
-            Me._adapter.DeleteCommand = New Global.System.Data.Odbc.OdbcCommand()
-            Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `paymentledger` WHERE (((? = 1 AND `ldgID` IS NULL) OR (`ldgID` = ?))"& _ 
-                " AND (`ProcessBy` = ?) AND ((? = 1 AND `Paymode` IS NULL) OR (`Paymode` = ?)) AN"& _ 
-                "D ((? = 1 AND `DepBank` IS NULL) OR (`DepBank` = ?)) AND ((? = 1 AND `CHKNo` IS "& _ 
-                "NULL) OR (`CHKNo` = ?)) AND ((? = 1 AND `CHKAmount` IS NULL) OR (`CHKAmount` = ?"& _ 
-                ")) AND ((? = 1 AND `Refund` IS NULL) OR (`Refund` = ?)) AND (`CustomerCode` = ?)"& _ 
-                " AND (`LGNo` = ?) AND ((? = 1 AND `ReceiptNo` IS NULL) OR (`ReceiptNo` = ?)) AND"& _ 
-                " ((? = 1 AND `PayDate` IS NULL) OR (`PayDate` = ?)) AND ((? = 1 AND `PrinAmount`"& _ 
-                " IS NULL) OR (`PrinAmount` = ?)) AND ((? = 1 AND `PrinPayment` IS NULL) OR (`Pri"& _ 
-                "nPayment` = ?)) AND ((? = 1 AND `PrinBalance` IS NULL) OR (`PrinBalance` = ?)) A"& _ 
-                "ND ((? = 1 AND `InterestAmount` IS NULL) OR (`InterestAmount` = ?)) AND ((? = 1 "& _ 
-                "AND `InterestPayment` IS NULL) OR (`InterestPayment` = ?)) AND ((? = 1 AND `Tota"& _ 
-                "lPayable` IS NULL) OR (`TotalPayable` = ?)) AND ((? = 1 AND `Penalty` IS NULL) O"& _ 
-                "R (`Penalty` = ?)) AND ((? = 1 AND `Status` IS NULL) OR (`Status` = ?)))"
-            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_ldgID", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ldgID", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_ldgID", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ldgID", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_ProcessBy", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ProcessBy", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_Paymode", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Paymode", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Paymode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Paymode", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_DepBank", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "DepBank", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_DepBank", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "DepBank", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_CHKNo", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CHKNo", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CHKNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CHKNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_CHKAmount", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CHKAmount", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CHKAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "CHKAmount", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_Refund", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Refund", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Refund", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Refund", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CustomerCode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CustomerCode", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_LGNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LGNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_ReceiptNo", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ReceiptNo", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_ReceiptNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ReceiptNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_PayDate", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PayDate", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_PayDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PayDate", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_PrinAmount", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PrinAmount", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_PrinAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinAmount", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_PrinPayment", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PrinPayment", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_PrinPayment", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinPayment", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_PrinBalance", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PrinBalance", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_PrinBalance", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinBalance", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_InterestAmount", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "InterestAmount", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_InterestAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestAmount", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_InterestPayment", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "InterestPayment", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_InterestPayment", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestPayment", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_TotalPayable", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "TotalPayable", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_TotalPayable", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "TotalPayable", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_Penalty", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Penalty", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Penalty", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Penalty", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_Status", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Status", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Status", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Status", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.InsertCommand = New Global.System.Data.Odbc.OdbcCommand()
-            Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO `paymentledger` (`ProcessBy`, `Paymode`, `DepBank`, `CHKNo`, `CHKAmou"& _ 
-                "nt`, `Refund`, `CustomerCode`, `LGNo`, `ReceiptNo`, `PayDate`, `PrinAmount`, `Pr"& _ 
-                "inPayment`, `PrinBalance`, `InterestAmount`, `InterestPayment`, `TotalPayable`, "& _ 
-                "`Penalty`, `Status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "& _ 
-                "?)"
-            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("ProcessBy", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ProcessBy", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Paymode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Paymode", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("DepBank", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "DepBank", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CHKNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CHKNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CHKAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "CHKAmount", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Refund", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Refund", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CustomerCode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CustomerCode", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("LGNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LGNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("ReceiptNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ReceiptNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("PayDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PayDate", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("PrinAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinAmount", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("PrinPayment", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinPayment", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("PrinBalance", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinBalance", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("InterestAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestAmount", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("InterestPayment", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestPayment", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("TotalPayable", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "TotalPayable", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Penalty", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Penalty", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Status", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Status", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand = New Global.System.Data.Odbc.OdbcCommand()
-            Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE `paymentledger` SET `ProcessBy` = ?, `Paymode` = ?, `DepBank` = ?, `CHKNo`"& _ 
-                " = ?, `CHKAmount` = ?, `Refund` = ?, `CustomerCode` = ?, `LGNo` = ?, `ReceiptNo`"& _ 
-                " = ?, `PayDate` = ?, `PrinAmount` = ?, `PrinPayment` = ?, `PrinBalance` = ?, `In"& _ 
-                "terestAmount` = ?, `InterestPayment` = ?, `TotalPayable` = ?, `Penalty` = ?, `St"& _ 
-                "atus` = ? WHERE (((? = 1 AND `ldgID` IS NULL) OR (`ldgID` = ?)) AND (`ProcessBy`"& _ 
-                " = ?) AND ((? = 1 AND `Paymode` IS NULL) OR (`Paymode` = ?)) AND ((? = 1 AND `De"& _ 
-                "pBank` IS NULL) OR (`DepBank` = ?)) AND ((? = 1 AND `CHKNo` IS NULL) OR (`CHKNo`"& _ 
-                " = ?)) AND ((? = 1 AND `CHKAmount` IS NULL) OR (`CHKAmount` = ?)) AND ((? = 1 AN"& _ 
-                "D `Refund` IS NULL) OR (`Refund` = ?)) AND (`CustomerCode` = ?) AND (`LGNo` = ?)"& _ 
-                " AND ((? = 1 AND `ReceiptNo` IS NULL) OR (`ReceiptNo` = ?)) AND ((? = 1 AND `Pay"& _ 
-                "Date` IS NULL) OR (`PayDate` = ?)) AND ((? = 1 AND `PrinAmount` IS NULL) OR (`Pr"& _ 
-                "inAmount` = ?)) AND ((? = 1 AND `PrinPayment` IS NULL) OR (`PrinPayment` = ?)) A"& _ 
-                "ND ((? = 1 AND `PrinBalance` IS NULL) OR (`PrinBalance` = ?)) AND ((? = 1 AND `I"& _ 
-                "nterestAmount` IS NULL) OR (`InterestAmount` = ?)) AND ((? = 1 AND `InterestPaym"& _ 
-                "ent` IS NULL) OR (`InterestPayment` = ?)) AND ((? = 1 AND `TotalPayable` IS NULL"& _ 
-                ") OR (`TotalPayable` = ?)) AND ((? = 1 AND `Penalty` IS NULL) OR (`Penalty` = ?)"& _ 
-                ") AND ((? = 1 AND `Status` IS NULL) OR (`Status` = ?)))"
-            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("ProcessBy", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ProcessBy", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Paymode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Paymode", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("DepBank", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "DepBank", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CHKNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CHKNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CHKAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "CHKAmount", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Refund", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Refund", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("CustomerCode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CustomerCode", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("LGNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LGNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("ReceiptNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ReceiptNo", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("PayDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PayDate", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("PrinAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinAmount", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("PrinPayment", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinPayment", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("PrinBalance", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinBalance", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("InterestAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestAmount", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("InterestPayment", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestPayment", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("TotalPayable", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "TotalPayable", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Penalty", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Penalty", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Status", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Status", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_ldgID", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ldgID", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_ldgID", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ldgID", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_ProcessBy", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ProcessBy", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_Paymode", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Paymode", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Paymode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Paymode", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_DepBank", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "DepBank", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_DepBank", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "DepBank", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_CHKNo", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CHKNo", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CHKNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CHKNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_CHKAmount", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CHKAmount", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CHKAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "CHKAmount", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_Refund", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Refund", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Refund", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Refund", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_CustomerCode", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "CustomerCode", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_LGNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "LGNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_ReceiptNo", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ReceiptNo", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_ReceiptNo", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ReceiptNo", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_PayDate", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PayDate", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_PayDate", Global.System.Data.Odbc.OdbcType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PayDate", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_PrinAmount", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PrinAmount", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_PrinAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinAmount", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_PrinPayment", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PrinPayment", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_PrinPayment", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinPayment", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_PrinBalance", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PrinBalance", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_PrinBalance", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "PrinBalance", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_InterestAmount", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "InterestAmount", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_InterestAmount", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestAmount", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_InterestPayment", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "InterestPayment", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_InterestPayment", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "InterestPayment", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_TotalPayable", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "TotalPayable", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_TotalPayable", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "TotalPayable", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_Penalty", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Penalty", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Penalty", Global.System.Data.Odbc.OdbcType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(2,Byte), "Penalty", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("IsNull_Status", Global.System.Data.Odbc.OdbcType.Int, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Status", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("Original_Status", Global.System.Data.Odbc.OdbcType.VarChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Status", Global.System.Data.DataRowVersion.Original, false, Nothing))
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Private Sub InitConnection()
-            Me._connection = New Global.System.Data.Odbc.OdbcConnection()
-            Me._connection.ConnectionString = Global.LoanManagementSystem.My.MySettings.Default.ConnectionString
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.Odbc.OdbcCommand(0) {}
-            Me._commandCollection(0) = New Global.System.Data.Odbc.OdbcCommand()
-            Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT `ldgID`, `ProcessBy`, `Paymode`, `DepBank`, `CHKNo`, `CHKAmount`, `Refund`"& _ 
-                ", `CustomerCode`, `LGNo`, `ReceiptNo`, `PayDate`, `PrinAmount`, `PrinPayment`, `"& _ 
-                "PrinBalance`, `InterestAmount`, `InterestPayment`, `TotalPayable`, `Penalty`, `S"& _ 
-                "tatus` FROM `paymentledger`"
-            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As dtsCollection.paymentledgerDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As dtsCollection.paymentledgerDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As dtsCollection.paymentledgerDataTable = New dtsCollection.paymentledgerDataTable()
-            Me.Adapter.Fill(dataTable)
-            Return dataTable
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As dtsCollection.paymentledgerDataTable) As Integer
-            Return Me.Adapter.Update(dataTable)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As dtsCollection) As Integer
-            Return Me.Adapter.Update(dataSet, "paymentledger")
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(dataRows)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete( _
-                    ByVal Original_ldgID As Integer,  _
-                    ByVal Original_ProcessBy As String,  _
-                    ByVal Original_Paymode As String,  _
-                    ByVal Original_DepBank As String,  _
-                    ByVal Original_CHKNo As String,  _
-                    ByVal Original_CHKAmount As Decimal,  _
-                    ByVal Original_Refund As Decimal,  _
-                    ByVal Original_CustomerCode As String,  _
-                    ByVal Original_LGNo As String,  _
-                    ByVal Original_ReceiptNo As String,  _
-                    ByVal Original_PayDate As Date,  _
-                    ByVal Original_PrinAmount As Decimal,  _
-                    ByVal Original_PrinPayment As Decimal,  _
-                    ByVal Original_PrinBalance As Decimal,  _
-                    ByVal Original_InterestAmount As Decimal,  _
-                    ByVal Original_InterestPayment As Decimal,  _
-                    ByVal Original_TotalPayable As Decimal,  _
-                    ByVal Original_Penalty As Decimal,  _
-                    ByVal Original_Status As String) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(0,Object)
-            Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_ldgID,Integer)
-            If (Original_ProcessBy Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_ProcessBy")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_ProcessBy,String)
-            End If
-            If (Original_Paymode Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_Paymode")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_Paymode,String)
-            End If
-            If (Original_DepBank Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_DepBank")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_DepBank,String)
-            End If
-            If (Original_CHKNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_CHKNo")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_CHKNo,String)
-            End If
-            Me.Adapter.DeleteCommand.Parameters(9).Value = CType(0,Object)
-            Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_CHKAmount,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0,Object)
-            Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_Refund,Decimal)
-            If (Original_CustomerCode Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_CustomerCode")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(Original_CustomerCode,String)
-            End If
-            If (Original_LGNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_LGNo")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_LGNo,String)
-            End If
-            If (Original_ReceiptNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_ReceiptNo")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_ReceiptNo,String)
-            End If
-            Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0,Object)
-            Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_PayDate,Date)
-            Me.Adapter.DeleteCommand.Parameters(19).Value = CType(0,Object)
-            Me.Adapter.DeleteCommand.Parameters(20).Value = CType(Original_PrinAmount,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(21).Value = CType(0,Object)
-            Me.Adapter.DeleteCommand.Parameters(22).Value = CType(Original_PrinPayment,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(23).Value = CType(0,Object)
-            Me.Adapter.DeleteCommand.Parameters(24).Value = CType(Original_PrinBalance,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(25).Value = CType(0,Object)
-            Me.Adapter.DeleteCommand.Parameters(26).Value = CType(Original_InterestAmount,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(27).Value = CType(0,Object)
-            Me.Adapter.DeleteCommand.Parameters(28).Value = CType(Original_InterestPayment,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(29).Value = CType(0,Object)
-            Me.Adapter.DeleteCommand.Parameters(30).Value = CType(Original_TotalPayable,Decimal)
-            Me.Adapter.DeleteCommand.Parameters(31).Value = CType(0,Object)
-            Me.Adapter.DeleteCommand.Parameters(32).Value = CType(Original_Penalty,Decimal)
-            If (Original_Status Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_Status")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(33).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(34).Value = CType(Original_Status,String)
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert( _
-                    ByVal ProcessBy As String,  _
-                    ByVal Paymode As String,  _
-                    ByVal DepBank As String,  _
-                    ByVal CHKNo As String,  _
-                    ByVal CHKAmount As Decimal,  _
-                    ByVal Refund As Decimal,  _
-                    ByVal CustomerCode As String,  _
-                    ByVal LGNo As String,  _
-                    ByVal ReceiptNo As String,  _
-                    ByVal PayDate As Date,  _
-                    ByVal PrinAmount As Decimal,  _
-                    ByVal PrinPayment As Decimal,  _
-                    ByVal PrinBalance As Decimal,  _
-                    ByVal InterestAmount As Decimal,  _
-                    ByVal InterestPayment As Decimal,  _
-                    ByVal TotalPayable As Decimal,  _
-                    ByVal Penalty As Decimal,  _
-                    ByVal Status As String) As Integer
-            If (ProcessBy Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("ProcessBy")
-            Else
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(ProcessBy,String)
-            End If
-            If (Paymode Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Paymode")
-            Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(Paymode,String)
-            End If
-            If (DepBank Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("DepBank")
-            Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(DepBank,String)
-            End If
-            If (CHKNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("CHKNo")
-            Else
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(CHKNo,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(4).Value = CType(CHKAmount,Decimal)
-            Me.Adapter.InsertCommand.Parameters(5).Value = CType(Refund,Decimal)
-            If (CustomerCode Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("CustomerCode")
-            Else
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(CustomerCode,String)
-            End If
-            If (LGNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("LGNo")
-            Else
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(LGNo,String)
-            End If
-            If (ReceiptNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("ReceiptNo")
-            Else
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(ReceiptNo,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(9).Value = CType(PayDate,Date)
-            Me.Adapter.InsertCommand.Parameters(10).Value = CType(PrinAmount,Decimal)
-            Me.Adapter.InsertCommand.Parameters(11).Value = CType(PrinPayment,Decimal)
-            Me.Adapter.InsertCommand.Parameters(12).Value = CType(PrinBalance,Decimal)
-            Me.Adapter.InsertCommand.Parameters(13).Value = CType(InterestAmount,Decimal)
-            Me.Adapter.InsertCommand.Parameters(14).Value = CType(InterestPayment,Decimal)
-            Me.Adapter.InsertCommand.Parameters(15).Value = CType(TotalPayable,Decimal)
-            Me.Adapter.InsertCommand.Parameters(16).Value = CType(Penalty,Decimal)
-            If (Status Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Status")
-            Else
-                Me.Adapter.InsertCommand.Parameters(17).Value = CType(Status,String)
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal ProcessBy As String,  _
-                    ByVal Paymode As String,  _
-                    ByVal DepBank As String,  _
-                    ByVal CHKNo As String,  _
-                    ByVal CHKAmount As Decimal,  _
-                    ByVal Refund As Decimal,  _
-                    ByVal CustomerCode As String,  _
-                    ByVal LGNo As String,  _
-                    ByVal ReceiptNo As String,  _
-                    ByVal PayDate As Date,  _
-                    ByVal PrinAmount As Decimal,  _
-                    ByVal PrinPayment As Decimal,  _
-                    ByVal PrinBalance As Decimal,  _
-                    ByVal InterestAmount As Decimal,  _
-                    ByVal InterestPayment As Decimal,  _
-                    ByVal TotalPayable As Decimal,  _
-                    ByVal Penalty As Decimal,  _
-                    ByVal Status As String,  _
-                    ByVal Original_ldgID As Integer,  _
-                    ByVal Original_ProcessBy As String,  _
-                    ByVal Original_Paymode As String,  _
-                    ByVal Original_DepBank As String,  _
-                    ByVal Original_CHKNo As String,  _
-                    ByVal Original_CHKAmount As Decimal,  _
-                    ByVal Original_Refund As Decimal,  _
-                    ByVal Original_CustomerCode As String,  _
-                    ByVal Original_LGNo As String,  _
-                    ByVal Original_ReceiptNo As String,  _
-                    ByVal Original_PayDate As Date,  _
-                    ByVal Original_PrinAmount As Decimal,  _
-                    ByVal Original_PrinPayment As Decimal,  _
-                    ByVal Original_PrinBalance As Decimal,  _
-                    ByVal Original_InterestAmount As Decimal,  _
-                    ByVal Original_InterestPayment As Decimal,  _
-                    ByVal Original_TotalPayable As Decimal,  _
-                    ByVal Original_Penalty As Decimal,  _
-                    ByVal Original_Status As String) As Integer
-            If (ProcessBy Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("ProcessBy")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(ProcessBy,String)
-            End If
-            If (Paymode Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Paymode")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Paymode,String)
-            End If
-            If (DepBank Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("DepBank")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(DepBank,String)
-            End If
-            If (CHKNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("CHKNo")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(CHKNo,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(4).Value = CType(CHKAmount,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Refund,Decimal)
-            If (CustomerCode Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("CustomerCode")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(CustomerCode,String)
-            End If
-            If (LGNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("LGNo")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(LGNo,String)
-            End If
-            If (ReceiptNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("ReceiptNo")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(ReceiptNo,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(PayDate,Date)
-            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(PrinAmount,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(PrinPayment,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(12).Value = CType(PrinBalance,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(InterestAmount,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(14).Value = CType(InterestPayment,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(15).Value = CType(TotalPayable,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Penalty,Decimal)
-            If (Status Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Status")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Status,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_ldgID,Integer)
-            If (Original_ProcessBy Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_ProcessBy")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_ProcessBy,String)
-            End If
-            If (Original_Paymode Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_Paymode")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_Paymode,String)
-            End If
-            If (Original_DepBank Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_DepBank")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_DepBank,String)
-            End If
-            If (Original_CHKNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_CHKNo")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_CHKNo,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_CHKAmount,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_Refund,Decimal)
-            If (Original_CustomerCode Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_CustomerCode")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(Original_CustomerCode,String)
-            End If
-            If (Original_LGNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_LGNo")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(Original_LGNo,String)
-            End If
-            If (Original_ReceiptNo Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_ReceiptNo")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(Original_ReceiptNo,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(35).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(36).Value = CType(Original_PayDate,Date)
-            Me.Adapter.UpdateCommand.Parameters(37).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(38).Value = CType(Original_PrinAmount,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(39).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(40).Value = CType(Original_PrinPayment,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(41).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(42).Value = CType(Original_PrinBalance,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(43).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(44).Value = CType(Original_InterestAmount,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(45).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(46).Value = CType(Original_InterestPayment,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(47).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(48).Value = CType(Original_TotalPayable,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(49).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(50).Value = CType(Original_Penalty,Decimal)
-            If (Original_Status Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_Status")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(51).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(52).Value = CType(Original_Status,String)
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
-                End If
-            End Try
-        End Function
-    End Class
-    
-    '''<summary>
     '''TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     '''</summary>
     <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -7257,11 +4982,9 @@ Namespace dtsCollectionTableAdapters
         
         Private _updateOrder As UpdateOrderOption
         
-        Private _clientaccountTableAdapter As clientaccountTableAdapter
-        
-        Private _loanaccountTableAdapter As loanaccountTableAdapter
-        
         Private _paymentledgerTableAdapter As paymentledgerTableAdapter
+        
+        Private _clientaccountTableAdapter As clientaccountTableAdapter
         
         Private _backupDataSetBeforeUpdate As Boolean
         
@@ -7283,40 +5006,26 @@ Namespace dtsCollectionTableAdapters
          Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
             "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property clientaccountTableAdapter() As clientaccountTableAdapter
-            Get
-                Return Me._clientaccountTableAdapter
-            End Get
-            Set
-                Me._clientaccountTableAdapter = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
-            "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property loanaccountTableAdapter() As loanaccountTableAdapter
-            Get
-                Return Me._loanaccountTableAdapter
-            End Get
-            Set
-                Me._loanaccountTableAdapter = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
-            "a", "System.Drawing.Design.UITypeEditor")>  _
         Public Property paymentledgerTableAdapter() As paymentledgerTableAdapter
             Get
                 Return Me._paymentledgerTableAdapter
             End Get
             Set
                 Me._paymentledgerTableAdapter = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
+            "a", "System.Drawing.Design.UITypeEditor")>  _
+        Public Property clientaccountTableAdapter() As clientaccountTableAdapter
+            Get
+                Return Me._clientaccountTableAdapter
+            End Get
+            Set
+                Me._clientaccountTableAdapter = value
             End Set
         End Property
         
@@ -7339,17 +5048,13 @@ Namespace dtsCollectionTableAdapters
                 If (Not (Me._connection) Is Nothing) Then
                     Return Me._connection
                 End If
-                If ((Not (Me._clientaccountTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._clientaccountTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._clientaccountTableAdapter.Connection
-                End If
-                If ((Not (Me._loanaccountTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._loanaccountTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._loanaccountTableAdapter.Connection
-                End If
                 If ((Not (Me._paymentledgerTableAdapter) Is Nothing)  _
                             AndAlso (Not (Me._paymentledgerTableAdapter.Connection) Is Nothing)) Then
                     Return Me._paymentledgerTableAdapter.Connection
+                End If
+                If ((Not (Me._clientaccountTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._clientaccountTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._clientaccountTableAdapter.Connection
                 End If
                 Return Nothing
             End Get
@@ -7364,13 +5069,10 @@ Namespace dtsCollectionTableAdapters
         Public ReadOnly Property TableAdapterInstanceCount() As Integer
             Get
                 Dim count As Integer = 0
-                If (Not (Me._clientaccountTableAdapter) Is Nothing) Then
-                    count = (count + 1)
-                End If
-                If (Not (Me._loanaccountTableAdapter) Is Nothing) Then
-                    count = (count + 1)
-                End If
                 If (Not (Me._paymentledgerTableAdapter) Is Nothing) Then
+                    count = (count + 1)
+                End If
+                If (Not (Me._clientaccountTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
                 Return count
@@ -7384,30 +5086,21 @@ Namespace dtsCollectionTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Private Function UpdateUpdatedRows(ByVal dataSet As dtsCollection, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow), ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._clientaccountTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.clientaccount.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._clientaccountTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._loanaccountTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.loanaccount.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._loanaccountTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
             If (Not (Me._paymentledgerTableAdapter) Is Nothing) Then
                 Dim updatedRows() As Global.System.Data.DataRow = dataSet.paymentledger.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
                     result = (result + Me._paymentledgerTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._clientaccountTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.clientaccount.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._clientaccountTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -7421,27 +5114,19 @@ Namespace dtsCollectionTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Private Function UpdateInsertedRows(ByVal dataSet As dtsCollection, ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._clientaccountTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.clientaccount.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._clientaccountTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
-            If (Not (Me._loanaccountTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.loanaccount.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._loanaccountTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
             If (Not (Me._paymentledgerTableAdapter) Is Nothing) Then
                 Dim addedRows() As Global.System.Data.DataRow = dataSet.paymentledger.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
                     result = (result + Me._paymentledgerTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._clientaccountTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.clientaccount.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._clientaccountTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -7455,27 +5140,19 @@ Namespace dtsCollectionTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Private Function UpdateDeletedRows(ByVal dataSet As dtsCollection, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._paymentledgerTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.paymentledger.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._paymentledgerTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._loanaccountTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.loanaccount.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._loanaccountTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
             If (Not (Me._clientaccountTableAdapter) Is Nothing) Then
                 Dim deletedRows() As Global.System.Data.DataRow = dataSet.clientaccount.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
                     result = (result + Me._clientaccountTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._paymentledgerTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.paymentledger.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._paymentledgerTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -7520,18 +5197,13 @@ Namespace dtsCollectionTableAdapters
             If (dataSet.HasChanges = false) Then
                 Return 0
             End If
-            If ((Not (Me._clientaccountTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._clientaccountTableAdapter.Connection) = false)) Then
-                Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
-                        "tring.")
-            End If
-            If ((Not (Me._loanaccountTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._loanaccountTableAdapter.Connection) = false)) Then
-                Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
-                        "tring.")
-            End If
             If ((Not (Me._paymentledgerTableAdapter) Is Nothing)  _
                         AndAlso (Me.MatchTableAdapterConnection(Me._paymentledgerTableAdapter.Connection) = false)) Then
+                Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
+                        "tring.")
+            End If
+            If ((Not (Me._clientaccountTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._clientaccountTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
@@ -7567,24 +5239,6 @@ Namespace dtsCollectionTableAdapters
             Try 
                 '---- Prepare for update -----------
                 '
-                If (Not (Me._clientaccountTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._clientaccountTableAdapter, Me._clientaccountTableAdapter.Connection)
-                    Me._clientaccountTableAdapter.Connection = CType(workConnection,Global.System.Data.Odbc.OdbcConnection)
-                    Me._clientaccountTableAdapter.Transaction = CType(workTransaction,Global.System.Data.Odbc.OdbcTransaction)
-                    If Me._clientaccountTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._clientaccountTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._clientaccountTableAdapter.Adapter)
-                    End If
-                End If
-                If (Not (Me._loanaccountTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._loanaccountTableAdapter, Me._loanaccountTableAdapter.Connection)
-                    Me._loanaccountTableAdapter.Connection = CType(workConnection,Global.System.Data.Odbc.OdbcConnection)
-                    Me._loanaccountTableAdapter.Transaction = CType(workTransaction,Global.System.Data.Odbc.OdbcTransaction)
-                    If Me._loanaccountTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._loanaccountTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._loanaccountTableAdapter.Adapter)
-                    End If
-                End If
                 If (Not (Me._paymentledgerTableAdapter) Is Nothing) Then
                     revertConnections.Add(Me._paymentledgerTableAdapter, Me._paymentledgerTableAdapter.Connection)
                     Me._paymentledgerTableAdapter.Connection = CType(workConnection,Global.System.Data.Odbc.OdbcConnection)
@@ -7592,6 +5246,15 @@ Namespace dtsCollectionTableAdapters
                     If Me._paymentledgerTableAdapter.Adapter.AcceptChangesDuringUpdate Then
                         Me._paymentledgerTableAdapter.Adapter.AcceptChangesDuringUpdate = false
                         adaptersWithAcceptChangesDuringUpdate.Add(Me._paymentledgerTableAdapter.Adapter)
+                    End If
+                End If
+                If (Not (Me._clientaccountTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._clientaccountTableAdapter, Me._clientaccountTableAdapter.Connection)
+                    Me._clientaccountTableAdapter.Connection = CType(workConnection,Global.System.Data.Odbc.OdbcConnection)
+                    Me._clientaccountTableAdapter.Transaction = CType(workTransaction,Global.System.Data.Odbc.OdbcTransaction)
+                    If Me._clientaccountTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._clientaccountTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._clientaccountTableAdapter.Adapter)
                     End If
                 End If
                 '
@@ -7654,17 +5317,13 @@ Namespace dtsCollectionTableAdapters
                 If workConnOpened Then
                     workConnection.Close
                 End If
-                If (Not (Me._clientaccountTableAdapter) Is Nothing) Then
-                    Me._clientaccountTableAdapter.Connection = CType(revertConnections(Me._clientaccountTableAdapter),Global.System.Data.Odbc.OdbcConnection)
-                    Me._clientaccountTableAdapter.Transaction = Nothing
-                End If
-                If (Not (Me._loanaccountTableAdapter) Is Nothing) Then
-                    Me._loanaccountTableAdapter.Connection = CType(revertConnections(Me._loanaccountTableAdapter),Global.System.Data.Odbc.OdbcConnection)
-                    Me._loanaccountTableAdapter.Transaction = Nothing
-                End If
                 If (Not (Me._paymentledgerTableAdapter) Is Nothing) Then
                     Me._paymentledgerTableAdapter.Connection = CType(revertConnections(Me._paymentledgerTableAdapter),Global.System.Data.Odbc.OdbcConnection)
                     Me._paymentledgerTableAdapter.Transaction = Nothing
+                End If
+                If (Not (Me._clientaccountTableAdapter) Is Nothing) Then
+                    Me._clientaccountTableAdapter.Connection = CType(revertConnections(Me._clientaccountTableAdapter),Global.System.Data.Odbc.OdbcConnection)
+                    Me._clientaccountTableAdapter.Transaction = Nothing
                 End If
                 If (0 < adaptersWithAcceptChangesDuringUpdate.Count) Then
                     Dim adapters((adaptersWithAcceptChangesDuringUpdate.Count) - 1) As Global.System.Data.Common.DataAdapter
