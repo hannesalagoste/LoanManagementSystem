@@ -29,7 +29,6 @@ Partial Class frmMain
         Me.LoanListToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClientListToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AreaSettingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RecieptToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoanReleaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CollectionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -48,7 +47,7 @@ Partial Class frmMain
         'MenuStrip
         '
         Me.MenuStrip.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserSettingToolStripMenuItem, Me.LoanToolStripMenuItem, Me.ClientListToolStripMenuItem, Me.AreaSettingToolStripMenuItem, Me.RecieptToolStripMenuItem, Me.ReportsToolStripMenuItem})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserSettingToolStripMenuItem, Me.LoanToolStripMenuItem, Me.ClientListToolStripMenuItem, Me.AreaSettingToolStripMenuItem, Me.ReportsToolStripMenuItem})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Padding = New System.Windows.Forms.Padding(7, 3, 0, 3)
@@ -92,12 +91,6 @@ Partial Class frmMain
         Me.AreaSettingToolStripMenuItem.Name = "AreaSettingToolStripMenuItem"
         Me.AreaSettingToolStripMenuItem.Size = New System.Drawing.Size(95, 21)
         Me.AreaSettingToolStripMenuItem.Text = "Area Setting"
-        '
-        'RecieptToolStripMenuItem
-        '
-        Me.RecieptToolStripMenuItem.Name = "RecieptToolStripMenuItem"
-        Me.RecieptToolStripMenuItem.Size = New System.Drawing.Size(68, 21)
-        Me.RecieptToolStripMenuItem.Text = "Reciept "
         '
         'ReportsToolStripMenuItem
         '
@@ -236,7 +229,6 @@ Partial Class frmMain
     Friend WithEvents lblUserLogin As Label
     Friend WithEvents CreateLoanToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LoanListToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents RecieptToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReportsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LoanReleaseToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CollectionToolStripMenuItem As ToolStripMenuItem

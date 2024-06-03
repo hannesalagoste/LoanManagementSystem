@@ -25,7 +25,7 @@
         frmLoanList.ShowDialog()
     End Sub
 
-    Private Sub RecieptToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RecieptToolStripMenuItem.Click
+    Private Sub RecieptToolStripMenuItem_Click(sender As Object, e As EventArgs) 
         frmLoanPaymentReport.ShowDialog()
     End Sub
 

@@ -5,16 +5,11 @@ Public Class frmCollectionReport
         Try
             ConnDB()
             Dim dtReceiptNo As New DataTable
-            sqL = "select * from paymentledger WHERE ReceiptNo IS NOT NULL AND ReceiptNo <> '' "
+            sqL = "SELECT  * from paymentledger WHERE ReceiptNo IS NOT NULL AND ReceiptNo <> '' ORDER BY PayDate ASC"
             cmd = New MySqlCommand(sqL, conn)
             da = New MySqlDataAdapter(cmd)
             da.Fill(dtReceiptNo)
 
-            Dim dtloanaccount As New DataTable
-            sqL = "select * from loanaccount"
-            cmd = New MySqlCommand(sqL, conn)
-            da = New MySqlDataAdapter(cmd)
-            da.Fill(dtloanaccount)
 
             Dim dtclientaccount As New DataTable
             sqL = "select * from clientaccount "
@@ -26,7 +21,6 @@ Public Class frmCollectionReport
             Dim report As New rptCollection
             report.Load()
             report.Database.Tables("paymentledger").SetDataSource(dtReceiptNo)
-            report.Database.Tables("loanaccount").SetDataSource(dtloanaccount)
             report.Database.Tables("clientaccount").SetDataSource(dtclientaccount)
             crvCollection.ReportSource = report
             crvCollection.Refresh()
