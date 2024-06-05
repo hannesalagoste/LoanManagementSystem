@@ -253,7 +253,7 @@
     <Compile Include="Reports\Collection\frmCollectionReport.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\Payment\rptCollection.vb">
+    <Compile Include="Reports\Collection\rptCollection.vb">
       <DependentUpon>rptCollection.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
@@ -339,7 +339,7 @@
     <EmbeddedResource Include="Reports\Collection\frmCollectionReport.resx">
       <DependentUpon>frmCollectionReport.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Payment\rptCollection.rpt">
+    <EmbeddedResource Include="Reports\Collection\rptCollection.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCollection.vb</LastGenOutput>
     </EmbeddedResource>
