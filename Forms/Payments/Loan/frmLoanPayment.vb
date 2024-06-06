@@ -1,4 +1,5 @@
-﻿Imports Google.Protobuf.WellKnownTypes
+﻿Imports System.Web.Security
+Imports Google.Protobuf.WellKnownTypes
 Imports MySql.Data.MySqlClient
 
 Public Class frmLoanPayment
@@ -9,6 +10,9 @@ Public Class frmLoanPayment
             dueDateList()
             txtProcessor.Text = userLoginName
             GetLatestPrincipalBalance()
+            If txtLedgerNo.Text = "" Then
+                lblOldPrincipal.Text = "00.00"
+            End If
             selectedLedgerNo()
             AutoincrementReceiptNo()
         Catch ex As Exception
@@ -48,6 +52,7 @@ Public Class frmLoanPayment
         Try
             Dim monthlyAmort As Decimal
             Dim monthlyInterest As Decimal
+
             Dim OldPrincipal As Decimal = lblOldPrincipal.Text
             ConnDB()
             sqL = "select * from loanaccount where LedgerNo = '" & txtLedgerNo.Text & "' "
@@ -135,7 +140,7 @@ Public Class frmLoanPayment
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        Close()
+        Me.Close()
     End Sub
 
     Private Sub btnPayNow_Click(sender As Object, e As EventArgs) Handles btnPayNow.Click
