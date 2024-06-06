@@ -22,29 +22,30 @@ Partial Class frmLoanPayment
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.btnSearch = New System.Windows.Forms.Button()
         Me.ckbReceipt = New System.Windows.Forms.CheckBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.txtDepBank = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.cboPaymode = New System.Windows.Forms.ComboBox()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.dtpDate = New System.Windows.Forms.DateTimePicker()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtDocNo = New System.Windows.Forms.TextBox()
         Me.txtCustomerName = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtCusCode = New System.Windows.Forms.TextBox()
+        Me.txtLedgerNo = New System.Windows.Forms.TextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.dtpDate = New System.Windows.Forms.DateTimePicker()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.txtLoanType = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txtInterestRate = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtChargeCode = New System.Windows.Forms.TextBox()
-        Me.txtLedgerNo = New System.Windows.Forms.TextBox()
-        Me.Label11 = New System.Windows.Forms.Label()
         Me.dtgvDueDateList = New System.Windows.Forms.DataGridView()
         Me.DueDateLID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -54,7 +55,7 @@ Partial Class frmLoanPayment
         Me.DueDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.lblLoanBalance = New System.Windows.Forms.Label()
-        Me.lblOldbalance = New System.Windows.Forms.Label()
+        Me.lblOldPrincipal = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.txtMonthlyPrincipal = New System.Windows.Forms.TextBox()
         Me.Label23 = New System.Windows.Forms.Label()
@@ -85,11 +86,9 @@ Partial Class frmLoanPayment
         Me.btnClose = New System.Windows.Forms.Button()
         Me.btnPayNow = New System.Windows.Forms.Button()
         Me.btnCompute = New System.Windows.Forms.Button()
-        Me.lblOldPrincipal = New System.Windows.Forms.Label()
         Me.lblStatus = New System.Windows.Forms.Label()
         Me.lblDueDate = New System.Windows.Forms.Label()
         Me.lblSelectDate = New System.Windows.Forms.Label()
-        Me.btnSearch = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dtgvDueDateList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
@@ -118,6 +117,18 @@ Partial Class frmLoanPayment
         Me.GroupBox1.Size = New System.Drawing.Size(627, 179)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
+        '
+        'btnSearch
+        '
+        Me.btnSearch.BackColor = System.Drawing.Color.DodgerBlue
+        Me.btnSearch.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSearch.ForeColor = System.Drawing.Color.White
+        Me.btnSearch.Location = New System.Drawing.Point(273, 35)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(61, 35)
+        Me.btnSearch.TabIndex = 34
+        Me.btnSearch.Text = "SEARCH"
+        Me.btnSearch.UseVisualStyleBackColor = False
         '
         'ckbReceipt
         '
@@ -167,27 +178,6 @@ Partial Class frmLoanPayment
         Me.cboPaymode.Name = "cboPaymode"
         Me.cboPaymode.Size = New System.Drawing.Size(289, 25)
         Me.cboPaymode.TabIndex = 26
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(13, 41)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(31, 15)
-        Me.Label13.TabIndex = 23
-        Me.Label13.Text = "Date"
-        '
-        'dtpDate
-        '
-        Me.dtpDate.CalendarMonthBackground = System.Drawing.Color.White
-        Me.dtpDate.Enabled = False
-        Me.dtpDate.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpDate.Location = New System.Drawing.Point(16, 61)
-        Me.dtpDate.Name = "dtpDate"
-        Me.dtpDate.Size = New System.Drawing.Size(121, 25)
-        Me.dtpDate.TabIndex = 22
         '
         'Label2
         '
@@ -248,6 +238,47 @@ Partial Class frmLoanPayment
         Me.txtCusCode.Name = "txtCusCode"
         Me.txtCusCode.Size = New System.Drawing.Size(288, 25)
         Me.txtCusCode.TabIndex = 15
+        '
+        'txtLedgerNo
+        '
+        Me.txtLedgerNo.BackColor = System.Drawing.Color.White
+        Me.txtLedgerNo.Enabled = False
+        Me.txtLedgerNo.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtLedgerNo.Location = New System.Drawing.Point(13, 41)
+        Me.txtLedgerNo.Name = "txtLedgerNo"
+        Me.txtLedgerNo.Size = New System.Drawing.Size(255, 25)
+        Me.txtLedgerNo.TabIndex = 19
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Location = New System.Drawing.Point(10, 22)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(68, 15)
+        Me.Label11.TabIndex = 18
+        Me.Label11.Text = "Ledger No."
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(13, 41)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(31, 15)
+        Me.Label13.TabIndex = 23
+        Me.Label13.Text = "Date"
+        '
+        'dtpDate
+        '
+        Me.dtpDate.CalendarMonthBackground = System.Drawing.Color.White
+        Me.dtpDate.Enabled = False
+        Me.dtpDate.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpDate.Location = New System.Drawing.Point(16, 61)
+        Me.dtpDate.Name = "dtpDate"
+        Me.dtpDate.Size = New System.Drawing.Size(121, 25)
+        Me.dtpDate.TabIndex = 22
         '
         'Label22
         '
@@ -310,26 +341,6 @@ Partial Class frmLoanPayment
         Me.txtChargeCode.TabIndex = 25
         Me.txtChargeCode.Text = "L/R"
         '
-        'txtLedgerNo
-        '
-        Me.txtLedgerNo.BackColor = System.Drawing.Color.White
-        Me.txtLedgerNo.Enabled = False
-        Me.txtLedgerNo.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtLedgerNo.Location = New System.Drawing.Point(13, 41)
-        Me.txtLedgerNo.Name = "txtLedgerNo"
-        Me.txtLedgerNo.Size = New System.Drawing.Size(255, 25)
-        Me.txtLedgerNo.TabIndex = 19
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(10, 22)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(68, 15)
-        Me.Label11.TabIndex = 18
-        Me.Label11.Text = "Ledger No."
-        '
         'dtgvDueDateList
         '
         Me.dtgvDueDateList.AllowUserToAddRows = False
@@ -340,8 +351,8 @@ Partial Class frmLoanPayment
         Me.dtgvDueDateList.Location = New System.Drawing.Point(658, 36)
         Me.dtgvDueDateList.Name = "dtgvDueDateList"
         Me.dtgvDueDateList.RowHeadersVisible = False
-        DataGridViewCellStyle12.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtgvDueDateList.RowsDefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtgvDueDateList.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dtgvDueDateList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dtgvDueDateList.Size = New System.Drawing.Size(160, 558)
         Me.dtgvDueDateList.TabIndex = 16
@@ -390,7 +401,7 @@ Partial Class frmLoanPayment
         '
         Me.GroupBox2.Controls.Add(Me.lblLoanBalance)
         Me.GroupBox2.Controls.Add(Me.Label22)
-        Me.GroupBox2.Controls.Add(Me.lblOldbalance)
+        Me.GroupBox2.Controls.Add(Me.lblOldPrincipal)
         Me.GroupBox2.Controls.Add(Me.Label10)
         Me.GroupBox2.Controls.Add(Me.txtMonthlyPrincipal)
         Me.GroupBox2.Controls.Add(Me.Label13)
@@ -432,16 +443,16 @@ Partial Class frmLoanPayment
         Me.lblLoanBalance.TabIndex = 71
         Me.lblLoanBalance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lblOldbalance
+        'lblOldPrincipal
         '
-        Me.lblOldbalance.BackColor = System.Drawing.Color.Brown
-        Me.lblOldbalance.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblOldbalance.ForeColor = System.Drawing.Color.White
-        Me.lblOldbalance.Location = New System.Drawing.Point(214, 214)
-        Me.lblOldbalance.Name = "lblOldbalance"
-        Me.lblOldbalance.Size = New System.Drawing.Size(175, 25)
-        Me.lblOldbalance.TabIndex = 69
-        Me.lblOldbalance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblOldPrincipal.BackColor = System.Drawing.Color.Brown
+        Me.lblOldPrincipal.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOldPrincipal.ForeColor = System.Drawing.Color.White
+        Me.lblOldPrincipal.Location = New System.Drawing.Point(214, 214)
+        Me.lblOldPrincipal.Name = "lblOldPrincipal"
+        Me.lblOldPrincipal.Size = New System.Drawing.Size(175, 25)
+        Me.lblOldPrincipal.TabIndex = 69
+        Me.lblOldPrincipal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label10
         '
@@ -766,25 +777,13 @@ Partial Class frmLoanPayment
         Me.btnCompute.Text = "COMPUTE"
         Me.btnCompute.UseVisualStyleBackColor = False
         '
-        'lblOldPrincipal
-        '
-        Me.lblOldPrincipal.AutoSize = True
-        Me.lblOldPrincipal.BackColor = System.Drawing.Color.Red
-        Me.lblOldPrincipal.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblOldPrincipal.ForeColor = System.Drawing.Color.White
-        Me.lblOldPrincipal.Location = New System.Drawing.Point(655, 597)
-        Me.lblOldPrincipal.Name = "lblOldPrincipal"
-        Me.lblOldPrincipal.Size = New System.Drawing.Size(86, 17)
-        Me.lblOldPrincipal.TabIndex = 66
-        Me.lblOldPrincipal.Text = "Old Principal"
-        '
         'lblStatus
         '
         Me.lblStatus.AutoSize = True
         Me.lblStatus.BackColor = System.Drawing.Color.Red
         Me.lblStatus.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblStatus.ForeColor = System.Drawing.Color.White
-        Me.lblStatus.Location = New System.Drawing.Point(655, 617)
+        Me.lblStatus.Location = New System.Drawing.Point(655, 602)
         Me.lblStatus.Name = "lblStatus"
         Me.lblStatus.Size = New System.Drawing.Size(45, 17)
         Me.lblStatus.TabIndex = 67
@@ -796,7 +795,7 @@ Partial Class frmLoanPayment
         Me.lblDueDate.BackColor = System.Drawing.Color.Red
         Me.lblDueDate.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDueDate.ForeColor = System.Drawing.Color.White
-        Me.lblDueDate.Location = New System.Drawing.Point(655, 637)
+        Me.lblDueDate.Location = New System.Drawing.Point(655, 622)
         Me.lblDueDate.Name = "lblDueDate"
         Me.lblDueDate.Size = New System.Drawing.Size(66, 17)
         Me.lblDueDate.TabIndex = 68
@@ -813,18 +812,6 @@ Partial Class frmLoanPayment
         Me.lblSelectDate.TabIndex = 70
         Me.lblSelectDate.Text = "PLEASE SELECT DUE DATE"
         '
-        'btnSearch
-        '
-        Me.btnSearch.BackColor = System.Drawing.Color.DodgerBlue
-        Me.btnSearch.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSearch.ForeColor = System.Drawing.Color.White
-        Me.btnSearch.Location = New System.Drawing.Point(273, 35)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(61, 35)
-        Me.btnSearch.TabIndex = 34
-        Me.btnSearch.Text = "SEARCH"
-        Me.btnSearch.UseVisualStyleBackColor = False
-        '
         'frmLoanPayment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -834,7 +821,6 @@ Partial Class frmLoanPayment
         Me.Controls.Add(Me.lblSelectDate)
         Me.Controls.Add(Me.lblDueDate)
         Me.Controls.Add(Me.lblStatus)
-        Me.Controls.Add(Me.lblOldPrincipal)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnPayNow)
         Me.Controls.Add(Me.btnCompute)
@@ -908,7 +894,6 @@ Partial Class frmLoanPayment
     Friend WithEvents btnClose As Button
     Friend WithEvents btnPayNow As Button
     Friend WithEvents btnCompute As Button
-    Friend WithEvents lblOldPrincipal As Label
     Friend WithEvents lblStatus As Label
     Friend WithEvents lblDueDate As Label
     Friend WithEvents DueDateLID As DataGridViewTextBoxColumn
@@ -921,7 +906,7 @@ Partial Class frmLoanPayment
     Friend WithEvents Label22 As Label
     Friend WithEvents txtLoanType As TextBox
     Friend WithEvents Label23 As Label
-    Friend WithEvents lblOldbalance As Label
+    Friend WithEvents lblOldPrincipal As Label
     Friend WithEvents lblTotalPayablePay As Label
     Friend WithEvents lblLoanBalance As Label
     Friend WithEvents lblSelectDate As Label

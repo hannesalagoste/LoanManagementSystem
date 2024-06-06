@@ -10,16 +10,17 @@ Public Class frmLoanPayment
             dueDateList()
             txtProcessor.Text = userLoginName
             GetLatestPrincipalBalance()
-            If txtLedgerNo.Text = "" Then
-                lblOldPrincipal.Text = "00.00"
-            End If
             selectedLedgerNo()
             AutoincrementReceiptNo()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation)
         End Try
     End Sub
-
+    Public Sub loadAll()
+        'dueDateList()
+        GetLatestPrincipalBalance()
+        selectedLedgerNo()
+    End Sub
 
     Private Sub AutoincrementReceiptNo()
         txtDocNo.Text = ""
@@ -52,7 +53,9 @@ Public Class frmLoanPayment
         Try
             Dim monthlyAmort As Decimal
             Dim monthlyInterest As Decimal
-
+            If txtLedgerNo.Text = "" Then
+                lblOldPrincipal.Text = "00.00"
+            End If
             Dim OldPrincipal As Decimal = lblOldPrincipal.Text
             ConnDB()
             sqL = "select * from loanaccount where LedgerNo = '" & txtLedgerNo.Text & "' "
@@ -83,7 +86,7 @@ Public Class frmLoanPayment
             End If
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Exclamation)
+            ' MsgBox(ex.Message, MsgBoxStyle.Exclamation)
         End Try
     End Sub
 
@@ -104,7 +107,7 @@ Public Class frmLoanPayment
             myReader = cmd.ExecuteReader()
             If myReader.Read Then
                 lblOldPrincipal.Text = myReader("PrinBalance")
-                lblOldbalance.Text = Convert.ToDecimal(myReader("PrinBalance")).ToString("#,##0.00")
+                lblOldPrincipal.Text = Convert.ToDecimal(myReader("PrinBalance")).ToString("#,##0.00")
             End If
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation)
@@ -527,4 +530,6 @@ Public Class frmLoanPayment
         End Try
 
     End Sub
+
+
 End Class
