@@ -32,38 +32,39 @@ Partial Class frmLogin
         '
         'txtUsername
         '
-        Me.txtUsername.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtUsername.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtUsername.Location = New System.Drawing.Point(40, 74)
         Me.txtUsername.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtUsername.Name = "txtUsername"
-        Me.txtUsername.Size = New System.Drawing.Size(260, 29)
+        Me.txtUsername.Size = New System.Drawing.Size(260, 27)
         Me.txtUsername.TabIndex = 0
         '
         'txtPassword
         '
+        Me.txtPassword.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPassword.Location = New System.Drawing.Point(40, 141)
         Me.txtPassword.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtPassword.Name = "txtPassword"
-        Me.txtPassword.Size = New System.Drawing.Size(260, 29)
+        Me.txtPassword.Size = New System.Drawing.Size(260, 27)
         Me.txtPassword.TabIndex = 1
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(37, 49)
+        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(37, 54)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(86, 20)
+        Me.Label1.Size = New System.Drawing.Size(74, 17)
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "User Name"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(37, 117)
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(37, 121)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(73, 20)
+        Me.Label2.Size = New System.Drawing.Size(64, 17)
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "Password"
         '
@@ -75,9 +76,9 @@ Partial Class frmLogin
         Me.btnLogin.Location = New System.Drawing.Point(125, 182)
         Me.btnLogin.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnLogin.Name = "btnLogin"
-        Me.btnLogin.Size = New System.Drawing.Size(84, 49)
+        Me.btnLogin.Size = New System.Drawing.Size(84, 40)
         Me.btnLogin.TabIndex = 4
-        Me.btnLogin.Text = "LOGIN"
+        Me.btnLogin.Text = "Login"
         Me.btnLogin.UseVisualStyleBackColor = False
         '
         'btnCancel
@@ -88,9 +89,9 @@ Partial Class frmLogin
         Me.btnCancel.Location = New System.Drawing.Point(215, 182)
         Me.btnCancel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(84, 49)
+        Me.btnCancel.Size = New System.Drawing.Size(84, 40)
         Me.btnCancel.TabIndex = 5
-        Me.btnCancel.Text = "CANCEL"
+        Me.btnCancel.Text = "Close"
         Me.btnCancel.UseVisualStyleBackColor = False
         '
         'frmLogin
@@ -98,7 +99,7 @@ Partial Class frmLogin
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 21.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(335, 258)
+        Me.ClientSize = New System.Drawing.Size(317, 246)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnLogin)
         Me.Controls.Add(Me.Label2)

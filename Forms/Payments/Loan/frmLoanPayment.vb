@@ -1,4 +1,5 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports Google.Protobuf.WellKnownTypes
+Imports MySql.Data.MySqlClient
 
 Public Class frmLoanPayment
     Dim paymentLoanLedgerClass As New clsLoanPayment
@@ -12,9 +13,7 @@ Public Class frmLoanPayment
             AutoincrementReceiptNo()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation)
-
         End Try
-
     End Sub
 
 
@@ -46,7 +45,6 @@ Public Class frmLoanPayment
 
 
     Public Sub selectedLedgerNo()
-
         Try
             Dim monthlyAmort As Decimal
             Dim monthlyInterest As Decimal
@@ -515,5 +513,13 @@ Public Class frmLoanPayment
         End Try
     End Sub
 
-   
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        Try
+            frmLedgerList.Show()
+            Me.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Exclamation)
+        End Try
+
+    End Sub
 End Class

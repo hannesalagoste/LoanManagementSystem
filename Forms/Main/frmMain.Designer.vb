@@ -40,6 +40,9 @@ Partial Class frmMain
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.PaymentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LoanPaymentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OtherPaymentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -47,7 +50,7 @@ Partial Class frmMain
         'MenuStrip
         '
         Me.MenuStrip.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserSettingToolStripMenuItem, Me.LoanToolStripMenuItem, Me.ClientListToolStripMenuItem, Me.AreaSettingToolStripMenuItem, Me.ReportsToolStripMenuItem})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserSettingToolStripMenuItem, Me.LoanToolStripMenuItem, Me.ClientListToolStripMenuItem, Me.AreaSettingToolStripMenuItem, Me.ReportsToolStripMenuItem, Me.PaymentToolStripMenuItem})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Padding = New System.Windows.Forms.Padding(7, 3, 0, 3)
@@ -191,6 +194,25 @@ Partial Class frmMain
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "User :"
         '
+        'PaymentToolStripMenuItem
+        '
+        Me.PaymentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoanPaymentToolStripMenuItem, Me.OtherPaymentToolStripMenuItem})
+        Me.PaymentToolStripMenuItem.Name = "PaymentToolStripMenuItem"
+        Me.PaymentToolStripMenuItem.Size = New System.Drawing.Size(74, 21)
+        Me.PaymentToolStripMenuItem.Text = "Payment"
+        '
+        'LoanPaymentToolStripMenuItem
+        '
+        Me.LoanPaymentToolStripMenuItem.Name = "LoanPaymentToolStripMenuItem"
+        Me.LoanPaymentToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.LoanPaymentToolStripMenuItem.Text = "Loan Payment"
+        '
+        'OtherPaymentToolStripMenuItem
+        '
+        Me.OtherPaymentToolStripMenuItem.Name = "OtherPaymentToolStripMenuItem"
+        Me.OtherPaymentToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OtherPaymentToolStripMenuItem.Text = "Other Payment"
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 17.0!)
@@ -233,4 +255,7 @@ Partial Class frmMain
     Friend WithEvents LoanReleaseToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CollectionToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CashReportToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PaymentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LoanPaymentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OtherPaymentToolStripMenuItem As ToolStripMenuItem
 End Class

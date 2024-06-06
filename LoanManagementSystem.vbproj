@@ -201,10 +201,16 @@
     <Compile Include="Forms\Loan\frmLoanList.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Loan\frmLoanPayment.Designer.vb">
+    <Compile Include="Forms\Payments\Loan\frmLedgerList.Designer.vb">
+      <DependentUpon>frmLedgerList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Payments\Loan\frmLedgerList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Payments\Loan\frmLoanPayment.Designer.vb">
       <DependentUpon>frmLoanPayment.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Loan\frmLoanPayment.vb">
+    <Compile Include="Forms\Payments\Loan\frmLoanPayment.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Login\frmLogin.Designer.vb">
@@ -315,7 +321,10 @@
     <EmbeddedResource Include="Forms\Loan\frmLoanList.resx">
       <DependentUpon>frmLoanList.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Loan\frmLoanPayment.resx">
+    <EmbeddedResource Include="Forms\Payments\Loan\frmLedgerList.resx">
+      <DependentUpon>frmLedgerList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Payments\Loan\frmLoanPayment.resx">
       <DependentUpon>frmLoanPayment.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login\frmLogin.resx">
@@ -418,6 +427,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Database\lmsdb.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\Payments\Other\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

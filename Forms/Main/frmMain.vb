@@ -41,4 +41,7 @@
         frmCashReport.ShowDialog()
     End Sub
 
+    Private Sub LoanPaymentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoanPaymentToolStripMenuItem.Click
+        frmLoanPayment.ShowDialog()
+    End Sub
 End Class
