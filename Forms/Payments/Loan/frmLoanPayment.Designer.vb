@@ -48,10 +48,7 @@ Partial Class frmLoanPayment
         Me.txtChargeCode = New System.Windows.Forms.TextBox()
         Me.dtgvDueDateList = New System.Windows.Forms.DataGridView()
         Me.DueDateLID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PaymentStatus = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DueDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.lblLoanBalance = New System.Windows.Forms.Label()
@@ -347,7 +344,7 @@ Partial Class frmLoanPayment
         Me.dtgvDueDateList.AllowUserToDeleteRows = False
         Me.dtgvDueDateList.BackgroundColor = System.Drawing.Color.White
         Me.dtgvDueDateList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dtgvDueDateList.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DueDateLID, Me.Column1, Me.PaymentStatus, Me.Column2, Me.Column3, Me.DueDate})
+        Me.dtgvDueDateList.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DueDateLID, Me.PaymentStatus, Me.DueDate})
         Me.dtgvDueDateList.Location = New System.Drawing.Point(658, 36)
         Me.dtgvDueDateList.Name = "dtgvDueDateList"
         Me.dtgvDueDateList.RowHeadersVisible = False
@@ -364,12 +361,6 @@ Partial Class frmLoanPayment
         Me.DueDateLID.Name = "DueDateLID"
         Me.DueDateLID.Visible = False
         '
-        'Column1
-        '
-        Me.Column1.HeaderText = "CustCode"
-        Me.Column1.Name = "Column1"
-        Me.Column1.Visible = False
-        '
         'PaymentStatus
         '
         Me.PaymentStatus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
@@ -377,18 +368,6 @@ Partial Class frmLoanPayment
         Me.PaymentStatus.HeaderText = "Payment Status"
         Me.PaymentStatus.Items.AddRange(New Object() {"Partial", "Paid"})
         Me.PaymentStatus.Name = "PaymentStatus"
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "LDSN"
-        Me.Column2.Name = "Column2"
-        Me.Column2.Visible = False
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "Ledger No"
-        Me.Column3.Name = "Column3"
-        Me.Column3.Visible = False
         '
         'DueDate
         '
@@ -817,7 +796,7 @@ Partial Class frmLoanPayment
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(828, 687)
+        Me.ClientSize = New System.Drawing.Size(841, 687)
         Me.Controls.Add(Me.lblSelectDate)
         Me.Controls.Add(Me.lblDueDate)
         Me.Controls.Add(Me.lblStatus)
@@ -896,12 +875,6 @@ Partial Class frmLoanPayment
     Friend WithEvents btnCompute As Button
     Friend WithEvents lblStatus As Label
     Friend WithEvents lblDueDate As Label
-    Friend WithEvents DueDateLID As DataGridViewTextBoxColumn
-    Friend WithEvents Column1 As DataGridViewTextBoxColumn
-    Friend WithEvents PaymentStatus As DataGridViewComboBoxColumn
-    Friend WithEvents Column2 As DataGridViewTextBoxColumn
-    Friend WithEvents Column3 As DataGridViewTextBoxColumn
-    Friend WithEvents DueDate As DataGridViewTextBoxColumn
     Friend WithEvents ckbReceipt As CheckBox
     Friend WithEvents Label22 As Label
     Friend WithEvents txtLoanType As TextBox
@@ -911,4 +884,7 @@ Partial Class frmLoanPayment
     Friend WithEvents lblLoanBalance As Label
     Friend WithEvents lblSelectDate As Label
     Friend WithEvents btnSearch As Button
+    Friend WithEvents DueDateLID As DataGridViewTextBoxColumn
+    Friend WithEvents PaymentStatus As DataGridViewComboBoxColumn
+    Friend WithEvents DueDate As DataGridViewTextBoxColumn
 End Class

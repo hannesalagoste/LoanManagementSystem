@@ -61,4 +61,15 @@ Public Class frmLogin
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         End
     End Sub
+
+    Private Sub btnTest_Click(sender As Object, e As EventArgs) Handles btnTest.Click
+        Try
+            ConnAccDB()
+            MessageBox.Show("Connection to database 'accdb' successful", "Connection Test", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Connection Test", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            DisconnAccDB()
+        End Try
+    End Sub
 End Class

@@ -28,6 +28,7 @@ Partial Class frmLogin
         Me.Label2 = New System.Windows.Forms.Label()
         Me.btnLogin = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnTest = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'txtUsername
@@ -94,12 +95,26 @@ Partial Class frmLogin
         Me.btnCancel.Text = "Close"
         Me.btnCancel.UseVisualStyleBackColor = False
         '
+        'btnTest
+        '
+        Me.btnTest.BackColor = System.Drawing.Color.DodgerBlue
+        Me.btnTest.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnTest.ForeColor = System.Drawing.Color.White
+        Me.btnTest.Location = New System.Drawing.Point(125, 251)
+        Me.btnTest.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.btnTest.Name = "btnTest"
+        Me.btnTest.Size = New System.Drawing.Size(104, 40)
+        Me.btnTest.TabIndex = 6
+        Me.btnTest.Text = "Test Acc DB"
+        Me.btnTest.UseVisualStyleBackColor = False
+        '
         'frmLogin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 21.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(317, 246)
+        Me.ClientSize = New System.Drawing.Size(317, 403)
+        Me.Controls.Add(Me.btnTest)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnLogin)
         Me.Controls.Add(Me.Label2)
@@ -123,4 +138,5 @@ Partial Class frmLogin
     Friend WithEvents Label2 As Label
     Friend WithEvents btnLogin As Button
     Friend WithEvents btnCancel As Button
+    Friend WithEvents btnTest As Button
 End Class

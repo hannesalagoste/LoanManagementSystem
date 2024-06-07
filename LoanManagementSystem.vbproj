@@ -132,6 +132,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Accounting\Payment\clsAccountingPayment.vb" />
     <Compile Include="Classes\Area\clsArea.vb" />
     <Compile Include="Classes\Client\clsClientAccount.vb" />
     <Compile Include="Classes\Loan\CreateLoan\clsCreateLoan.vb" />
@@ -201,6 +202,12 @@
     <Compile Include="Forms\Loan\frmLoanList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\OtherTransaction\frmCreateOtherTransaction.Designer.vb">
+      <DependentUpon>frmCreateOtherTransaction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OtherTransaction\frmCreateOtherTransaction.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Payments\Loan\frmLedgerList.Designer.vb">
       <DependentUpon>frmLedgerList.vb</DependentUpon>
     </Compile>
@@ -223,6 +230,18 @@
       <DependentUpon>frmMain.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Main\frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Payments\OtherTransaction\frmOtherPayment.Designer.vb">
+      <DependentUpon>frmOtherPayment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Payments\OtherTransaction\frmOtherPayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Payments\OtherTransaction\frmOtherPaymentList.Designer.vb">
+      <DependentUpon>frmOtherPaymentList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Payments\OtherTransaction\frmOtherPaymentList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\User\frmCreateUpdateListUser.Designer.vb">
@@ -321,6 +340,9 @@
     <EmbeddedResource Include="Forms\Loan\frmLoanList.resx">
       <DependentUpon>frmLoanList.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OtherTransaction\frmCreateOtherTransaction.resx">
+      <DependentUpon>frmCreateOtherTransaction.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Payments\Loan\frmLedgerList.resx">
       <DependentUpon>frmLedgerList.vb</DependentUpon>
     </EmbeddedResource>
@@ -332,6 +354,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Payments\OtherTransaction\frmOtherPayment.resx">
+      <DependentUpon>frmOtherPayment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Payments\OtherTransaction\frmOtherPaymentList.resx">
+      <DependentUpon>frmOtherPaymentList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\User\frmCreateUpdateListUser.resx">
       <DependentUpon>frmCreateUpdateListUser.vb</DependentUpon>
@@ -426,10 +454,9 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Database\lmsdb%2817-06-24%29.sql" />
     <Content Include="Database\lmsdb.sql" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\Payments\Other\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

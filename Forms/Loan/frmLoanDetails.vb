@@ -54,7 +54,7 @@ Public Class frmLoanDetails
             ConnDB()
             sqL = "SELECT PrinBalance " &
                     "FROM ( " &
-                    "    SELECT PrinBalance, ROW_NUMBER() OVER (PARTITION BY PayDate ORDER BY PrinBalance ASC, ldgID ASC) AS RowNum " &
+                    "    SELECT PrinBalance, ROW_NUMBER() OVER (ORDER BY PrinBalance ASC, ldgID ASC) AS RowNum " &
                     "    FROM paymentledger " &
                     "    WHERE LGNo = '" & txtLedgerNo.Text & "'" &
                     ") AS SubQuery " &

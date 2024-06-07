@@ -44,4 +44,12 @@
     Private Sub LoanPaymentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoanPaymentToolStripMenuItem.Click
         frmLoanPayment.ShowDialog()
     End Sub
+
+    Private Sub OtherPaymentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OtherPaymentToolStripMenuItem.Click
+        frmOtherPayment.ShowDialog()
+    End Sub
+
+    Private Sub CreateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CreateToolStripMenuItem.Click
+        frmCreateOtherTransaction.ShowDialog()
+    End Sub
 End Class

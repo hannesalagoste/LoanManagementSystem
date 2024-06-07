@@ -7,19 +7,19 @@ Public Class frmLoanPayment
 
     Private Sub frmLoanPayment_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            dueDateList()
-            txtProcessor.Text = userLoginName
-            GetLatestPrincipalBalance()
-            selectedLedgerNo()
-            AutoincrementReceiptNo()
+            loadAll()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation)
         End Try
     End Sub
     Public Sub loadAll()
-        'dueDateList()
+        txtProcessor.Text = userLoginName
+
+        dueDateList()
         GetLatestPrincipalBalance()
         selectedLedgerNo()
+        AutoincrementReceiptNo()
+
     End Sub
 
     Private Sub AutoincrementReceiptNo()
@@ -58,11 +58,13 @@ Public Class frmLoanPayment
             End If
             Dim OldPrincipal As Decimal = lblOldPrincipal.Text
             ConnDB()
-            sqL = "select * from loanaccount where LedgerNo = '" & txtLedgerNo.Text & "' "
+            sqL = "select * from loanaccount where LedgerNo = @ledgerNo"
             cmd = New MySqlCommand(sqL, conn)
+            cmd.Parameters.AddWithValue("@ledgerNo", txtLedgerNo.Text)
             da = New MySqlDataAdapter(cmd)
             Dim myReader As MySqlDataReader
             myReader = cmd.ExecuteReader()
+
             If myReader.Read Then
                 Dim fullName As String = myReader("ClientName")
                 txtCustomerName.Text = fullName.ToUpper
@@ -86,7 +88,7 @@ Public Class frmLoanPayment
             End If
 
         Catch ex As Exception
-            ' MsgBox(ex.Message, MsgBoxStyle.Exclamation)
+            MsgBox(ex.Message, MsgBoxStyle.Exclamation)
         End Try
     End Sub
 
@@ -95,13 +97,14 @@ Public Class frmLoanPayment
             ConnDB()
             sqL = "SELECT PrinBalance " &
                     "FROM ( " &
-                    "    SELECT PrinBalance, ROW_NUMBER() OVER (PARTITION BY PayDate ORDER BY PrinBalance ASC, ldgID ASC) AS RowNum " &
+                    "    SELECT PrinBalance, ROW_NUMBER() OVER (ORDER BY PrinBalance ASC, ldgID ASC) AS RowNum " &
                     "    FROM paymentledger " &
-                    "    WHERE LGNo = '" & txtLedgerNo.Text & "'" &
+                    "    WHERE LGNo = @ledgerNo " &
                     ") AS SubQuery " &
                     "WHERE RowNum = 1"
 
             cmd = New MySqlCommand(sqL, conn)
+            cmd.Parameters.AddWithValue("@ledgerNo", txtLedgerNo.Text)
             da = New MySqlDataAdapter(cmd)
             Dim myReader As MySqlDataReader
             myReader = cmd.ExecuteReader()
@@ -118,19 +121,20 @@ Public Class frmLoanPayment
 
 
     Public Sub dueDateList()
+
         Try
             ConnDB()
-            sqL = "Select DueDateLID,PaymentStatus, DueDate from duedateledger where LGNo = '" & txtLedgerNo.Text & "' "
+            sqL = "Select DueDateLID, PaymentStatus, DueDate from duedateledger where LGNo = @ledgerNo "
             cmd = New MySqlCommand(sqL, conn)
+            cmd.Parameters.AddWithValue("@ledgerNo", txtLedgerNo.Text)
             da = New MySqlDataAdapter(cmd)
-            Dim ds As DataSet = New DataSet()
-            da.Fill(ds, sqL)
+            Dim ds As New DataSet()
+            da.Fill(ds, "DueDateLedger")
             dtgvDueDateList.DataSource = ds
-            dtgvDueDateList.DataMember = sqL
+            dtgvDueDateList.DataMember = "DueDateLedger"
             dtgvDueDateList.ClearSelection()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation)
-
         End Try
     End Sub
 
@@ -528,6 +532,12 @@ Public Class frmLoanPayment
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation)
         End Try
+
+    End Sub
+
+    '''SAVE TO ACCOUNTING
+
+    Public Sub savePaymentAccounting()
 
     End Sub
 
